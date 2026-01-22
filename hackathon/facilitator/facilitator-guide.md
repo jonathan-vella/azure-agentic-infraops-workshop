@@ -22,6 +22,40 @@
 
 ---
 
+## Pre-Event Setup
+
+### Governance Policies (Optional but Recommended)
+
+Deploy Azure Policies to create realistic governance constraints. Teams will encounter real policy errors!
+
+```powershell
+# Check current governance status
+.\scripts\hackathon\Get-GovernanceStatus.ps1 -SubscriptionId "<sub-id>"
+
+# Deploy hackathon policies (checks for existing before creating)
+.\scripts\hackathon\Setup-GovernancePolicies.ps1 -SubscriptionId "<sub-id>"
+
+# After event: Remove policies
+.\scripts\hackathon\Remove-GovernancePolicies.ps1 -SubscriptionId "<sub-id>"
+```
+
+**Policies deployed:**
+
+| Policy | Effect | Forces |
+|--------|--------|--------|
+| Allowed locations | Deny | Only `swedencentral`, `germanywestcentral` |
+| Require Environment tag | Deny | Must tag all resources |
+| Require Project tag | Deny | Must tag all resources |
+| SQL Azure AD-only auth | Deny | No SQL passwords |
+| Storage HTTPS only | Deny | `supportsHttpsTrafficOnly: true` |
+| Storage min TLS 1.2 | Deny | `minimumTlsVersion: 'TLS1_2'` |
+| Storage no public blob | Deny | `allowBlobPublicAccess: false` |
+| App Service HTTPS | Deny | `httpsOnly: true` |
+
+> ⚠️ **Note**: Policies take 5-15 minutes to become effective after deployment.
+
+---
+
 ## Detailed Schedule
 
 ### Block 1: Intro (0:00 - 0:45)

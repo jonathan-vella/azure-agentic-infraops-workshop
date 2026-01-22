@@ -1,63 +1,206 @@
-# Agentic InfraOps Template
+# 🤖 Agentic InfraOps Workshop
 
-> **Azure infrastructure engineered by AI agents.** Template with custom Copilot agents, Dev Container,
-> and workflow automation.
+<div align="center">
 
-## Overview
+**Azure infrastructure engineered by AI agents. Verified. Well-Architected. Deployable.**
 
-Starter template for agentic Azure infrastructure development. Contains custom Copilot agents
-(architect, bicep-plan, bicep-implement), Azure Pricing MCP server, and the 7-step workflow.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Azure](https://img.shields.io/badge/Azure-Ready-0078D4?logo=microsoftazure)](https://azure.microsoft.com)
+[![Copilot](https://img.shields.io/badge/GitHub_Copilot-Powered-000?logo=github)](https://github.com/features/copilot)
+[![Bicep](https://img.shields.io/badge/Bicep-IaC-orange)](https://learn.microsoft.com/azure/azure-resource-manager/bicep/)
 
-This template auto-syncs weekly from [azure-agentic-infraops](https://github.com/jonathan-vella/azure-agentic-infraops).
+[Get Started](#-quick-start) • [Hackathon](#-hackathon) • [Workflow](#-workflow) • [Documentation](#-documentation)
 
-## Quick Start
+</div>
+
+---
+
+## ✨ What's Inside
+
+<table>
+<tr>
+<td width="50%">
+
+### 🎯 Custom Copilot Agents
+7 specialized agents for the full infrastructure lifecycle:
+- **plan** → Requirements gathering
+- **architect** → WAF assessment
+- **bicep-plan** → Implementation planning
+- **bicep-code** → Code generation
+- **deploy** → Azure deployment
+- **diagram** → Architecture diagrams
+- **docs** → Documentation generation
+
+</td>
+<td width="50%">
+
+### 🛠️ Ready-to-Use Tools
+Everything pre-configured in a Dev Container:
+- **Azure Pricing MCP** → Real-time cost estimates
+- **Bicep** → Infrastructure as Code
+- **Azure CLI** → Cloud management
+- **PowerShell 7** → Automation scripts
+- **Markdown linting** → Documentation quality
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 📐 Well-Architected Framework
+Every decision aligned with Azure WAF:
+- ⚡ **Reliability** → SLA, RTO, RPO
+- 🔒 **Security** → Zero-trust, encryption
+- 💰 **Cost** → Optimization, budgets
+- 🔧 **Operations** → Monitoring, IaC
+- 🚀 **Performance** → Scalability, efficiency
+
+</td>
+<td width="50%">
+
+### 📚 Complete Learning Path
+From zero to deployed infrastructure:
+- Step-by-step workflow guide
+- Reusable prompt templates
+- Artifact templates
+- Best practices documentation
+- **NEW: 5-hour hands-on hackathon!**
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🎓 Hackathon
+
+<table>
+<tr>
+<td>
+
+### 🏆 5-Hour Hands-On Challenge
+
+Transform business requirements into deployed Azure infrastructure using AI agents.
+
+**Perfect for:**
+- IT Pros familiar with Azure Portal, new to IaC
+- Teams of 3-4 (20-24 participants total)
+- Workshop facilitators and trainers
+
+**Includes:**
+- 5 progressive challenges with a surprise "curveball"
+- Automated scoring aligned with WAF pillars
+- Facilitator guide with curveball announcement script
+- Quick reference cards and team role definitions
+
+</td>
+<td width="40%">
+
+```
+hackathon/
+├── challenges/        # 5 challenge files
+├── participant/       # Scenario, hints, cards
+├── facilitator/       # Guide, scoring, solutions
+└── feedback-form.md   # Post-event survey
+
+scripts/hackathon/
+├── Score-Team.ps1
+├── Get-Leaderboard.ps1
+└── Cleanup-HackathonResources.ps1
+```
+
+**[→ Start the Hackathon](hackathon/README.md)**
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Docker Desktop (or alternative: Podman, Colima, Rancher Desktop)
-- VS Code with Dev Containers extension
-- GitHub Copilot subscription
-- Azure subscription with Contributor access (for deployments)
+| Requirement | Purpose |
+|-------------|---------|
+| Docker Desktop | Dev Container runtime |
+| VS Code + Dev Containers | Development environment |
+| GitHub Copilot | AI-powered agents |
+| Azure subscription | Infrastructure deployment |
 
-### Getting Started
+### Setup (5 minutes)
 
 ```bash
-# Clone repository
-git clone https://github.com/jonathan-vella/azure-agentic-infraops-accelerator.git
-cd azure-agentic-infraops-accelerator
-
-# Open in VS Code
+# 1. Clone and open
+git clone https://github.com/jonathan-vella/azure-agentic-infraops-workshop.git
+cd azure-agentic-infraops-workshop
 code .
 
-# Reopen in Dev Container
-# F1 → "Dev Containers: Reopen in Container"
-# Wait 3-5 minutes for initial build
+# 2. Reopen in Dev Container (F1 → "Dev Containers: Reopen in Container")
 
-# Authenticate with Azure
+# 3. Authenticate
 az login
 az account set --subscription "<your-subscription-id>"
 
-# Verify tools
-az bicep version && terraform version && pwsh --version
+# 4. Verify
+az account show --query name -o tsv && bicep --version
 ```
 
-## Agent Workflow
+---
+
+## 🔄 Workflow
+
+**7 steps from requirements to deployed infrastructure:**
+
+```mermaid
+%%{init: {'theme':'neutral'}}%%
+graph LR
+    R["📋 Requirements"] --> A["🏗️ Architecture"]
+    A --> D["📊 Design"]
+    D --> P["📝 Plan"]
+    P --> C["💻 Code"]
+    C --> DEP["🚀 Deploy"]
+    DEP --> DOC["📚 Docs"]
+    
+    style R fill:#e1f5fe
+    style A fill:#fff3e0
+    style D fill:#f3e5f5
+    style P fill:#e8f5e9
+    style C fill:#fce4ec
+    style DEP fill:#c8e6c9
+    style DOC fill:#e3f2fd
+```
+
+| Step | Agent | Output | Required |
+|------|-------|--------|----------|
+| 1 | **plan** | `01-requirements.md` | ✅ |
+| 2 | **architect** | `02-architecture-assessment.md` | ✅ |
+| 3 | **diagram** | `03-des-*.md` / `03-des-*.png` | Optional |
+| 4 | **bicep-plan** | `04-implementation-plan.md` | ✅ |
+| 5 | **bicep-code** | `infra/bicep/{project}/` | ✅ |
+| 6 | **deploy** | `06-deployment-summary.md` | ✅ |
+| 7 | **docs** | `07-*.md` | Optional |
+
+**Usage:** `Ctrl+Alt+I` → `Ctrl+Shift+I` to switch to Agent mode → Select agent from dropdown
+
+<details>
+<summary>📊 Detailed Workflow Diagram</summary>
 
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
 graph TB
     subgraph "Step 1: Requirements"
-        P["@plan<br/>(built-in)"]
+        P["plan<br/>(built-in)"]
     end
 
     subgraph "Step 2: Architecture"
-        A["azure-principal-architect<br/>(NO CODE)"]
+        A["architect<br/>(WAF assessment)"]
         MCP["💰 Azure Pricing MCP"]
     end
 
     subgraph "Step 3: Design Artifacts"
-        D["📊 diagram-generator<br/>(-des suffix)"]
-        ADR1["📝 adr-generator<br/>(-des suffix)"]
+        D["📊 diagram"]
+        ADR1["📝 adr"]
     end
 
     subgraph "Step 4: Planning"
@@ -65,17 +208,16 @@ graph TB
     end
 
     subgraph "Step 5: Implementation"
-        I["bicep-implement<br/>(code generation)"]
+        I["bicep-code<br/>(code generation)"]
     end
 
     subgraph "Step 6: Deploy"
-        DEP["🚀 Deploy to Azure<br/>(PowerShell/CLI)"]
+        DEP["🚀 Deploy to Azure"]
     end
 
-    subgraph "Step 7: As-Built Artifacts"
-        D2["📊 diagram-generator<br/>(-ab suffix)"]
-        ADR2["📝 adr-generator<br/>(-ab suffix)"]
-        WL["📚 workload-documentation"]
+    subgraph "Step 7: As-Built Docs"
+        D2["📊 diagram"]
+        WL["📚 docs"]
     end
 
     P -->|"requirements"| A
@@ -88,7 +230,6 @@ graph TB
     B -->|"plan"| I
     I -->|"code complete"| DEP
     DEP -->|"deployed"| D2
-    DEP -->|"deployed"| ADR2
     DEP -->|"deployed"| WL
 
     style P fill:#e1f5fe
@@ -100,48 +241,57 @@ graph TB
     style I fill:#fce4ec
     style DEP fill:#c8e6c9
     style D2 fill:#f3e5f5
-    style ADR2 fill:#e8eaf6
     style WL fill:#e3f2fd
 ```
 
-## Workflow Steps
+</details>
 
-| Step | Agent/Phase                 | Purpose                              | Creates                                   | Required |
-| ---- | --------------------------- | ------------------------------------ | ----------------------------------------- | -------- |
-| 1    | `@plan` (built-in)          | Gather requirements                  | `01-requirements.md`                      | ✅ Yes   |
-| 2    | `azure-principal-architect` | WAF assessment                       | `02-architecture-assessment.md`           | ✅ Yes   |
-| 3    | Design Artifacts            | Visualize design, document decisions | `03-des-*` diagrams + cost + ADRs         | Optional |
-| 4    | `bicep-plan`                | Implementation planning + governance | `04-*` plan + governance constraints      | ✅ Yes   |
-| 5    | `bicep-implement`           | Code generation                      | Bicep templates + `05-*` reference        | ✅ Yes   |
-| 6    | Deploy                      | Deploy to Azure                      | `06-deployment-summary.md`                | ✅ Yes   |
-| 7    | As-Built Artifacts          | Document final state                 | `07-ab-*` diagrams + ADRs + workload docs | Optional |
+---
 
-**Usage:** Press `Ctrl+Shift+A` in VS Code to select an agent.
-
-## Project Structure
+## 📁 Project Structure
 
 ```
-├── .devcontainer/           # Dev container configuration
+├── .devcontainer/           # Dev Container configuration
 ├── .github/
-│   ├── agents/              # Copilot agents
+│   ├── agents/              # 7 custom Copilot agents
 │   ├── instructions/        # AI coding standards
 │   ├── prompts/             # Reusable prompt templates
-│   ├── templates/           # Artifact output templates
-│   └── copilot-instructions.md
+│   └── templates/           # Artifact output templates
 ├── agent-output/            # Agent-generated artifacts
-├── infra/bicep/             # Bicep templates
-└── mcp/azure-pricing-mcp/   # Azure Pricing MCP server
+│   └── _sample/             # Example skeleton files
+├── hackathon/               # 🆕 5-hour hands-on hackathon
+├── infra/bicep/             # Generated Bicep templates
+├── mcp/azure-pricing-mcp/   # Azure Pricing MCP server
+└── scripts/hackathon/       # Scoring and cleanup scripts
 ```
 
-## Documentation
+---
 
-- [Copilot Instructions](.github/copilot-instructions.md)
-- [Main Repository Docs](https://github.com/jonathan-vella/azure-agentic-infraops/tree/main/docs)
-- [Workflow Guide](https://github.com/jonathan-vella/azure-agentic-infraops/blob/main/docs/reference/workflow.md)
+## 📖 Documentation
 
-## Development
+| Resource | Description |
+|----------|-------------|
+| [Copilot Instructions](.github/copilot-instructions.md) | Project-specific AI guidance |
+| [Hackathon Guide](hackathon/README.md) | 5-hour hands-on challenge |
+| [Quick Reference](hackathon/participant/quick-reference-card.md) | Printable cheat sheet |
+| [Workflow Details](docs/reference/workflow.md) | Step-by-step workflow guide |
 
-### Validation Commands
+---
+
+## 🧑‍💻 Who Is This For?
+
+| Audience | Use Case |
+|----------|----------|
+| **SI Partners** | Accelerate Azure project delivery with AI |
+| **IT Pros** | Learn IaC with AI guidance |
+| **Trainers** | Ready-to-use hackathon materials |
+| **Platform Teams** | Standardize infrastructure patterns |
+
+---
+
+## 🛠️ Development
+
+### Validation
 
 ```bash
 # Bicep
@@ -156,22 +306,32 @@ npm run lint:md
 
 ```powershell
 cd infra/bicep/{project}
-./deploy.ps1 -WhatIf  # Preview changes
+./deploy.ps1 -WhatIf  # Preview
 ./deploy.ps1          # Deploy
 ```
 
-## Contributing
+---
 
-1. Create a feature branch
-2. Make your changes
-3. Run `npm run lint:md` to validate markdown
-4. Submit a pull request
+## 🤝 Contributing
 
-## Additional Resources
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run `npm run lint:md` to validate
+5. Submit a pull request
 
-For advanced usage, reference implementations, or additional documentation, see the main repository:
-[azure-agentic-infraops](https://github.com/jonathan-vella/azure-agentic-infraops)
+---
 
-## License
+## 📄 License
 
 [MIT](LICENSE)
+
+---
+
+<div align="center">
+
+**Built with ❤️ for the Azure community**
+
+[⬆ Back to top](#-agentic-infraops-workshop)
+
+</div>

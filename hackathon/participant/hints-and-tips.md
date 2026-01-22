@@ -80,6 +80,67 @@ identity: {
 </details>
 
 <details>
+<summary>🔒 Governance Policy Errors (click to reveal)</summary>
+
+**Common Policy Errors & Fixes:**
+
+If Azure Policies are enabled, you may see deployment errors like:
+
+| Error Message | Cause | Fix |
+|---------------|-------|-----|
+| `RequestDisallowedByPolicy` (location) | Resource outside allowed regions | Use `swedencentral` or `germanywestcentral` |
+| `RequestDisallowedByPolicy` (tag) | Missing required tag | Add `Environment` and `Project` tags |
+| `RequestDisallowedByPolicy` (SQL auth) | SQL password auth attempted | Set `azureADOnlyAuthentication: true` |
+| `RequestDisallowedByPolicy` (HTTPS) | HTTPS not enabled | Set `supportsHttpsTrafficOnly: true` |
+| `RequestDisallowedByPolicy` (TLS) | TLS version too low | Set `minimumTlsVersion: 'TLS1_2'` |
+| `RequestDisallowedByPolicy` (public blob) | Public blob access enabled | Set `allowBlobPublicAccess: false` |
+
+**Required Bicep Settings:**
+
+```bicep
+// Storage Account - all required for policy compliance
+resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
+  name: storageAccountName
+  location: location
+  tags: tags  // Must include Environment and Project!
+  properties: {
+    supportsHttpsTrafficOnly: true
+    minimumTlsVersion: 'TLS1_2'
+    allowBlobPublicAccess: false
+  }
+}
+
+// SQL Server - Azure AD only
+resource sqlServer 'Microsoft.Sql/servers@2023-05-01-preview' = {
+  name: sqlServerName
+  location: location
+  tags: tags
+  properties: {
+    azureADOnlyAuthentication: true
+    administrators: {
+      administratorType: 'ActiveDirectory'
+      // ... AD admin config
+    }
+  }
+}
+
+// App Service - HTTPS only
+resource webApp 'Microsoft.Web/sites@2023-01-01' = {
+  name: appName
+  location: location
+  tags: tags
+  properties: {
+    httpsOnly: true
+    siteConfig: {
+      minTlsVersion: '1.2'
+    }
+  }
+}
+```
+
+</details>
+
+<details>
 <summary>🏗️ Bicep Patterns (click to reveal)</summary>
 
 **UniqueString Pattern:**
