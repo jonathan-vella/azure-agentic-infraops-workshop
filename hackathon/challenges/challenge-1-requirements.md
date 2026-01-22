@@ -10,7 +10,8 @@ Use the **plan** agent to capture comprehensive Azure infrastructure requirement
 
 ### Step 1: Start the Plan Agent (5 min)
 
-Press `Ctrl+Alt+I` to open Copilot Chat, then `Ctrl+Shift+I` to switch to Agent mode. Select the **plan** agent from the dropdown and paste:
+Press `Ctrl+Alt+I` to open Copilot Chat, then `Ctrl+Shift+I` to switch to Agent mode.
+Select the **plan** agent from the dropdown and paste:
 
 ```
 I need to plan Azure infrastructure for "FreshConnect" - a farm-to-table delivery platform 

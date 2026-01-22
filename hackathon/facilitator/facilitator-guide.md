@@ -131,7 +131,8 @@ Stand up, get everyone's attention:
 >
 > *We've just received urgent news from Nordic Fresh Foods headquarters!*
 >
-> *They've signed a major contract with a Danish restaurant chain — Smørrebrød Express — worth €500K annually. The board has mandated new business continuity requirements.*
+> *They've signed a major contract with a Danish restaurant chain — Smørrebrød Express — worth
+> €500K annually. The board has mandated new business continuity requirements.*
 >
 > *Your infrastructure must now support:*
 > - *Multi-region disaster recovery*

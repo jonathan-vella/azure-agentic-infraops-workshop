@@ -4,7 +4,8 @@
 
 ## The Business
 
-**Nordic Fresh Foods** is a growing farm-to-table delivery company based in Stockholm, Sweden. They connect local organic farmers with restaurants and consumers across Scandinavia.
+**Nordic Fresh Foods** is a growing farm-to-table delivery company based in Stockholm, Sweden.
+They connect local organic farmers with restaurants and consumers across Scandinavia.
 
 | Fact | Details |
 |------|---------|
@@ -16,21 +17,28 @@
 
 ## The Problem
 
-The CEO has secured €2M in Series A funding and needs to modernize operations before peak season (3 months away). Current pain points:
+The CEO has secured €2M in Series A funding and needs to modernize operations before peak
+season (3 months away). Current pain points:
 
-1. **Order chaos**: Staff manually enters orders from phone, email, and web forms into spreadsheets. They lose ~8% of orders to errors.
+1. **Order chaos**: Staff manually enters orders from phone, email, and web forms into
+   spreadsheets. They lose ~8% of orders to errors.
 
-2. **No real-time inventory**: Farmers update stock levels via WhatsApp. The team often oversells products that are no longer available.
+2. **No real-time inventory**: Farmers update stock levels via WhatsApp. The team often
+   oversells products that are no longer available.
 
-3. **Delivery scheduling**: Routes are planned manually. Drivers often arrive at farms when produce isn't ready, wasting time and fuel.
+3. **Delivery scheduling**: Routes are planned manually. Drivers often arrive at farms when
+   produce isn't ready, wasting time and fuel.
 
-4. **Customer visibility**: Restaurants have no way to track orders or see estimated delivery times. They call constantly for updates.
+4. **Customer visibility**: Restaurants have no way to track orders or see estimated
+   delivery times. They call constantly for updates.
 
-5. **Seasonal scaling**: During summer and December, order volume triples. They currently hire temp staff and work overtime — it's unsustainable.
+5. **Seasonal scaling**: During summer and December, order volume triples. They currently
+   hire temp staff and work overtime — it's unsustainable.
 
 ## The Vision
 
-The CTO (newly hired) has outlined a vision for **"FreshConnect"** — a cloud-based platform that will:
+The CTO (newly hired) has outlined a vision for **"FreshConnect"** — a cloud-based platform
+that will:
 
 - Accept orders from a web portal and mobile app
 - Show real-time inventory from connected farms
@@ -43,7 +51,8 @@ The CTO (newly hired) has outlined a vision for **"FreshConnect"** — a cloud-b
 
 Design and deploy the Azure infrastructure for the **FreshConnect MVP** (Minimum Viable Product).
 
-> ⚠️ **Note**: You are NOT building the application code. You are designing and deploying the **cloud infrastructure** that the development team will use.
+> ⚠️ **Note**: You are NOT building the application code. You are designing and deploying
+> the **cloud infrastructure** that the development team will use.
 
 ## MVP Requirements
 
@@ -100,4 +109,5 @@ Design and deploy the Azure infrastructure for the **FreshConnect MVP** (Minimum
 
 ## Getting Started
 
-Begin with [Challenge 1: Requirements](../challenges/challenge-1-requirements.md) to capture these requirements using the **plan** agent.
+Begin with [Challenge 1: Requirements](../challenges/challenge-1-requirements.md) to capture these
+requirements using the **plan** agent.

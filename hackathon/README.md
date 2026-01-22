@@ -4,7 +4,9 @@
 
 ## Overview
 
-Welcome to the Agentic InfraOps Hackathon! Your team will use GitHub Copilot custom agents to design, plan, implement, and deploy Azure infrastructure — all guided by AI and aligned with the Azure Well-Architected Framework.
+Welcome to the Agentic InfraOps Hackathon! Your team will use GitHub Copilot custom agents to
+design, plan, implement, and deploy Azure infrastructure — all guided by AI and aligned with the
+Azure Well-Architected Framework.
 
 **What you'll experience:**
 
@@ -73,7 +75,8 @@ By the end of this hackathon, you will:
 | 4:25 | 35 min | **[Challenge 4](challenges/challenge-4-dr-curveball.md) + [5](challenges/challenge-5-load-testing.md)** | DR architecture + Load testing |
 | 5:00 | — | **Wrap-up** | Team showcases, automated scoring, next steps |
 
-> ⚠️ **Staggered Challenge**: At 4:15, facilitators announce new business requirements (multi-region DR). This simulates real-world requirement changes!
+> ⚠️ **Staggered Challenge**: At 4:15, facilitators announce new business requirements
+> (multi-region DR). This simulates real-world requirement changes!
 
 ## The Challenge: Nordic Fresh Foods
 
