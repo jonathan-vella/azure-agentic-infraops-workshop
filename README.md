@@ -6,6 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)](VERSION.md)
+[![Auto Version](https://github.com/jonathan-vella/azure-agentic-infraops-workshop/actions/workflows/auto-version.yml/badge.svg)](https://github.com/jonathan-vella/azure-agentic-infraops-workshop/actions/workflows/auto-version.yml)
 [![Azure](https://img.shields.io/badge/Azure-Ready-0078D4?logo=microsoftazure)](https://azure.microsoft.com)
 [![Copilot](https://img.shields.io/badge/GitHub_Copilot-Powered-000?logo=github)](https://github.com/features/copilot)
 [![Bicep](https://img.shields.io/badge/Bicep-IaC-orange)](https://learn.microsoft.com/azure/azure-resource-manager/bicep/)

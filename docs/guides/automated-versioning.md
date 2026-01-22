@@ -10,8 +10,9 @@ The `.github/workflows/auto-version.yml` workflow automatically:
 2. ✅ **Determines version bump type** (major, minor, or patch)
 3. ✅ **Updates VERSION.md** with new version number and date
 4. ✅ **Updates CHANGELOG.md** with categorized changes
-5. ✅ **Creates a Git tag** for the new version
-6. ✅ **Publishes a GitHub Release** with release notes
+5. ✅ **Creates a Pull Request** with the version bump
+6. 👤 **Requires manual review and merge** of the version bump PR
+7. 📝 **After merge, manually create GitHub Release** using the created tag
 
 ## Commit Message Format
 
@@ -108,6 +109,20 @@ The auto-version workflow runs on:
 - ✅ Push to `master` or `main` branch
 - ❌ Ignores changes to `VERSION.md`, `CHANGELOG.md`, and the workflow file itself
 - ❌ Skips if commit message contains `[skip ci]`
+
+**What happens after workflow runs:**
+1. Workflow creates a PR with version bump (e.g., `release/v1.2.0`)
+2. PR requires approval and passing checks (markdown-lint)
+3. Merge the PR using **squash and merge**
+4. After merge, manually create a GitHub Release:
+   ```bash
+   gh release create v1.2.0 --title "Release v1.2.0" \
+     --notes-file <(git tag -l --format='%(contents)' v1.2.0)
+   ```
+
+**Why manual release creation?**
+Branch protection requires all changes go through PRs. The workflow creates the version bump PR,
+but release creation happens after the PR is merged.
 
 ## Checking Version Status
 
