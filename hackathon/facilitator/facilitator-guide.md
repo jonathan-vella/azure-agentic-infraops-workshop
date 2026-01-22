@@ -58,7 +58,7 @@ Deploy Azure Policies to create realistic governance constraints. Teams will enc
 
 ## Detailed Schedule
 
-> **Event runs 10:00 - 15:00** (5 hours with 45-min lunch)
+> **Event runs 10:00 - 15:00** (5 hours with 35-min lunch)
 
 ### Block 1: Intro (10:00 - 10:30)
 
@@ -104,19 +104,19 @@ echo "✅ Ready!"
 | 11:30 | Check-in | Getting WAF recommendations?       |
 | 11:45 | Cost     | Pricing MCP working?               |
 | 11:55 | Wrap     | Finalize architecture doc          |
-| 12:00 | Lunch    | 45 minutes                         |
+| 12:00 | Lunch    | 35 minutes                         |
 
-### 🍽️ Lunch Break (12:00 - 12:45)
+### 🍽️ Lunch Break (12:00 - 12:35)
 
-### Block 4: Challenge 3 - Bicep (12:45 - 13:30)
+### Block 4: Challenge 3 - Bicep (12:35 - 13:20)
 
 | Time  | Activity | Action                             |
 | ----- | -------- | ---------------------------------- |
-| 12:45 | Start    | Teams start **bicep-plan** agent   |
-| 13:00 | Plan     | Implementation plan ready?         |
-| 13:10 | Code     | Transition to **bicep-code** agent |
-| 13:25 | Validate | Check `bicep build`                |
-| 13:30 | Break    | 5 minutes                          |
+| 12:35 | Start    | Teams start **bicep-plan** agent   |
+| 12:50 | Plan     | Implementation plan ready?         |
+| 13:00 | Code     | Transition to **bicep-code** agent |
+| 13:15 | Validate | Check `bicep build`                |
+| 13:20 | Break    | 5 minutes                          |
 
 **Common Issues:**
 
@@ -125,9 +125,9 @@ echo "✅ Ready!"
 | Key Vault name too long | ≤24 chars              |
 | Storage account invalid | Lowercase+numbers only |
 
-### Block 5: ⚡ CURVEBALL + Challenges 4-5 (13:30 - 14:15)
+### Block 5: ⚡ CURVEBALL + Challenges 4-5 (13:20 - 14:00)
 
-#### 📢 Announcement Script (13:30)
+#### 📢 Announcement Script (13:20)
 
 Stand up, get everyone's attention:
 
@@ -149,12 +149,23 @@ Stand up, get everyone's attention:
 >
 > _You have 20 minutes! GO GO GO!_ 🚀"
 
-| Time  | Activity  | Action                                   |
-| ----- | --------- | ---------------------------------------- |
-| 13:30 | Announce  | Read the script!                         |
-| 13:50 | DR        | Teams update architecture                |
-| 14:00 | Load Test | Teams run k6                             |
-| 14:10 | Break     | 5 minutes (teams prepare presentations)  |
+| Time  | Activity  | Action                     |
+| ----- | --------- | -------------------------- |
+| 13:20 | Announce  | Read the script!           |
+| 13:40 | DR        | Teams update architecture  |
+| 13:50 | Load Test | Teams run k6               |
+| 14:00 | Prep      | Presentation prep begins   |
+
+### 🎯 Presentation Prep (14:00 - 14:15)
+
+> **15 minutes** for teams to prepare their Partner Showcase presentations.
+
+**Facilitator Actions:**
+
+- Remind teams of the 4-min pitch + 2-min Q&A format
+- Share the [Presentation Template](../challenges/challenge-6-partner-showcase.md#what-to-present)
+- Assign team pairings (see below)
+- Set up presentation area (projector, timer)
 
 ### Block 6: Challenge 6 - Partner Showcase 🎤 (14:15 - 14:55)
 
