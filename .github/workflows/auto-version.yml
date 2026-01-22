@@ -190,7 +190,7 @@ jobs:
           # Read the current CHANGELOG
           head -n 5 CHANGELOG.md > /tmp/changelog_header.txt
           tail -n +6 CHANGELOG.md > /tmp/changelog_rest.txt
-          
+
           # Rebuild CHANGELOG with new entry inserted after header
           cat /tmp/changelog_header.txt > CHANGELOG.md
           cat /tmp/changelog_entry.txt >> CHANGELOG.md
@@ -198,29 +198,52 @@ jobs:
 
           echo "CHANGELOG.md updated"
 
-      - name: Commit and tag
+      - name: Create Pull Request for version bump
         if: steps.version_bump.outputs.bump_type != 'none'
-        run: |
-          NEW_VERSION="${{ steps.new_version.outputs.version }}"
-
-          git add VERSION.md CHANGELOG.md
-          git commit -m "chore(release): bump version to $NEW_VERSION [skip ci]"
-          git tag -a "v$NEW_VERSION" -m "Release v$NEW_VERSION"
-          git push origin master --tags
-
-          echo "Version $NEW_VERSION committed and tagged"
-
-      - name: Create GitHub Release
-        if: steps.version_bump.outputs.bump_type != 'none'
-        uses: softprops/action-gh-release@69320dbe05506a9a39fc8ae11030b214ec2d1f87
+        uses: peter-evans/create-pull-request@v6
+        id: create_pr
         with:
-          tag_name: v${{ steps.new_version.outputs.version }}
-          name: Release v${{ steps.new_version.outputs.version }}
-          body_path: /tmp/changelog_entry.txt
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(release): bump version to ${{ steps.new_version.outputs.version }}"
+          title: "chore(release): bump version to ${{ steps.new_version.outputs.version }}"
+          body: |
+            ## 🤖 Automated Version Bump
+            
+            This PR was automatically created by the auto-version workflow.
+            
+            ### Changes
+            - Version: `${{ steps.current_version.outputs.version }}` → `${{ steps.new_version.outputs.version }}`
+            - Bump type: `${{ steps.version_bump.outputs.bump_type }}`
+            
+            ### Updated Files
+            - `VERSION.md` - Version number and build metadata
+            - `CHANGELOG.md` - New changelog entry
+            
+            ### Changelog Entry
+            
+            ```markdown
+            $(cat /tmp/changelog_entry.txt)
+            ```
+            
+            ### What's Next?
+            1. Review and approve this PR
+            2. Merge using **squash and merge**
+            3. After merge, manually create the release with tag `v${{ steps.new_version.outputs.version }}`
+            
+            ---
+            *This PR will NOT trigger another version bump due to `[skip ci]` in commit message*
+          branch: "release/v${{ steps.new_version.outputs.version }}"
+          delete-branch: true
+          labels: |
+            automated
+            release
           draft: false
-          prerelease: false
-          generate_release_notes: false
-          make_latest: true
+
+      - name: PR created
+        if: steps.version_bump.outputs.bump_type != 'none' && steps.create_pr.outputs.pull-request-number
+        run: |
+          echo "Pull request created: ${{ steps.create_pr.outputs.pull-request-url }}"
+          echo "PR number: ${{ steps.create_pr.outputs.pull-request-number }}"
 
       - name: No version bump needed
         if: steps.version_bump.outputs.bump_type == 'none'
