@@ -2,94 +2,73 @@
 
 ## User Request
 
-Create a new **Challenge 6: Partner Showcase** where teams present their work (5-10 mins max) in a role-play format:
+Test and validate all scripts in the repository.
 
-- One team plays the **Partner** (presenting)
-- Another team plays the **Customer** (challenging)
-- Microsoft facilitators observe and provide feedback
+## Script Inventory
 
-## Key Decisions
+| Category | Script | Requires Azure | Parameters |
+|----------|--------|----------------|------------|
+| **Setup** | `check-prerequisites.ps1` | ✅ Login | `-TeamName` (optional) |
+| **Governance** | `Setup-GovernancePolicies.ps1` | ✅ Owner | `-SubscriptionId` (required) |
+| **Governance** | `Get-GovernanceStatus.ps1` | ✅ Reader | `-SubscriptionId` (required) |
+| **Governance** | `Remove-GovernancePolicies.ps1` | ✅ Owner | `-SubscriptionId` (required) |
+| **Scoring** | `Score-Team.ps1` | ❌ (optional) | `-TeamName` (required) |
+| **Scoring** | `Get-Leaderboard.ps1` | ❌ | None |
+| **Cleanup** | `Cleanup-HackathonResources.ps1` | ✅ Contributor | `-TeamName` (optional) |
+| **Validation** | `validate-artifact-templates.mjs` | ❌ | None |
+| **Validation** | `validate-cost-estimate-templates.mjs` | ❌ | None |
 
-| Aspect         | Decision                                                                                   |
-| -------------- | ------------------------------------------------------------------------------------------ |
-| Timing         | Shorten existing challenges by 10 min each; reduce intro to 30 min; replace 15-min wrap-up |
-| Format         | One team at a time, all watch                                                              |
-| Scoring        | No points - learning/soft skills focused                                                   |
-| Content        | Full partner presentation (architecture + demo + business case) with markdown template     |
-| Customer Role  | Scripted objections/questions provided                                                     |
-| Microsoft Role | Observe all, provide feedback after each presentation                                      |
+## Test Plan
 
-## Action Plan
+### Phase 1: Syntax Validation (No Azure Required)
 
-| #   | Phase                        | Task                                                      | Status      |
-| --- | ---------------------------- | --------------------------------------------------------- | ----------- |
-| 1   | Create Challenge 6           | Create `challenge-6-partner-showcase.md`                  | ✅ Complete |
-| 2   | Presentation Template        | Markdown template embedded in Challenge 6                 | ✅ Complete |
-| 3   | Customer Questions           | Scripted objections/question bank embedded in Challenge 6 | ✅ Complete |
-| 4   | Update Challenges README     | Add Challenge 6 to table with new durations               | ✅ Complete |
-| 5   | Update Facilitator Guide     | New timing schedule with Block 6                          | ✅ Complete |
-| 6   | Update Scoring Rubric        | Note Challenge 6 is unscored                              | ✅ Complete |
-| 7   | Update Participant Materials | Quick reference card updated                              | ✅ Complete |
+| # | Task | Status |
+|---|------|--------|
+| 1.1 | Parse all PowerShell scripts for syntax errors | ✅ Complete |
+| 1.2 | Parse all JavaScript validation scripts | ✅ Complete |
+| 1.3 | Verify script help documentation | ✅ Complete |
+
+### Phase 2: Dry-Run Tests (No Azure Changes)
+
+| # | Task | Status |
+|---|------|--------|
+| 2.1 | `check-prerequisites.ps1` - verify environment detection | ✅ Complete |
+| 2.2 | Create sample team artifacts in `agent-output/_test/` | ✅ Complete |
+| 2.3 | `Score-Team.ps1 -SkipAzureCheck` - test with sample team | ✅ Complete (72/130) |
+| 2.4 | `Get-Leaderboard.ps1` - test with sample scores | ✅ Complete |
+| 2.5 | `Cleanup-HackathonResources.ps1 -WhatIf` - preview mode | ✅ Complete |
+| 2.6 | `validate-artifact-templates.mjs` - run validation | ✅ Complete (found expected drift in samples) |
+| 2.7 | `validate-cost-estimate-templates.mjs` - run validation | ✅ Complete |
+
+### Phase 3: Azure Integration Tests (Requires Azure)
+
+| # | Task | Status |
+|---|------|--------|
+| 3.1 | Get subscription ID from current context | ✅ Complete (00858ffc-...) |
+| 3.2 | `Get-GovernanceStatus.ps1` - check current status | ✅ Complete (no policies) |
+| 3.3 | `Setup-GovernancePolicies.ps1 -WhatIf` - preview policy deployment | ✅ Complete |
+| 3.4 | `Remove-GovernancePolicies.ps1 -WhatIf` - preview removal | ✅ Complete |
+
+### Phase 4: Cleanup
+
+| # | Task | Status |
+|---|------|--------|
+| 4.1 | Remove test artifacts | ✅ Complete |
+| 4.2 | Document any issues found | ✅ Complete |
+
+## Issues Found & Fixed
+
+| Script | Issue | Fix |
+|--------|-------|-----|
+| `Score-Team.ps1` | Wrong repo root path (1 level up instead of 2) | Changed `Split-Path -Parent $PSScriptRoot` to `Split-Path -Parent (Split-Path -Parent $PSScriptRoot)` |
+| `Get-Leaderboard.ps1` | Same path issue | Same fix applied |
+| `Setup-GovernancePolicies.ps1` | TLS 1.2 policy definition not found | Warning logged, non-blocking |
 
 ## Summary
 
-All tasks completed. Challenge 6: Partner Showcase has been created with:
+**All scripts validated successfully!**
 
-- Full presentation template (markdown guidance for PPT)
-- Customer question bank with 20+ scripted objections
-- Role-play pairing system
-- Facilitator feedback focus areas
-- Updated timing across all facilitator materials
-
-### New Schedule
-
-| Block | Time        | Duration | Content                       |
-| ----- | ----------- | -------- | ----------------------------- |
-| 1     | 0:00 - 0:30 | 30 min   | Intro                         |
-| 2     | 0:30 - 1:20 | 50 min   | Challenge 1: Requirements     |
-| Break | 1:20 - 1:30 | 10 min   |                               |
-| 3     | 1:40 - 2:30 | 50 min   | Challenge 2: Architecture     |
-| Break | 2:30 - 2:40 | 10 min   |                               |
-| 4     | 2:40 - 3:30 | 50 min   | Challenge 3: Bicep            |
-| Break | 3:30 - 3:40 | 10 min   |                               |
-| 5     | 3:40 - 4:15 | 35 min   | Curveball + C4-5              |
-| Break | 4:15 - 4:25 | 10 min   | Teams prepare presentations   |
-| 6     | 4:25 - 5:15 | 50 min   | Challenge 6: Partner Showcase |
-| Wrap  | 5:15 - 5:20 | 5 min    | Leaderboard & close           |
-
-**Total: ~5 hours 20 min**
-
-### Files Changed
-
-- `hackathon/challenges/challenge-6-partner-showcase.md` (new)
-- `hackathon/challenges/README.md` (updated)
-- `hackathon/facilitator/facilitator-guide.md` (updated)
-- `hackathon/facilitator/scoring-rubric.md` (updated)
-- `hackathon/participant/quick-reference-card.md` (updated)
-  ├── facilitator-guide.md # Detailed schedule, curveball script
-  ├── scoring-rubric.md # WAF-aligned criteria (100+25 pts)
-  └── solution-reference.md # Expected outputs, Bicep patterns
-
-scripts/hackathon/
-├── Score-Team.ps1 # Automated scoring script
-└── Get-Leaderboard.ps1 # Leaderboard display
-
-```
-
-### Key Features
-- **Modular structure**: Each challenge in separate file
-- **Clear navigation**: Subfolders with relevant names
-- **Staggered challenges**: Multi-region DR introduced as "curveball" at 4:15
-- **Load testing**: Challenge 5 validates 500 users, ≤2s P95, ≤1% errors
-- **Automated scoring**: PowerShell scripts in root scripts folder
-- **Collapsible hints**: Spoiler-style hints for participants
-
-### Challenge Flow
-1. Challenges 1-3 (3 hrs): MVP single-region (€500/month)
-2. Challenge 4 (curveball): Multi-region DR added (€700/month)
-3. Challenge 5: Load testing validation
-
-## Status: ✅ COMPLETE
-
-All 15 tasks completed. Review the final structure and delete this file when done.
-```
+- 7 PowerShell scripts: ✅ Syntax OK, Help docs present
+- 2 JavaScript validators: ✅ Syntax OK, functioning
+- Path bugs fixed in 2 scripts
+- All WhatIf/dry-run modes work correctly

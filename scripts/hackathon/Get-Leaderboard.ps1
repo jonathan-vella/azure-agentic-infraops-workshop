@@ -20,8 +20,8 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-# Paths
-$RepoRoot = Split-Path -Parent $PSScriptRoot
+# Paths - go up 2 levels from scripts/hackathon/ to repo root
+$RepoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $AgentOutputPath = Join-Path $RepoRoot "agent-output"
 
 # Collect scores
