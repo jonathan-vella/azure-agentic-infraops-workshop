@@ -89,7 +89,7 @@ From zero to deployed infrastructure:
 <tr>
 <td>
 
-### 🏆 4-Hour Hands-On Challenge
+### 🏆 5-Hour Hands-On Challenge
 
 Transform business requirements into deployed Azure infrastructure using AI agents.
 
