@@ -26,32 +26,32 @@ By the end of this hackathon, you will:
 
 ## Quick Links
 
-| Document | Description |
-|----------|-------------|
-| 📅 **[AGENDA](AGENDA.md)** | **Full schedule with timing** |
-| **Challenges** | |
-| [Challenge 1: Requirements](challenges/challenge-1-requirements.md) | Gather requirements with **plan** agent |
-| [Challenge 2: Architecture](challenges/challenge-2-architecture.md) | WAF assessment with **architect** agent |
-| [Challenge 3: Implementation](challenges/challenge-3-implementation.md) | Bicep planning and code generation |
-| [Challenge 4: DR Curveball](challenges/challenge-4-dr-curveball.md) | Multi-region disaster recovery |
-| [Challenge 5: Load Testing](challenges/challenge-5-load-testing.md) | Validate infrastructure performance |
-| [Challenge 6: Partner Showcase](challenges/challenge-6-partner-showcase.md) | Team presentations |
-| **Participant Materials** | |
-| [Scenario Brief](participant/scenario-brief.md) | Nordic Fresh Foods business challenge |
-| [Pre-Work Checklist](participant/pre-work-checklist.md) | Setup before the event |
-| [Hints & Tips](participant/hints-and-tips.md) | Architecture and cost hints |
-| **Facilitator Materials** | |
-| [Facilitator Guide](facilitator/facilitator-guide.md) | Detailed schedule and coaching tips |
-| [Scoring Rubric](facilitator/scoring-rubric.md) | WAF-aligned evaluation criteria |
-| [Solution Reference](facilitator/solution-reference.md) | Expected outputs and patterns |
+| Document                                                                    | Description                             |
+| --------------------------------------------------------------------------- | --------------------------------------- |
+| 📅 **[AGENDA](AGENDA.md)**                                                  | **Full schedule with timing**           |
+| **Challenges**                                                              |                                         |
+| [Challenge 1: Requirements](challenges/challenge-1-requirements.md)         | Gather requirements with **plan** agent |
+| [Challenge 2: Architecture](challenges/challenge-2-architecture.md)         | WAF assessment with **architect** agent |
+| [Challenge 3: Implementation](challenges/challenge-3-implementation.md)     | Bicep planning and code generation      |
+| [Challenge 4: DR Curveball](challenges/challenge-4-dr-curveball.md)         | Multi-region disaster recovery          |
+| [Challenge 5: Load Testing](challenges/challenge-5-load-testing.md)         | Validate infrastructure performance     |
+| [Challenge 6: Partner Showcase](challenges/challenge-6-partner-showcase.md) | Team presentations                      |
+| **Participant Materials**                                                   |                                         |
+| [Scenario Brief](participant/scenario-brief.md)                             | Nordic Fresh Foods business challenge   |
+| [Pre-Work Checklist](participant/pre-work-checklist.md)                     | Setup before the event                  |
+| [Hints & Tips](participant/hints-and-tips.md)                               | Architecture and cost hints             |
+| **Facilitator Materials**                                                   |                                         |
+| [Facilitator Guide](facilitator/facilitator-guide.md)                       | Detailed schedule and coaching tips     |
+| [Scoring Rubric](facilitator/scoring-rubric.md)                             | WAF-aligned evaluation criteria         |
+| [Solution Reference](facilitator/solution-reference.md)                     | Expected outputs and patterns           |
 
 ## Team Structure
 
-| Aspect | Details |
-|--------|---------|
-| Team Size | 3-4 members |
-| Total Participants | 20-24 |
-| Teams | 5-6 |
+| Aspect             | Details     |
+| ------------------ | ----------- |
+| Team Size          | 3-4 members |
+| Total Participants | 20-24       |
+| Teams              | 5-6         |
 
 **Suggested Roles:**
 
@@ -64,18 +64,18 @@ By the end of this hackathon, you will:
 
 ## Schedule (5 Hours)
 
-| Time | Duration | Block | Activity |
-|------|----------|-------|----------|
-| 0:00 | 45 min | **Intro** | Setup verification, workflow overview, team formation |
-| 0:45 | 60 min | **[Challenge 1](challenges/challenge-1-requirements.md)** | Requirements gathering with **plan** agent |
-| 1:45 | 10 min | *Break* | ☕ |
-| 1:55 | 60 min | **[Challenge 2](challenges/challenge-2-architecture.md)** | Architecture assessment with **architect** agent |
-| 2:55 | 10 min | *Break* | ☕ |
-| 3:05 | 60 min | **[Challenge 3](challenges/challenge-3-implementation.md)** | Bicep planning and code generation |
-| 4:05 | 10 min | *Break* | ☕ |
-| 4:15 | 10 min | **⚡ CURVEBALL** | New requirement announced: Multi-region DR! |
-| 4:25 | 35 min | **[Challenge 4](challenges/challenge-4-dr-curveball.md) + [5](challenges/challenge-5-load-testing.md)** | DR architecture + Load testing |
-| 5:00 | — | **Wrap-up** | Team showcases, automated scoring, next steps |
+| Time | Duration | Block                                                                                                   | Activity                                              |
+| ---- | -------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| 0:00 | 45 min   | **Intro**                                                                                               | Setup verification, workflow overview, team formation |
+| 0:45 | 60 min   | **[Challenge 1](challenges/challenge-1-requirements.md)**                                               | Requirements gathering with **plan** agent            |
+| 1:45 | 10 min   | _Break_                                                                                                 | ☕                                                    |
+| 1:55 | 60 min   | **[Challenge 2](challenges/challenge-2-architecture.md)**                                               | Architecture assessment with **architect** agent      |
+| 2:55 | 10 min   | _Break_                                                                                                 | ☕                                                    |
+| 3:05 | 60 min   | **[Challenge 3](challenges/challenge-3-implementation.md)**                                             | Bicep planning and code generation                    |
+| 4:05 | 10 min   | _Break_                                                                                                 | ☕                                                    |
+| 4:15 | 10 min   | **⚡ CURVEBALL**                                                                                        | New requirement announced: Multi-region DR!           |
+| 4:25 | 35 min   | **[Challenge 4](challenges/challenge-4-dr-curveball.md) + [5](challenges/challenge-5-load-testing.md)** | DR architecture + Load testing                        |
+| 5:00 | —        | **Wrap-up**                                                                                             | Team showcases, automated scoring, next steps         |
 
 > ⚠️ **Staggered Challenge**: At 4:15, facilitators announce new business requirements
 > (multi-region DR). This simulates real-world requirement changes!
@@ -96,9 +96,9 @@ See [Scenario Brief](participant/scenario-brief.md) for the full business challe
 
 **Constraints:**
 
-| Phase | Budget | Regions | Load |
-|-------|--------|---------|------|
-| Challenges 1-3 | ~€500/month | `swedencentral` | 500 users |
+| Phase             | Budget      | Regions                | Load      |
+| ----------------- | ----------- | ---------------------- | --------- |
+| Challenges 1-3    | ~€500/month | `swedencentral`        | 500 users |
 | After Challenge 4 | ~€700/month | + `germanywestcentral` | 500 users |
 
 ## Scoring
@@ -118,12 +118,12 @@ See [Scoring Rubric](facilitator/scoring-rubric.md) for full criteria.
 
 ### Bonus Points (up to 25 extra)
 
-| Enhancement | Bonus |
-|-------------|-------|
-| Zone redundancy | +5 |
-| Private endpoints | +5 |
-| Multi-region DR (automated failover) | +10 |
-| Managed identities (no connection strings) | +5 |
+| Enhancement                                | Bonus |
+| ------------------------------------------ | ----- |
+| Zone redundancy                            | +5    |
+| Private endpoints                          | +5    |
+| Multi-region DR (automated failover)       | +10   |
+| Managed identities (no connection strings) | +5    |
 
 ## Prerequisites
 
@@ -157,7 +157,7 @@ graph LR
     I --> DR["DR Update<br/>Challenge 4"]
     DR --> LT["Load Test<br/>Challenge 5"]
     LT --> DEP["Deploy<br/>Final"]
-    
+
     style P fill:#e1f5fe
     style A fill:#fff3e0
     style B fill:#e8f5e9
