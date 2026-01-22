@@ -1,0 +1,132 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.39.26.7824",
+      "templateHash": "2376255452229187567"
+    }
+  },
+  "parameters": {
+    "environment": {
+      "type": "string",
+      "defaultValue": "dev",
+      "metadata": {
+        "description": "Environment name"
+      }
+    },
+    "projectName": {
+      "type": "string",
+      "defaultValue": "freshconnect",
+      "metadata": {
+        "description": "Project name"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for resources"
+      }
+    },
+    "owner": {
+      "type": "string",
+      "defaultValue": "test-team",
+      "metadata": {
+        "description": "Owner for tagging"
+      }
+    }
+  },
+  "variables": {
+    "uniqueSuffix": "[uniqueString(resourceGroup().id)]",
+    "tags": {
+      "Environment": "[parameters('environment')]",
+      "ManagedBy": "Bicep",
+      "Project": "[parameters('projectName')]",
+      "Owner": "[parameters('owner')]"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2022-09-01",
+      "name": "[format('asp-{0}-{1}-{2}', parameters('projectName'), parameters('environment'), parameters('location'))]",
+      "location": "[parameters('location')]",
+      "tags": "[variables('tags')]",
+      "sku": {
+        "name": "P1v3",
+        "tier": "PremiumV3"
+      },
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2022-09-01",
+      "name": "[format('app-{0}-{1}-{2}', parameters('projectName'), parameters('environment'), take(variables('uniqueSuffix'), 6))]",
+      "location": "[parameters('location')]",
+      "tags": "[variables('tags')]",
+      "properties": {
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', format('asp-{0}-{1}-{2}', parameters('projectName'), parameters('environment'), parameters('location')))]",
+        "httpsOnly": true,
+        "siteConfig": {
+          "minTlsVersion": "1.2",
+          "ftpsState": "Disabled"
+        }
+      },
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', format('asp-{0}-{1}-{2}', parameters('projectName'), parameters('environment'), parameters('location')))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2023-01-01",
+      "name": "[format('st{0}{1}{2}', parameters('projectName'), parameters('environment'), take(variables('uniqueSuffix'), 6))]",
+      "location": "[parameters('location')]",
+      "tags": "[variables('tags')]",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "StorageV2",
+      "properties": {
+        "supportsHttpsTrafficOnly": true,
+        "minimumTlsVersion": "TLS1_2",
+        "allowBlobPublicAccess": false
+      }
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2023-02-01",
+      "name": "[format('kv-{0}-{1}-{2}', take(parameters('projectName'), 8), parameters('environment'), take(variables('uniqueSuffix'), 6))]",
+      "location": "[parameters('location')]",
+      "tags": "[variables('tags')]",
+      "properties": {
+        "sku": {
+          "family": "A",
+          "name": "standard"
+        },
+        "tenantId": "[subscription().tenantId]",
+        "enableRbacAuthorization": true
+      }
+    }
+  ],
+  "outputs": {
+    "appServiceUrl": {
+      "type": "string",
+      "value": "[format('https://{0}', reference(resourceId('Microsoft.Web/sites', format('app-{0}-{1}-{2}', parameters('projectName'), parameters('environment'), take(variables('uniqueSuffix'), 6))), '2022-09-01').defaultHostName)]"
+    },
+    "storageAccountName": {
+      "type": "string",
+      "value": "[format('st{0}{1}{2}', parameters('projectName'), parameters('environment'), take(variables('uniqueSuffix'), 6))]"
+    },
+    "keyVaultName": {
+      "type": "string",
+      "value": "[format('kv-{0}-{1}-{2}', take(parameters('projectName'), 8), parameters('environment'), take(variables('uniqueSuffix'), 6))]"
+    }
+  }
+}

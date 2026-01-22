@@ -30,7 +30,7 @@ param(
     [string]$ResourceGroupName,
 
     [Parameter()]
-    [string[]]$AllowedLocations = @('swedencentral', 'germanywestcentral'),
+    [string[]]$AllowedLocations = @('swedencentral', 'germanywestcentral', 'global'),
 
     [Parameter()]
     [string[]]$RequiredTags = @('Environment', 'ManagedBy', 'Project', 'Owner')
@@ -84,7 +84,7 @@ $Policies = @(
         Name           = 'hackathon-storage-tls12'
         DisplayName    = '[Hackathon] Storage minimum TLS 1.2'
         Description    = 'Storage accounts must use TLS 1.2 or higher'
-        PolicyId       = 'fe83a0eb-a853-422d-aez1-8aba3b32f9b5'  # Built-in: Storage min TLS
+        PolicyId       = 'fe83a0eb-a853-422d-aac2-1bffd182c5d0'  # Built-in: Storage accounts should have the specified minimum TLS version
         Parameters     = @{ minimumTlsVersion = @{ value = 'TLS1_2' } }
         Effect         = 'Deny'
     },
