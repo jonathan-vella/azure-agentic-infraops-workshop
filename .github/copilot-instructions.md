@@ -19,8 +19,6 @@
 - Agent definitions: `.github/agents/*.agent.md`
 - Shared defaults: `.github/agents/_shared/defaults.md` (regions, tags, AVM, security)
 - Plan requirements: `.github/prompts/plan-requirements.prompt.md` (comprehensive NFR capture)
-- Workflow guide: `docs/reference/workflow.md`
-- Reference docs: `docs/reference/` (defaults, workflow, agents-overview, bicep-patterns)
 - Line endings: `.gitattributes` (use `* text=auto eol=lf` for cross-platform)
 
 ## Repository Purpose
@@ -70,8 +68,6 @@ azure-agentic-infraops/
 ├── agent-output/{project}/      # Agent-generated artifacts
 ├── infra/bicep/                 # Generated Bicep templates
 ├── scenarios/                   # Demo scenarios S01-S08
-├── docs/                        # Documentation
-│   └── reference/               # Single source of truth (incl. workflow.md)
 └── mcp/azure-pricing-mcp/       # Azure Pricing MCP server
 ```
 
@@ -150,16 +146,6 @@ git clone https://github.com/jonathan-vella/azure-agentic-infraops.git
 code azure-agentic-infraops
 # F1 → "Dev Containers: Reopen in Container"
 ```
-
-## References
-
-- **Shared Defaults**: `.github/agents/_shared/defaults.md`
-- **Workflow Guide**: `docs/reference/workflow.md`
-- **Bicep Patterns**: `docs/reference/bicep-patterns.md`
-- **Agents Overview**: `docs/reference/agents-overview.md`
-- **Troubleshooting**: `docs/guides/troubleshooting.md`
-
----
 
 **Mission**: Azure infrastructure engineered by agents—from requirements to deployed templates,
 aligned with Well-Architected best practices and Azure Verified Modules.

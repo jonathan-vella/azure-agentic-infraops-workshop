@@ -22,7 +22,7 @@
 <td width="50%">
 
 ### 🎯 Custom Copilot Agents
-7 specialized agents for the full infrastructure lifecycle:
+8 specialized agents for the full infrastructure lifecycle:
 - **plan** → Requirements gathering
 - **architect** → WAF assessment
 - **bicep-plan** → Implementation planning
@@ -30,6 +30,7 @@
 - **deploy** → Azure deployment
 - **diagram** → Architecture diagrams
 - **docs** → Documentation generation
+- **diagnose** → Workload diagnostics
 
 </td>
 <td width="50%">
@@ -78,7 +79,7 @@ From zero to deployed infrastructure:
 <tr>
 <td>
 
-### 🏆 5-Hour Hands-On Challenge
+### 🏆 4-Hour Hands-On Challenge
 
 Transform business requirements into deployed Azure infrastructure using AI agents.
 
@@ -274,7 +275,6 @@ graph TB
 | [Copilot Instructions](.github/copilot-instructions.md) | Project-specific AI guidance |
 | [Hackathon Guide](hackathon/README.md) | 5-hour hands-on challenge |
 | [Quick Reference](hackathon/participant/quick-reference-card.md) | Printable cheat sheet |
-| [Workflow Details](docs/reference/workflow.md) | Step-by-step workflow guide |
 
 ---
 
@@ -286,29 +286,6 @@ graph TB
 | **IT Pros** | Learn IaC with AI guidance |
 | **Trainers** | Ready-to-use hackathon materials |
 | **Platform Teams** | Standardize infrastructure patterns |
-
----
-
-## 🛠️ Development
-
-### Validation
-
-```bash
-# Bicep
-bicep build infra/bicep/{project}/main.bicep
-bicep lint infra/bicep/{project}/main.bicep
-
-# Markdown
-npm run lint:md
-```
-
-### Deployment
-
-```powershell
-cd infra/bicep/{project}
-./deploy.ps1 -WhatIf  # Preview
-./deploy.ps1          # Deploy
-```
 
 ---
 
