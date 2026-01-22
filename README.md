@@ -5,9 +5,11 @@
 **Azure infrastructure engineered by AI agents. Verified. Well-Architected. Deployable.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)](VERSION.md)
 [![Azure](https://img.shields.io/badge/Azure-Ready-0078D4?logo=microsoftazure)](https://azure.microsoft.com)
 [![Copilot](https://img.shields.io/badge/GitHub_Copilot-Powered-000?logo=github)](https://github.com/features/copilot)
 [![Bicep](https://img.shields.io/badge/Bicep-IaC-orange)](https://learn.microsoft.com/azure/azure-resource-manager/bicep/)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 [Get Started](#-quick-start) • [Hackathon](#-hackathon) • [Workflow](#-workflow) • [Documentation](#-documentation)
 
@@ -22,7 +24,9 @@
 <td width="50%">
 
 ### 🎯 Custom Copilot Agents
+
 8 specialized agents for the full infrastructure lifecycle:
+
 - **plan** → Requirements gathering
 - **architect** → WAF assessment
 - **bicep-plan** → Implementation planning
@@ -36,7 +40,9 @@
 <td width="50%">
 
 ### 🛠️ Ready-to-Use Tools
+
 Everything pre-configured in a Dev Container:
+
 - **Azure Pricing MCP** → Real-time cost estimates
 - **Bicep** → Infrastructure as Code
 - **Azure CLI** → Cloud management
@@ -49,7 +55,9 @@ Everything pre-configured in a Dev Container:
 <td width="50%">
 
 ### 📐 Well-Architected Framework
+
 Every decision aligned with Azure WAF:
+
 - ⚡ **Reliability** → SLA, RTO, RPO
 - 🔒 **Security** → Zero-trust, encryption
 - 💰 **Cost** → Optimization, budgets
@@ -60,7 +68,9 @@ Every decision aligned with Azure WAF:
 <td width="50%">
 
 ### 📚 Complete Learning Path
+
 From zero to deployed infrastructure:
+
 - Step-by-step workflow guide
 - Reusable prompt templates
 - Artifact templates
@@ -84,11 +94,13 @@ From zero to deployed infrastructure:
 Transform business requirements into deployed Azure infrastructure using AI agents.
 
 **Perfect for:**
+
 - IT Pros familiar with Azure Portal, new to IaC
 - Teams of 3-4 (20-24 participants total)
 - Workshop facilitators and trainers
 
 **Includes:**
+
 - 5 progressive challenges with a surprise "curveball"
 - Automated scoring aligned with WAF pillars
 - Facilitator guide with curveball announcement script
@@ -122,12 +134,12 @@ scripts/hackathon/
 
 ### Prerequisites
 
-| Requirement | Purpose |
-|-------------|---------|
-| Docker Desktop | Dev Container runtime |
-| VS Code + Dev Containers | Development environment |
-| GitHub Copilot | AI-powered agents |
-| Azure subscription | Infrastructure deployment |
+| Requirement              | Purpose                   |
+| ------------------------ | ------------------------- |
+| Docker Desktop           | Dev Container runtime     |
+| VS Code + Dev Containers | Development environment   |
+| GitHub Copilot           | AI-powered agents         |
+| Azure subscription       | Infrastructure deployment |
 
 ### Setup (5 minutes)
 
@@ -162,7 +174,7 @@ graph LR
     P --> C["💻 Code"]
     C --> DEP["🚀 Deploy"]
     DEP --> DOC["📚 Docs"]
-    
+
     style R fill:#e1f5fe
     style A fill:#fff3e0
     style D fill:#f3e5f5
@@ -172,15 +184,15 @@ graph LR
     style DOC fill:#e3f2fd
 ```
 
-| Step | Agent | Output | Required |
-|------|-------|--------|----------|
-| 1 | **plan** | `01-requirements.md` | ✅ |
-| 2 | **architect** | `02-architecture-assessment.md` | ✅ |
-| 3 | **diagram** | `03-des-*.md` / `03-des-*.png` | Optional |
-| 4 | **bicep-plan** | `04-implementation-plan.md` | ✅ |
-| 5 | **bicep-code** | `infra/bicep/{project}/` | ✅ |
-| 6 | **deploy** | `06-deployment-summary.md` | ✅ |
-| 7 | **docs** | `07-*.md` | Optional |
+| Step | Agent          | Output                          | Required |
+| ---- | -------------- | ------------------------------- | -------- |
+| 1    | **plan**       | `01-requirements.md`            | ✅       |
+| 2    | **architect**  | `02-architecture-assessment.md` | ✅       |
+| 3    | **diagram**    | `03-des-*.md` / `03-des-*.png`  | Optional |
+| 4    | **bicep-plan** | `04-implementation-plan.md`     | ✅       |
+| 5    | **bicep-code** | `infra/bicep/{project}/`        | ✅       |
+| 6    | **deploy**     | `06-deployment-summary.md`      | ✅       |
+| 7    | **docs**       | `07-*.md`                       | Optional |
 
 **Usage:** `Ctrl+Alt+I` → `Ctrl+Shift+I` to switch to Agent mode → Select agent from dropdown
 
@@ -270,32 +282,39 @@ graph TB
 
 ## 📖 Documentation
 
-| Resource | Description |
-|----------|-------------|
-| [Copilot Instructions](.github/copilot-instructions.md) | Project-specific AI guidance |
-| [Hackathon Guide](hackathon/README.md) | 5-hour hands-on challenge |
-| [Quick Reference](hackathon/participant/quick-reference-card.md) | Printable cheat sheet |
+| Resource                                                         | Description                  |
+| ---------------------------------------------------------------- | ---------------------------- |
+| [Copilot Instructions](.github/copilot-instructions.md)          | Project-specific AI guidance |
+| [Hackathon Guide](hackathon/README.md)                           | 5-hour hands-on challenge    |
+| [Quick Reference](hackathon/participant/quick-reference-card.md) | Printable cheat sheet        |
 
 ---
 
 ## 🧑‍💻 Who Is This For?
 
-| Audience | Use Case |
-|----------|----------|
-| **SI Partners** | Accelerate Azure project delivery with AI |
-| **IT Pros** | Learn IaC with AI guidance |
-| **Trainers** | Ready-to-use hackathon materials |
-| **Platform Teams** | Standardize infrastructure patterns |
+| Audience           | Use Case                                  |
+| ------------------ | ----------------------------------------- |
+| **SI Partners**    | Accelerate Azure project delivery with AI |
+| **IT Pros**        | Learn IaC with AI guidance                |
+| **Trainers**       | Ready-to-use hackathon materials          |
+| **Platform Teams** | Standardize infrastructure patterns       |
 
 ---
 
 ## 🤝 Contributing
 
+We use [Conventional Commits](https://www.conventionalcommits.org/) and automated versioning.
+
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes
+3. Make your changes following conventional commits:
+   - `feat:` for new features (bumps minor version)
+   - `fix:` for bug fixes (bumps patch version)
+   - `docs:` for documentation only
 4. Run `npm run lint:md` to validate
 5. Submit a pull request
+
+See [docs/guides/automated-versioning.md](docs/guides/automated-versioning.md) for details on versioning.
 
 ---
 

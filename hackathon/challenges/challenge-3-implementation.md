@@ -1,6 +1,6 @@
 # Challenge 3: Bicep Implementation
 
-> **Duration**: 40 minutes | **Agents**: bicep-plan, bicep-code | **Output**: Bicep templates
+> **Duration**: 45 minutes | **Agents**: bicep-plan, bicep-code | **Output**: Bicep templates
 
 ## Objective
 
@@ -10,7 +10,7 @@ Generate an implementation plan and Bicep templates for the FreshConnect infrast
 
 ### Part A: Implementation Planning (20 min)
 
-#### Step 1: Invoke Bicep Plan Agent
+#### Step 1: Invoke `bicep-plan` Agent
 
 Switch to the **bicep-plan** agent in Chat view (`Ctrl+Shift+I` to switch to Agent mode):
 
@@ -165,7 +165,7 @@ az deployment group what-if `
 After Bicep is generated and validated:
 
 1. **Deploy** your infrastructure (use the generated `deploy.ps1`)
-2. Wait for [Challenge 4: DR Curveball](challenge-4-dr-curveball.md) announcement at 4:15!
+2. Wait for [Challenge 4: DR Curveball](challenge-4-dr-curveball.md) announcement at 13:20!
 
 ```powershell
 # Deploy

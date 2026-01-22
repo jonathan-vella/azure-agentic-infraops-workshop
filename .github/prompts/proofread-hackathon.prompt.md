@@ -2,11 +2,8 @@
 description: "Proofread and polish all hackathon documentation for consistency, clarity, and professional quality"
 agent: "agent"
 tools:
-  - read_file
-  - replace_string_in_file
-  - multi_replace_string_in_file
-  - grep_search
-  - list_dir
+  - edit/createFile
+  - edit/editFiles
 ---
 
 # Proofread Hackathon Documentation

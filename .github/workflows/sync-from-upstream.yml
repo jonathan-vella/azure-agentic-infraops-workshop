@@ -41,39 +41,141 @@ jobs:
 
       - name: Sync files from upstream
         run: |
-          echo "🔄 Syncing files from upstream repository..."
+          echo "🔄 Syncing specific folders and config files from upstream repository..."
           echo ""
-          echo "Using exclusion-based sync - all content synced EXCEPT blocklist"
+          echo "📁 Folders: .github/agents, .github/instructions, .github/skills, .github/prompts, .devcontainer, mcp, scripts"
+          echo "📄 Config files: lefthook.yml, .gitignore, .gitattributes, .editorconfig, markdownlint, commitlint"
+          echo "⚠️  Source always wins - existing files will be overwritten"
           echo ""
 
-          # Exclusion-based sync: sync everything EXCEPT specific paths
-          # This ensures new folders/files are automatically picked up
-          # Note: rsync exit code 24 ("files vanished") is harmless and ignored
-          rsync -av \
-            --exclude='.git/' \
-            --exclude='scenarios/' \
-            --exclude='docs/' \
-            --exclude='agent-output/*/' \
-            --exclude='infra/bicep/*/' \
-            --exclude='README.md' \
-            --exclude='TEMPLATE-README.md' \
-            --exclude='USAGE-PROMPT.md' \
-            --exclude='CONTRIBUTING.md' \
-            --exclude='CHANGELOG.md' \
-            --exclude='.github/workflows/' \
-            upstream/ ./ || [ $? -eq 24 ]
+          # Create target directories if they don't exist
+          mkdir -p .github/agents .github/instructions .github/skills .github/prompts .devcontainer mcp scripts
 
-          # Sync specific README files we want to keep updated
-          echo ""
-          echo "📄 Syncing template README files..."
-          if [ -f "upstream/agent-output/README.md" ]; then
-            cp upstream/agent-output/README.md agent-output/README.md
-            echo "  ✓ agent-output/README.md"
+          # Sync .github/agents (source wins)
+          if [ -d "upstream/.github/agents" ]; then
+            echo "📂 Syncing .github/agents..."
+            rsync -av --delete upstream/.github/agents/ .github/agents/
+            echo "  ✓ Synced"
+          else
+            echo "  ⚠️  upstream/.github/agents not found"
           fi
-          if [ -f "upstream/infra/bicep/README.md" ]; then
-            mkdir -p infra/bicep
-            cp upstream/infra/bicep/README.md infra/bicep/README.md
-            echo "  ✓ infra/bicep/README.md"
+
+          # Sync .github/instructions (source wins)
+          if [ -d "upstream/.github/instructions" ]; then
+            echo "📂 Syncing .github/instructions..."
+            rsync -av --delete upstream/.github/instructions/ .github/instructions/
+            echo "  ✓ Synced"
+          else
+            echo "  ⚠️  upstream/.github/instructions not found"
+          fi
+
+          # Sync .github/skills (source wins)
+          if [ -d "upstream/.github/skills" ]; then
+            echo "📂 Syncing .github/skills..."
+            rsync -av --delete upstream/.github/skills/ .github/skills/
+            echo "  ✓ Synced"
+          else
+            echo "  ⚠️  upstream/.github/skills not found"
+          fi
+
+          # Sync .github/prompts (source wins)
+          if [ -d "upstream/.github/prompts" ]; then
+            echo "📂 Syncing .github/prompts..."
+            rsync -av --delete upstream/.github/prompts/ .github/prompts/
+            echo "  ✓ Synced"
+          else
+            echo "  ⚠️  upstream/.github/prompts not found"
+          fi
+
+          # Sync .devcontainer (source wins)
+          if [ -d "upstream/.devcontainer" ]; then
+            echo "📂 Syncing .devcontainer..."
+            rsync -av --delete upstream/.devcontainer/ .devcontainer/
+            echo "  ✓ Synced"
+          else
+            echo "  ⚠️  upstream/.devcontainer not found"
+          fi
+
+          # Sync mcp folder (source wins)
+          if [ -d "upstream/mcp" ]; then
+            echo "📂 Syncing mcp..."
+            rsync -av --delete upstream/mcp/ mcp/
+            echo "  ✓ Synced"
+          else
+            echo "  ⚠️  upstream/mcp not found"
+          fi
+
+          # Sync scripts folder (source wins)
+          if [ -d "upstream/scripts" ]; then
+            echo "📂 Syncing scripts..."
+            rsync -av --delete upstream/scripts/ scripts/
+            echo "  ✓ Synced"
+          else
+            echo "  ⚠️  upstream/scripts not found"
+          fi
+
+          echo ""
+          echo "📄 Syncing configuration files..."
+
+          # Sync lefthook.yml
+          if [ -f "upstream/lefthook.yml" ]; then
+            cp upstream/lefthook.yml lefthook.yml
+            echo "  ✓ lefthook.yml"
+          fi
+
+          # Sync .gitignore
+          if [ -f "upstream/.gitignore" ]; then
+            cp upstream/.gitignore .gitignore
+            echo "  ✓ .gitignore"
+          fi
+
+          # Sync .gitattributes
+          if [ -f "upstream/.gitattributes" ]; then
+            cp upstream/.gitattributes .gitattributes
+            echo "  ✓ .gitattributes"
+          fi
+
+          # Sync .editorconfig
+          if [ -f "upstream/.editorconfig" ]; then
+            cp upstream/.editorconfig .editorconfig
+            echo "  ✓ .editorconfig"
+          fi
+
+          # Sync markdownlint configs
+          if [ -f "upstream/.markdownlint.json" ]; then
+            cp upstream/.markdownlint.json .markdownlint.json
+            echo "  ✓ .markdownlint.json"
+          fi
+
+          if [ -f "upstream/.markdownlint-cli2.jsonc" ]; then
+            cp upstream/.markdownlint-cli2.jsonc .markdownlint-cli2.jsonc
+            echo "  ✓ .markdownlint-cli2.jsonc"
+          fi
+
+          if [ -f "upstream/.markdownlintignore" ]; then
+            cp upstream/.markdownlintignore .markdownlintignore
+            echo "  ✓ .markdownlintignore"
+          fi
+
+          # Sync markdown-link-check config
+          if [ -f "upstream/.markdown-link-check.json" ]; then
+            cp upstream/.markdown-link-check.json .markdown-link-check.json
+            echo "  ✓ .markdown-link-check.json"
+          fi
+
+          # Sync commitlint config
+          if [ -f "upstream/commitlint.config.js" ]; then
+            cp upstream/commitlint.config.js commitlint.config.js
+            echo "  ✓ commitlint.config.js"
+          fi
+
+          # Sync package.json (but preserve workshop-specific name and version)
+          if [ -f "upstream/package.json" ]; then
+            echo "  ℹ️  package.json - preserving workshop name/version"
+            # We'll do a smarter merge here - take upstream but keep workshop identity
+            # For now, just note it needs manual review
+            cp upstream/package.json package.json.upstream
+            echo "  ⚠️  package.json.upstream created for manual review"
           fi
 
           # Cleanup upstream clone
@@ -86,12 +188,7 @@ jobs:
         run: |
           echo "🧹 Running post-sync cleanup..."
 
-          # Remove any archive folders that shouldn't be in template
-          find . -type d -name ".archive" -exec rm -rf {} + 2>/dev/null || true
-
-          # Remove any scenario-specific content that may have leaked
-          rm -rf scenarios/ 2>/dev/null || true
-          rm -rf .bicep-planning-files/ 2>/dev/null || true
+          # No cleanup needed - we're only syncing specific folders
 
           echo "✅ Cleanup complete"
 
@@ -143,34 +240,51 @@ jobs:
           body: |
             ## 🔄 Upstream Sync
 
-            This PR syncs the template repository with the latest changes from
+            This PR syncs specific folders from the upstream repository
             [azure-agentic-infraops](${{ github.server_url }}/${{ env.UPSTREAM_REPO }}).
 
             ### Upstream Version
             **${{ steps.version.outputs.version }}**
 
             ### Sync Strategy
-            **Exclusion-based sync** - All content is synced EXCEPT the blocklist below.
-            This ensures new folders and files are automatically picked up.
+            **Targeted sync** - Specific folders and configuration files are synced, source always wins.
 
-            ### Excluded from Sync
-            | Path | Reason |
-            |------|--------|
-            | `scenarios/` | Demo scenarios (main repo only) |
-            | `docs/` | Template maintains its own documentation |
-            | `.github/workflows/` | Template maintains its own workflows |
-            | `agent-output/*/` | Example project outputs (README synced) |
-            | `infra/bicep/*/` | Example Bicep templates (README synced) |
-            | `README.md` | Template has its own README |
-            | `CONTRIBUTING.md` | Main repo contribution guide |
-            | `CHANGELOG.md` | Main repo changelog |
+            ### Synced Folders
+            | Folder | Description |
+            |--------|-------------|
+            | `.github/agents/` | Custom Copilot agent definitions |
+            | `.github/instructions/` | File-type specific instructions |
+            | `.github/skills/` | Reusable agent skills |
+            | `.github/prompts/` | Prompt templates |
+            | `.devcontainer/` | Dev container configuration |
+            | `mcp/` | Model Context Protocol servers |
+            | `scripts/` | Utility scripts |
+
+            ### Synced Configuration Files
+            | File | Purpose |
+            |------|---------|
+            | `lefthook.yml` | Git hooks configuration |
+            | `.gitignore` | Git ignore patterns |
+            | `.gitattributes` | Git attributes (line endings, etc.) |
+            | `.editorconfig` | Editor configuration |
+            | `.markdownlint.json` | Markdown linting rules |
+            | `.markdownlint-cli2.jsonc` | Markdown linting config |
+            | `.markdownlintignore` | Markdown linting ignore patterns |
+            | `.markdown-link-check.json` | Link checking configuration |
+            | `commitlint.config.js` | Commit message linting rules |
+            | `package.json.upstream` | npm dependencies (for manual review) |
+
+            ### Sync Behavior
+            - ✅ **Source always wins** - Existing files are overwritten
+            - ✅ **--delete flag** - Removed files in upstream are removed here (folders only)
+            - ✅ **Full content sync** - All files in target folders/configs are updated
+            - ⚠️ **package.json** - Creates `.upstream` version for manual review to preserve workshop identity
 
             ### Review Checklist
-            - [ ] Review changed files for unexpected content
-            - [ ] No scenario-specific content leaked through
-            - [ ] All agent definitions work correctly
-            - [ ] Dev container builds successfully
-            - [ ] Root config files are appropriate for template
+            - [ ] Review changed agent definitions
+            - [ ] Verify instruction files are appropriate
+            - [ ] Test MCP servers if updated
+            - [ ] Confirm skills work correctly
 
             ---
             *Auto-generated by the upstream sync workflow*

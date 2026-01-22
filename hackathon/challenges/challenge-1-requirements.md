@@ -1,6 +1,6 @@
 # Challenge 1: Requirements Gathering
 
-> **Duration**: 40 minutes | **Agent**: plan | **Output**: `01-requirements.md`
+> **Duration**: 45 minutes | **Agent**: plan | **Output**: `01-requirements.md`
 
 ## Objective
 
@@ -8,7 +8,7 @@ Use the **plan** agent to capture comprehensive Azure infrastructure requirement
 
 ## Instructions
 
-### Step 1: Start the Plan Agent (5 min)
+### Step 1: Start the `plan` Agent (5 min)
 
 Press `Ctrl+Alt+I` to open Copilot Chat, then `Ctrl+Shift+I` to switch to Agent mode.
 Select the **plan** agent from the dropdown and paste:
@@ -30,7 +30,7 @@ Expected peak load: 500 concurrent users, seasonal spikes (3x during summer/Dece
 Please help me capture comprehensive requirements for this project.
 ```
 
-### Step 2: Answer Clarifying Questions (30 min)
+### Step 2: Answer Clarifying Questions (25 min)
 
 The **plan** agent will ask questions. Use these answers as guidance:
 
@@ -43,7 +43,7 @@ The **plan** agent will ask questions. Use these answers as guidance:
 | **Monitoring?**       | Application Insights + Log Analytics                                |
 | **Backup strategy?**  | Azure-managed backups, 7-day retention                              |
 
-### Step 3: Review and Approve (20 min)
+### Step 3: Review and Approve (10 min)
 
 1. Review the generated requirements draft
 2. Request any changes or additions

@@ -1,0 +1,99 @@
+# Changelog
+
+All notable changes to **Agentic InfraOps Workshop** will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+
+- **Automated versioning system** - GitHub Actions workflow for version management
+  - Auto-detects version bump type from conventional commits
+  - Updates VERSION.md and CHANGELOG.md automatically
+  - Creates Git tags and GitHub releases
+  - See [docs/guides/automated-versioning.md](docs/guides/automated-versioning.md) for usage guide
+- **Commitlint integration** - Enforces conventional commit format
+  - Configured via commitlint.config.js
+  - Runs automatically on commit via lefthook
+  - Supports feat:, fix:, docs:, chore:, and breaking changes
+
+### Changed
+
+- **package.json** - Updated repository metadata
+  - Changed name to `azure-agentic-infraops-workshop`
+  - Updated version to 1.0.1
+  - Fixed repository URL to workshop repository
+  - Added workshop-specific keywords (hackathon, workshop, training)
+
+## [1.0.1] - 2026-01-22
+
+### Fixed
+
+- **Timing consistency across hackathon documentation** - Fixed relative timing to absolute times
+  - Changed README.md schedule from relative (0:00-5:00) to absolute (10:00-15:00) matching AGENDA.md
+  - Updated curveball announcement timing from "4:15" to "13:20" across all files
+  - Corrected challenge durations to match AGENDA.md:
+    - Challenge 1: 40 min → 45 min
+    - Challenge 2: 40 min → 45 min
+    - Challenge 3: 40 min → 45 min
+  - Fixed facilitator/README.md curveball timing reference
+- **Agent name formatting standardization** - Consistent backtick formatting for agent names
+  - Changed "Plan Agent" to "`plan` Agent" in challenge-1-requirements.md
+  - Changed "Bicep Plan Agent" to "`bicep-plan` Agent" in challenge-3-implementation.md
+  - Updated hints-and-tips.md section headers to use backtick formatting
+  - Added bold formatting to **plan** agent reference in AGENDA.md
+
+## [1.0.0] - 2026-01-22
+
+### Added
+
+- **5-hour hackathon workshop** - Complete hands-on training program
+  - 6 challenges covering full Infrastructure as Code workflow
+  - Team-based learning (3-4 members per team, 20-24 participants)
+  - Real Azure deployment with scoring and leaderboard
+- **Challenge materials** - Six comprehensive challenge documents
+  - Challenge 1: Requirements Gathering (45 min, 20 points)
+  - Challenge 2: Architecture Assessment (45 min, 25 points)
+  - Challenge 3: Bicep Implementation (45 min, 25 points)
+  - Challenge 4: Multi-Region DR Curveball (20 min, 10 points)
+  - Challenge 5: Load Testing (15 min, 5 points)
+  - Challenge 6: Partner Showcase (40 min, unscored)
+- **Participant materials** - Complete pre-work and reference documentation
+  - Scenario brief: Nordic Fresh Foods business challenge
+  - Pre-work checklist with Docker, VS Code, and Azure setup
+  - Hints and tips for architecture and cost optimization
+  - Quick reference card for common commands and patterns
+  - Team role cards for Requirements Lead, Architect, Developer, Ops Engineer
+- **Facilitator materials** - Comprehensive coaching and scoring guides
+  - Detailed facilitator guide with timing and troubleshooting
+  - WAF-aligned scoring rubric (100 base + 25 bonus points)
+  - Solution reference with expected outputs and patterns
+  - PowerShell scoring scripts for automated evaluation
+- **Workshop invitation** - Marketing material for participant recruitment
+- **AGENDA.md** - Detailed schedule with 10:00-15:00 absolute timing
+- **Feedback form** - Post-workshop evaluation mechanism
+
+### Changed
+
+- **Workshop format** - Designed for partner enablement and customer demonstrations
+  - SI partners delivering Azure projects
+  - IT Pros learning Infrastructure as Code
+  - Customers evaluating agentic workflows
+- **Curveball challenge** - Mid-workshop surprise requirement at 13:20
+  - Tests adaptability to changing requirements (real-world simulation)
+  - Multi-region DR requirement increases budget from €500 to €700/month
+
+## Version Numbering
+
+This project uses [Semantic Versioning](https://semver.org/):
+
+- **MAJOR**: Breaking changes to workshop structure or challenge flow
+- **MINOR**: New challenges, scenarios, or significant workshop enhancements
+- **PATCH**: Bug fixes, documentation improvements, timing corrections
+
+## Links
+
+- [VERSION.md](VERSION.md) - Detailed version history
+- [GitHub Releases](https://github.com/jonathan-vella/azure-agentic-infraops-workshop/releases)

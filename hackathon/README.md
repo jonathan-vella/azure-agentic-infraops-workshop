@@ -64,20 +64,19 @@ By the end of this hackathon, you will:
 
 ## Schedule (5 Hours)
 
-| Time | Duration | Block                                                                                                   | Activity                                              |
-| ---- | -------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| 0:00 | 45 min   | **Intro**                                                                                               | Setup verification, workflow overview, team formation |
-| 0:45 | 60 min   | **[Challenge 1](challenges/challenge-1-requirements.md)**                                               | Requirements gathering with **plan** agent            |
-| 1:45 | 10 min   | _Break_                                                                                                 | ☕                                                    |
-| 1:55 | 60 min   | **[Challenge 2](challenges/challenge-2-architecture.md)**                                               | Architecture assessment with **architect** agent      |
-| 2:55 | 10 min   | _Break_                                                                                                 | ☕                                                    |
-| 3:05 | 60 min   | **[Challenge 3](challenges/challenge-3-implementation.md)**                                             | Bicep planning and code generation                    |
-| 4:05 | 10 min   | _Break_                                                                                                 | ☕                                                    |
-| 4:15 | 10 min   | **⚡ CURVEBALL**                                                                                        | New requirement announced: Multi-region DR!           |
-| 4:25 | 35 min   | **[Challenge 4](challenges/challenge-4-dr-curveball.md) + [5](challenges/challenge-5-load-testing.md)** | DR architecture + Load testing                        |
-| 5:00 | —        | **Wrap-up**                                                                                             | Team showcases, automated scoring, next steps         |
+| Time        | Duration | Block                                                                                                   | Activity                                              |
+| ----------- | -------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| 10:00-10:30 | 30 min   | **Intro**                                                                                               | Setup verification, workflow overview, team formation |
+| 10:30-11:15 | 45 min   | **[Challenge 1](challenges/challenge-1-requirements.md)**                                               | Requirements gathering with **plan** agent            |
+| 11:15-12:00 | 45 min   | **[Challenge 2](challenges/challenge-2-architecture.md)**                                               | Architecture assessment with **architect** agent      |
+| 12:00-12:35 | 35 min   | 🍽️ **Lunch**                                                                                            | Break                                                 |
+| 12:35-13:20 | 45 min   | **[Challenge 3](challenges/challenge-3-implementation.md)**                                             | Bicep planning and code generation                    |
+| 13:20-14:00 | 40 min   | **[Challenge 4](challenges/challenge-4-dr-curveball.md) + [5](challenges/challenge-5-load-testing.md)** | DR architecture + Load testing                        |
+| 14:00-14:15 | 15 min   | 🎯 **Prep**                                                                                             | Presentation preparation                              |
+| 14:15-14:55 | 40 min   | **[Challenge 6](challenges/challenge-6-partner-showcase.md)**                                           | Partner Showcase 🎤                                   |
+| 14:55-15:00 | 5 min    | **Wrap-up**                                                                                             | Leaderboard, cleanup, next steps                      |
 
-> ⚠️ **Staggered Challenge**: At 4:15, facilitators announce new business requirements
+> ⚠️ **Curveball Challenge**: At 13:20, facilitators announce new business requirements
 > (multi-region DR). This simulates real-world requirement changes!
 
 ## The Challenge: Nordic Fresh Foods
@@ -90,7 +89,7 @@ See [Scenario Brief](participant/scenario-brief.md) for the full business challe
 2. Design a WAF-aligned architecture
 3. Generate Bicep templates
 4. Deploy to Azure
-5. **NEW at 4:15**: Adapt to multi-region DR requirements (the curveball!)
+5. **NEW at 13:20**: Adapt to multi-region DR requirements (the curveball!)
 6. Run load tests to validate infrastructure
 7. Document the solution
 

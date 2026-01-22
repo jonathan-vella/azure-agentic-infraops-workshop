@@ -63,13 +63,13 @@
 
 ### Block 3: Challenge 2 (11:15 - 12:00)
 
-| Time  | Activity                        |
-| ----- | ------------------------------- |
-| 11:15 | Start — handoff from plan agent |
-| 11:30 | Check-in — WAF recommendations? |
-| 11:45 | Cost — Pricing MCP working?     |
-| 11:55 | Wrap — finalize architecture    |
-| 12:00 | Lunch                           |
+| Time  | Activity                            |
+| ----- | ----------------------------------- |
+| 11:15 | Start — handoff from **plan** agent |
+| 11:30 | Check-in — WAF recommendations?     |
+| 11:45 | Cost — Pricing MCP working?         |
+| 11:55 | Wrap — finalize architecture        |
+| 12:00 | Lunch                               |
 
 ### 🍽️ Lunch (12:00 - 12:35)
 

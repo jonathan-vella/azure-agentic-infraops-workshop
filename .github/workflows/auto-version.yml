@@ -1,0 +1,226 @@
+name: Auto Version
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths-ignore:
+      - "VERSION.md"
+      - "CHANGELOG.md"
+      - ".github/workflows/auto-version.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Get current version
+        id: current_version
+        run: |
+          CURRENT_VERSION=$(grep -oP '(?<=\*\*Current Version:\*\* )[0-9]+\.[0-9]+\.[0-9]+' VERSION.md)
+          echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $CURRENT_VERSION"
+
+      - name: Determine version bump
+        id: version_bump
+        run: |
+          # Get commits since last version tag
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+
+          if [ -z "$LAST_TAG" ]; then
+            # No tags yet, get all commits
+            COMMITS=$(git log --pretty=format:"%s" HEAD)
+          else
+            COMMITS=$(git log --pretty=format:"%s" ${LAST_TAG}..HEAD)
+          fi
+
+          echo "Commits since last version:"
+          echo "$COMMITS"
+
+          # Determine bump type
+          BUMP_TYPE="none"
+
+          # Check for breaking changes
+          if echo "$COMMITS" | grep -qE "^(feat|fix|refactor|perf)!:|BREAKING CHANGE:"; then
+            BUMP_TYPE="major"
+          # Check for features
+          elif echo "$COMMITS" | grep -qE "^feat(\(.+\))?:"; then
+            BUMP_TYPE="minor"
+          # Check for fixes
+          elif echo "$COMMITS" | grep -qE "^fix(\(.+\))?:"; then
+            BUMP_TYPE="patch"
+          fi
+
+          echo "bump_type=$BUMP_TYPE" >> $GITHUB_OUTPUT
+          echo "Bump type: $BUMP_TYPE"
+
+      - name: Calculate new version
+        id: new_version
+        if: steps.version_bump.outputs.bump_type != 'none'
+        run: |
+          CURRENT="${{ steps.current_version.outputs.version }}"
+          BUMP_TYPE="${{ steps.version_bump.outputs.bump_type }}"
+
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT"
+
+          case $BUMP_TYPE in
+            major)
+              MAJOR=$((MAJOR + 1))
+              MINOR=0
+              PATCH=0
+              ;;
+            minor)
+              MINOR=$((MINOR + 1))
+              PATCH=0
+              ;;
+            patch)
+              PATCH=$((PATCH + 1))
+              ;;
+          esac
+
+          NEW_VERSION="$MAJOR.$MINOR.$PATCH"
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "New version: $NEW_VERSION"
+
+      - name: Extract commit messages for changelog
+        id: changelog_entries
+        if: steps.version_bump.outputs.bump_type != 'none'
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          TODAY=$(date +%Y-%m-%d)
+
+          if [ -z "$LAST_TAG" ]; then
+            COMMITS=$(git log --pretty=format:"%s" HEAD)
+          else
+            COMMITS=$(git log --pretty=format:"%s" ${LAST_TAG}..HEAD)
+          fi
+
+          # Parse commits by type
+          ADDED=""
+          CHANGED=""
+          FIXED=""
+          REMOVED=""
+          BREAKING=""
+
+          while IFS= read -r commit; do
+            # Skip version bump commits
+            if echo "$commit" | grep -qE "^chore\(release\):"; then
+              continue
+            fi
+            
+            # Extract type and message
+            if echo "$commit" | grep -qE "^feat!:|BREAKING CHANGE:"; then
+              msg=$(echo "$commit" | sed -E 's/^feat!: |^BREAKING CHANGE: //')
+              BREAKING="${BREAKING}- $msg\n"
+            elif echo "$commit" | grep -qE "^feat(\(.+\))?:"; then
+              msg=$(echo "$commit" | sed -E 's/^feat(\(.+\))?: //')
+              ADDED="${ADDED}- $msg\n"
+            elif echo "$commit" | grep -qE "^fix(\(.+\))?:"; then
+              msg=$(echo "$commit" | sed -E 's/^fix(\(.+\))?: //')
+              FIXED="${FIXED}- $msg\n"
+            elif echo "$commit" | grep -qE "^refactor(\(.+\))?:"; then
+              msg=$(echo "$commit" | sed -E 's/^refactor(\(.+\))?: //')
+              CHANGED="${CHANGED}- $msg\n"
+            elif echo "$commit" | grep -qE "^perf(\(.+\))?:"; then
+              msg=$(echo "$commit" | sed -E 's/^perf(\(.+\))?: //')
+              CHANGED="${CHANGED}- $msg\n"
+            fi
+          done <<< "$COMMITS"
+
+          # Build changelog entry
+          ENTRY="## [${{ steps.new_version.outputs.version }}] - $TODAY\n\n"
+
+          if [ -n "$BREAKING" ]; then
+            ENTRY="${ENTRY}### BREAKING CHANGES\n\n${BREAKING}\n"
+          fi
+
+          if [ -n "$ADDED" ]; then
+            ENTRY="${ENTRY}### Added\n\n${ADDED}\n"
+          fi
+
+          if [ -n "$CHANGED" ]; then
+            ENTRY="${ENTRY}### Changed\n\n${CHANGED}\n"
+          fi
+
+          if [ -n "$FIXED" ]; then
+            ENTRY="${ENTRY}### Fixed\n\n${FIXED}\n"
+          fi
+
+          # Save to file for next step
+          echo -e "$ENTRY" > /tmp/changelog_entry.txt
+
+          echo "Changelog entry created"
+
+      - name: Update VERSION.md
+        if: steps.version_bump.outputs.bump_type != 'none'
+        run: |
+          NEW_VERSION="${{ steps.new_version.outputs.version }}"
+          TODAY=$(date +%Y-%m-%d)
+          BUILD_SHA=$(git rev-parse --short HEAD)
+
+          sed -i "s/\*\*Current Version:\*\* [0-9]\+\.[0-9]\+\.[0-9]\+/**Current Version:** $NEW_VERSION/" VERSION.md
+          sed -i "s/\*\*Last Updated:\*\* [0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}/**Last Updated:** $TODAY/" VERSION.md
+          sed -i "s/\*\*Build:\*\* .*/**Build:** $BUILD_SHA/" VERSION.md
+
+          echo "VERSION.md updated to $NEW_VERSION"
+
+      - name: Update CHANGELOG.md
+        if: steps.version_bump.outputs.bump_type != 'none'
+        run: |
+          # Read the new changelog entry
+          NEW_ENTRY=$(cat /tmp/changelog_entry.txt)
+
+          # Insert new entry after the header (line 6)
+          # The changelog has 5 lines of header, insert after line 5
+          sed -i "5a\\${NEW_ENTRY}" CHANGELOG.md
+
+          echo "CHANGELOG.md updated"
+
+      - name: Commit and tag
+        if: steps.version_bump.outputs.bump_type != 'none'
+        run: |
+          NEW_VERSION="${{ steps.new_version.outputs.version }}"
+
+          git add VERSION.md CHANGELOG.md
+          git commit -m "chore(release): bump version to $NEW_VERSION [skip ci]"
+          git tag -a "v$NEW_VERSION" -m "Release v$NEW_VERSION"
+          git push origin master --tags
+
+          echo "Version $NEW_VERSION committed and tagged"
+
+      - name: Create GitHub Release
+        if: steps.version_bump.outputs.bump_type != 'none'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.new_version.outputs.version }}
+          release_name: Release v${{ steps.new_version.outputs.version }}
+          body_path: /tmp/changelog_entry.txt
+          draft: false
+          prerelease: false
+
+      - name: No version bump needed
+        if: steps.version_bump.outputs.bump_type == 'none'
+        run: |
+          echo "No version bump needed - no feat:, fix:, or breaking changes found"

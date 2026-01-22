@@ -9,15 +9,15 @@
 
 A typical solution might include:
 
-| Capability | Recommended Service | Why |
-|------------|---------------------|-----|
-| Web Portal | App Service (Linux, P1v3) | Managed, scalable, slots |
-| API Backend | App Service (same plan) | Share the plan to save cost |
-| Database | Azure SQL (S2 or Serverless) | Managed, geo-replication |
-| File Storage | Storage Account (Standard LRS) | Cheap, durable |
-| Secrets | Key Vault (Standard) | Azure-native, RBAC |
-| Monitoring | Application Insights | Auto-instrumentation |
-| Logging | Log Analytics | Centralized queries |
+| Capability   | Recommended Service            | Why                         |
+| ------------ | ------------------------------ | --------------------------- |
+| Web Portal   | App Service (Linux, P1v3)      | Managed, scalable, slots    |
+| API Backend  | App Service (same plan)        | Share the plan to save cost |
+| Database     | Azure SQL (S2 or Serverless)   | Managed, geo-replication    |
+| File Storage | Storage Account (Standard LRS) | Cheap, durable              |
+| Secrets      | Key Vault (Standard)           | Azure-native, RBAC          |
+| Monitoring   | Application Insights           | Auto-instrumentation        |
+| Logging      | Log Analytics                  | Centralized queries         |
 
 This combination fits within €500/month with room to spare.
 
@@ -36,15 +36,15 @@ This combination fits within €500/month with room to spare.
 
 **Estimated Costs:**
 
-| Resource | SKU | Monthly |
-|----------|-----|---------|
-| App Service Plan | P1v3 | ~€75 |
-| Azure SQL | S2 (50 DTU) | ~€60 |
-| Storage Account | Standard LRS | ~€5 |
-| Key Vault | Standard | ~€1 |
-| Application Insights | — | ~€5 |
-| Log Analytics | — | ~€10 |
-| **Total** | | **~€156** |
+| Resource             | SKU          | Monthly   |
+| -------------------- | ------------ | --------- |
+| App Service Plan     | P1v3         | ~€75      |
+| Azure SQL            | S2 (50 DTU)  | ~€60      |
+| Storage Account      | Standard LRS | ~€5       |
+| Key Vault            | Standard     | ~€1       |
+| Application Insights | —            | ~€5       |
+| Log Analytics        | —            | ~€10      |
+| **Total**            |              | **~€156** |
 
 Plenty of headroom under €500!
 
@@ -86,14 +86,14 @@ identity: {
 
 If Azure Policies are enabled, you may see deployment errors like:
 
-| Error Message | Cause | Fix |
-|---------------|-------|-----|
-| `RequestDisallowedByPolicy` (location) | Resource outside allowed regions | Use `swedencentral` or `germanywestcentral` |
-| `RequestDisallowedByPolicy` (tag) | Missing required tag | Add `Environment` and `Project` tags |
-| `RequestDisallowedByPolicy` (SQL auth) | SQL password auth attempted | Set `azureADOnlyAuthentication: true` |
-| `RequestDisallowedByPolicy` (HTTPS) | HTTPS not enabled | Set `supportsHttpsTrafficOnly: true` |
-| `RequestDisallowedByPolicy` (TLS) | TLS version too low | Set `minimumTlsVersion: 'TLS1_2'` |
-| `RequestDisallowedByPolicy` (public blob) | Public blob access enabled | Set `allowBlobPublicAccess: false` |
+| Error Message                             | Cause                            | Fix                                         |
+| ----------------------------------------- | -------------------------------- | ------------------------------------------- |
+| `RequestDisallowedByPolicy` (location)    | Resource outside allowed regions | Use `swedencentral` or `germanywestcentral` |
+| `RequestDisallowedByPolicy` (tag)         | Missing required tag             | Add `Environment` and `Project` tags        |
+| `RequestDisallowedByPolicy` (SQL auth)    | SQL password auth attempted      | Set `azureADOnlyAuthentication: true`       |
+| `RequestDisallowedByPolicy` (HTTPS)       | HTTPS not enabled                | Set `supportsHttpsTrafficOnly: true`        |
+| `RequestDisallowedByPolicy` (TLS)         | TLS version too low              | Set `minimumTlsVersion: 'TLS1_2'`           |
+| `RequestDisallowedByPolicy` (public blob) | Public blob access enabled       | Set `allowBlobPublicAccess: false`          |
 
 **Required Bicep Settings:**
 
@@ -158,11 +158,11 @@ var kvName = 'kv-${take(projectName, 8)}-${environment}-${take(uniqueSuffix, 6)}
 
 **Naming Constraints:**
 
-| Resource | Max Length | Allowed Chars |
-|----------|------------|---------------|
-| Key Vault | 24 | alphanumeric, hyphens |
-| Storage Account | 24 | lowercase, numbers only |
-| SQL Server | 63 | lowercase, numbers, hyphens |
+| Resource        | Max Length | Allowed Chars               |
+| --------------- | ---------- | --------------------------- |
+| Key Vault       | 24         | alphanumeric, hyphens       |
+| Storage Account | 24         | lowercase, numbers only     |
+| SQL Server      | 63         | lowercase, numbers, hyphens |
 
 **Required Tags:**
 
@@ -182,12 +182,12 @@ var tags = {
 
 **Key Components:**
 
-| Component | Primary | Secondary | Failover |
-|-----------|---------|-----------|----------|
-| App Service | swedencentral | germanywestcentral | Traffic Manager |
+| Component    | Primary       | Secondary          | Failover        |
+| ------------ | ------------- | ------------------ | --------------- |
+| App Service  | swedencentral | germanywestcentral | Traffic Manager |
 | SQL Database | swedencentral | germanywestcentral | Geo-replication |
-| Storage | swedencentral | — | Use GRS |
-| Key Vault | swedencentral | germanywestcentral | Manual sync |
+| Storage      | swedencentral | —                  | Use GRS         |
+| Key Vault    | swedencentral | germanywestcentral | Manual sync     |
 
 **Minimal Implementation:**
 
@@ -217,24 +217,24 @@ resource dbReplica 'Microsoft.Sql/servers/databases@2023-05-01-preview' = {
 **k6 (Recommended):**
 
 ```javascript
-import http from 'k6/http';
-import { check, sleep } from 'k6';
+import http from "k6/http";
+import { check, sleep } from "k6";
 
 export const options = {
   stages: [
-    { duration: '1m', target: 100 },
-    { duration: '2m', target: 500 },
-    { duration: '1m', target: 0 },
+    { duration: "1m", target: 100 },
+    { duration: "2m", target: 500 },
+    { duration: "1m", target: 0 },
   ],
   thresholds: {
-    http_req_duration: ['p(95)<2000'],
-    http_req_failed: ['rate<0.01'],
+    http_req_duration: ["p(95)<2000"],
+    http_req_failed: ["rate<0.01"],
   },
 };
 
 export default function () {
-  const res = http.get('https://YOUR-APP.azurewebsites.net/');
-  check(res, { 'status is 200': (r) => r.status === 200 });
+  const res = http.get("https://YOUR-APP.azurewebsites.net/");
+  check(res, { "status is 200": (r) => r.status === 200 });
   sleep(1);
 }
 ```
@@ -249,18 +249,18 @@ k6 run load-test.js
 
 ## Common Mistakes to Avoid
 
-| Mistake | Solution |
-|---------|----------|
-| Key Vault name too long | Use `kv-${take(name, 8)}-${env}-${take(suffix, 6)}` |
-| Storage account with hyphens | Use lowercase letters and numbers only |
-| Missing uniqueSuffix | Generate once in main.bicep, pass to all modules |
-| Hardcoded secrets | Use Key Vault references or managed identity |
-| Over-engineering MVP | Keep it simple — you have 5 hours! |
-| Forgetting to deploy | Run `bicep build` often, deploy incrementally |
+| Mistake                      | Solution                                            |
+| ---------------------------- | --------------------------------------------------- |
+| Key Vault name too long      | Use `kv-${take(name, 8)}-${env}-${take(suffix, 6)}` |
+| Storage account with hyphens | Use lowercase letters and numbers only              |
+| Missing uniqueSuffix         | Generate once in main.bicep, pass to all modules    |
+| Hardcoded secrets            | Use Key Vault references or managed identity        |
+| Over-engineering MVP         | Keep it simple — you have 5 hours!                  |
+| Forgetting to deploy         | Run `bicep build` often, deploy incrementally       |
 
 ## Agent-Specific Tips
 
-### plan Agent
+### `plan` Agent
 
 - Be specific about your requirements
 - Answer clarifying questions thoroughly
@@ -272,7 +272,7 @@ k6 run load-test.js
 - Question cost estimates if they seem off
 - Ask about trade-offs between options
 
-### bicep-plan Agent
+### `bicep-plan` Agent
 
 - Review the module structure before moving to code
 - Ensure dependencies are in the right order
