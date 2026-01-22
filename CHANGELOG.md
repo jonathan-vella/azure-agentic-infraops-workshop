@@ -32,7 +32,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - correct repo root path calculation in hackathon scripts
 - resolve MD013 line length violations
 
-
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
