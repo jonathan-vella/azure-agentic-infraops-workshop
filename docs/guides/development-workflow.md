@@ -19,7 +19,7 @@ graph TB
         E -->|Yes| C
         E -->|No| F[Push Branch]
     end
-    
+
     subgraph "GitHub PR Process"
         F --> G[Create Pull Request]
         G --> H[Automated Checks Run]
@@ -30,7 +30,7 @@ graph TB
         K --> L[Approval Received]
         L --> M[Squash & Merge]
     end
-    
+
     subgraph "Post-Merge Actions"
         M --> N{Triggers Auto-Version?}
         N -->|Yes| O[Auto-Version Creates Release PR]
@@ -39,7 +39,7 @@ graph TB
         Q --> R[Manually Create Release]
         R --> P
     end
-    
+
     style A fill:#e1f5fe
     style M fill:#c8e6c9
     style R fill:#fff9c4
@@ -49,18 +49,19 @@ graph TB
 
 Master branch is protected with the following rules:
 
-| Protection | Description | Bypass |
-|------------|-------------|--------|
-| **Require PR** | Direct pushes blocked | Admin only |
-| **Require approval** | 1 approval needed | Admin only |
-| **Status checks** | `markdown-lint` must pass | None |
-| **Up-to-date branch** | Must be current with master | None |
-| **Conversation resolution** | All threads must be resolved | None |
-| **Linear history** | No merge commits allowed | None |
-| **No force push** | History cannot be rewritten | None |
-| **No deletion** | Branch cannot be deleted | None |
+| Protection                  | Description                  | Bypass     |
+| --------------------------- | ---------------------------- | ---------- |
+| **Require PR**              | Direct pushes blocked        | Admin only |
+| **Require approval**        | 1 approval needed            | Admin only |
+| **Status checks**           | `markdown-lint` must pass    | None       |
+| **Up-to-date branch**       | Must be current with master  | None       |
+| **Conversation resolution** | All threads must be resolved | None       |
+| **Linear history**          | No merge commits allowed     | None       |
+| **No force push**           | History cannot be rewritten  | None       |
+| **No deletion**             | Branch cannot be deleted     | None       |
 
 **Why these rules?**
+
 - Ensures code quality through peer review
 - Prevents accidental breaking changes
 - Maintains clean, linear history
@@ -97,6 +98,7 @@ git checkout -b docs/improve-readme
 ```
 
 **Branch naming conventions:**
+
 - `feat/` - New features
 - `fix/` - Bug fixes
 - `docs/` - Documentation only
@@ -124,6 +126,7 @@ git commit -m "feat(hackathon): add challenge 7 with advanced scenarios
 ```
 
 **Pre-commit hooks run automatically:**
+
 - ✅ Markdown linting (if .md files changed)
 - ✅ Link checking (if .md files changed)
 - ✅ Commitlint validation
@@ -144,13 +147,13 @@ git push -u origin feat/add-challenge-7
 gh pr create \
   --title "feat(hackathon): add challenge 7 with advanced scenarios" \
   --body "## Description
-  
+
   Adds a new advanced challenge for experienced participants.
-  
+
   ### Changes
   - Added challenge-7-advanced.md
   - Updated facilitator guide
-  
+
   ### Testing
   - Validated markdown formatting
   - Checked all internal links" \
@@ -172,6 +175,7 @@ Every PR triggers automated quality checks that must pass before merging.
 **Purpose:** Ensures consistent markdown formatting across all documentation.
 
 **Rules enforced:**
+
 - Line length ≤ 120 characters (MD013)
 - Proper heading hierarchy (MD001, MD003)
 - No trailing whitespace (MD009)
@@ -180,6 +184,7 @@ Every PR triggers automated quality checks that must pass before merging.
 - And 40+ more rules
 
 **Configuration files:**
+
 - `.markdownlint.json` - Rule configuration
 - `.markdownlint-cli2.jsonc` - CLI options
 - `.markdownlintignore` - Excluded paths
@@ -209,7 +214,7 @@ flowchart LR
     J --> K[Push Fix]
     K --> B
     G --> L[PR Can Be Merged]
-    
+
     style G fill:#c8e6c9
     style H fill:#ffcdd2
 ```
@@ -221,6 +226,7 @@ flowchart LR
 **Purpose:** Enforces conventional commit message format for automated versioning.
 
 **Valid formats:**
+
 ```
 feat(scope): description
 fix(scope): description
@@ -229,6 +235,7 @@ chore(scope): description
 ```
 
 **Common errors:**
+
 - Missing colon after type
 - Subject not in sentence-case (warning only)
 - Invalid type (must be: feat, fix, docs, chore, style, refactor, perf, test, build, ci, revert)
@@ -248,6 +255,7 @@ git commit --amend -m "feat(scope): correct message"
 **Purpose:** Ensures all links in documentation are valid (no 404s).
 
 **Checks:**
+
 - Internal links to other files
 - Anchor links within files
 - External URLs (with retry logic)
@@ -273,23 +281,24 @@ stateDiagram-v2
     PRCreated --> ChecksRunning: Automated checks start
     ChecksRunning --> ChecksFailed: ❌ Checks fail
     ChecksRunning --> ChecksPassed: ✅ Checks pass
-    
+
     ChecksFailed --> FixIssues: Review logs
     FixIssues --> PushFix: Commit & push
     PushFix --> ChecksRunning: Checks re-run
-    
+
     ChecksPassed --> ReviewRequested: Request review
     ReviewRequested --> ChangesRequested: 📝 Changes needed
     ReviewRequested --> Approved: ✅ Approved
-    
+
     ChangesRequested --> FixIssues
-    
+
     Approved --> ReadyToMerge: All requirements met
     ReadyToMerge --> Merged: Squash & merge
     Merged --> [*]
 ```
 
 **Review checklist:**
+
 - [ ] All automated checks passing
 - [ ] Changes align with PR description
 - [ ] Documentation updated if needed
@@ -301,6 +310,7 @@ stateDiagram-v2
 **Always use:** Squash and Merge
 
 **Why squash?**
+
 - Creates single commit on master
 - Clean, linear history
 - Easier to revert if needed
@@ -315,6 +325,7 @@ gh pr merge 123 --squash --delete-branch
 ```
 
 **After merge:**
+
 - Feature branch automatically deleted
 - Commit added to master
 - Auto-version workflow may trigger (if `feat:` or `fix:`)
@@ -325,34 +336,34 @@ gh pr merge 123 --squash --delete-branch
 %%{init: {'theme':'neutral'}}%%
 flowchart TD
     A[Commit Merged to Master] --> B{Commit type?}
-    
+
     B -->|feat: or fix:| C[Auto-Version Workflow Triggers]
     B -->|docs:, chore:, etc.| D[No Version Bump]
-    
+
     C --> E[Analyze Commits Since Last Tag]
     E --> F{Bump type?}
-    
+
     F -->|feat:| G[Minor Bump<br/>1.0.0 → 1.1.0]
     F -->|fix:| H[Patch Bump<br/>1.1.0 → 1.1.1]
     F -->|feat! or<br/>BREAKING CHANGE| I[Major Bump<br/>1.1.1 → 2.0.0]
-    
+
     G --> J[Update VERSION.md<br/>Update CHANGELOG.md]
     H --> J
     I --> J
-    
+
     J --> K[Create Release PR<br/>release/vX.Y.Z]
     K --> L{PR Approved<br/>& Merged?}
-    
+
     L -->|Yes| M[Manually Create Release]
     L -->|No| N[Workflow Complete]
-    
+
     M --> O[gh release create vX.Y.Z]
     O --> P[Release Published]
-    
+
     D --> Q[Complete]
     N --> Q
     P --> Q
-    
+
     style C fill:#fff3e0
     style M fill:#c8e6c9
     style P fill:#fff9c4
@@ -366,10 +377,10 @@ Git hooks run automatically via **lefthook** when you commit or push.
 
 ### Installed Hooks
 
-| Hook | Trigger | Checks |
-|------|---------|--------|
-| `pre-commit` | Before commit | Markdown lint, link check |
-| `commit-msg` | After commit message | Commitlint validation |
+| Hook         | Trigger              | Checks                    |
+| ------------ | -------------------- | ------------------------- |
+| `pre-commit` | Before commit        | Markdown lint, link check |
+| `commit-msg` | After commit message | Commitlint validation     |
 
 ### Hook Configuration
 
@@ -548,6 +559,7 @@ git push
 ### Issue: PR checks not running
 
 **Possible causes:**
+
 - Workflow file changes (doesn't trigger itself)
 - No markdown files changed (lint skipped)
 - PR from fork (may need manual approval)
