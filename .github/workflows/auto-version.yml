@@ -187,12 +187,14 @@ jobs:
       - name: Update CHANGELOG.md
         if: steps.version_bump.outputs.bump_type != 'none'
         run: |
-          # Read the new changelog entry
-          NEW_ENTRY=$(cat /tmp/changelog_entry.txt)
-
-          # Insert new entry after the header (line 6)
-          # The changelog has 5 lines of header, insert after line 5
-          sed -i "5a\\${NEW_ENTRY}" CHANGELOG.md
+          # Read the current CHANGELOG
+          head -n 5 CHANGELOG.md > /tmp/changelog_header.txt
+          tail -n +6 CHANGELOG.md > /tmp/changelog_rest.txt
+          
+          # Rebuild CHANGELOG with new entry inserted after header
+          cat /tmp/changelog_header.txt > CHANGELOG.md
+          cat /tmp/changelog_entry.txt >> CHANGELOG.md
+          cat /tmp/changelog_rest.txt >> CHANGELOG.md
 
           echo "CHANGELOG.md updated"
 
