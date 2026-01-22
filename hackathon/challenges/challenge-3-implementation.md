@@ -1,6 +1,6 @@
 # Challenge 3: Bicep Implementation
 
-> **Duration**: 60 minutes | **Agents**: bicep-plan, bicep-code | **Output**: Bicep templates
+> **Duration**: 40 minutes | **Agents**: bicep-plan, bicep-code | **Output**: Bicep templates
 
 ## Objective
 

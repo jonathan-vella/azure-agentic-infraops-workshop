@@ -1,6 +1,6 @@
 # Challenge 6: Partner Showcase 🎤
 
-> **Duration**: 50 minutes | **Format**: Role-Play Presentations | **Points**: Not Scored (Soft Skills)
+> **Duration**: 40 minutes | **Format**: Role-Play Presentations | **Points**: Not Scored (Soft Skills)
 
 ## Overview
 
@@ -50,13 +50,12 @@ The facilitator will pair teams:
 
 ## Presentation Format
 
-**Time per team**: 7-8 minutes
+**Time per team**: ~6 minutes
 
 | Segment            | Duration | Content                          |
 | ------------------ | -------- | -------------------------------- |
-| Partner Pitch      | 5 min    | Present your solution            |
+| Partner Pitch      | 4 min    | Present your solution            |
 | Customer Q&A       | 2 min    | Customer team asks questions     |
-| Microsoft Feedback | 1 min    | Quick insights from facilitators |
 
 ---
 

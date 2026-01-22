@@ -1,6 +1,6 @@
 # Challenge 2: Architecture Assessment
 
-> **Duration**: 60 minutes | **Agent**: architect | **Output**: `02-architecture-assessment.md`
+> **Duration**: 40 minutes | **Agent**: architect | **Output**: `02-architecture-assessment.md`
 
 ## Objective
 

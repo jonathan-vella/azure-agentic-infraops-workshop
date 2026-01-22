@@ -4,12 +4,12 @@ This folder contains the six hackathon challenges:
 
 | File                                                               | Challenge            | Duration | Points |
 | ------------------------------------------------------------------ | -------------------- | -------- | ------ |
-| [challenge-1-requirements.md](challenge-1-requirements.md)         | Requirements Capture | 50 min   | 20     |
-| [challenge-2-architecture.md](challenge-2-architecture.md)         | Architecture Design  | 50 min   | 25     |
-| [challenge-3-implementation.md](challenge-3-implementation.md)     | Bicep Implementation | 50 min   | 25     |
+| [challenge-1-requirements.md](challenge-1-requirements.md)         | Requirements Capture | 40 min   | 20     |
+| [challenge-2-architecture.md](challenge-2-architecture.md)         | Architecture Design  | 40 min   | 25     |
+| [challenge-3-implementation.md](challenge-3-implementation.md)     | Bicep Implementation | 40 min   | 25     |
 | [challenge-4-dr-curveball.md](challenge-4-dr-curveball.md)         | DR Curveball ⚡      | 20 min   | 10     |
 | [challenge-5-load-testing.md](challenge-5-load-testing.md)         | Load Testing         | 15 min   | 5      |
-| [challenge-6-partner-showcase.md](challenge-6-partner-showcase.md) | Partner Showcase 🎤  | 50 min   | —      |
+| [challenge-6-partner-showcase.md](challenge-6-partner-showcase.md) | Partner Showcase 🎤  | 40 min   | —      |
 
 **Total**: 100 base points + 25 bonus points available
 

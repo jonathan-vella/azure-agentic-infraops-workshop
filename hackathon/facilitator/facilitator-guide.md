@@ -58,16 +58,18 @@ Deploy Azure Policies to create realistic governance constraints. Teams will enc
 
 ## Detailed Schedule
 
-### Block 1: Intro (0:00 - 0:30)
+> **Event runs 10:00 - 15:00** (5 hours with 45-min lunch)
 
-| Time | Activity           | Action                             |
-| ---- | ------------------ | ---------------------------------- |
-| 0:00 | Welcome            | Share WiFi, logistics              |
-| 0:05 | Overview           | Walk through README.md             |
-| 0:12 | Workflow demo      | Show 7-step diagram                |
-| 0:18 | Setup verification | Teams verify Dev Container, Azure  |
-| 0:24 | Team formation     | Form teams, assign roles           |
-| 0:27 | Scenario briefing  | Review scenario, clarify questions |
+### Block 1: Intro (10:00 - 10:30)
+
+| Time  | Activity           | Action                             |
+| ----- | ------------------ | ---------------------------------- |
+| 10:00 | Welcome            | Share WiFi, logistics              |
+| 10:05 | Overview           | Walk through README.md             |
+| 10:12 | Workflow demo      | Show 7-step diagram                |
+| 10:18 | Setup verification | Teams verify Dev Container, Azure  |
+| 10:24 | Team formation     | Form teams, assign roles           |
+| 10:27 | Scenario briefing  | Review scenario, clarify questions |
 
 **Setup Check Script:**
 
@@ -77,15 +79,15 @@ bicep --version
 echo "✅ Ready!"
 ```
 
-### Block 2: Challenge 1 - Requirements (0:30 - 1:20)
+### Block 2: Challenge 1 - Requirements (10:30 - 11:15)
 
-| Time | Activity | Action                                       |
-| ---- | -------- | -------------------------------------------- |
-| 0:30 | Start    | Ensure teams invoke **plan** agent correctly |
-| 0:45 | Check-in | All teams started a conversation?            |
-| 1:00 | Progress | Draft requirements?                          |
-| 1:15 | Push     | Encourage approval                           |
-| 1:20 | Break    | 10 minutes                                   |
+| Time  | Activity | Action                                       |
+| ----- | -------- | -------------------------------------------- |
+| 10:30 | Start    | Ensure teams invoke **plan** agent correctly |
+| 10:45 | Check-in | All teams started a conversation?            |
+| 11:00 | Progress | Draft requirements?                          |
+| 11:10 | Push     | Encourage approval                           |
+| 11:15 | Break    | 5 minutes                                    |
 
 **Common Issues:**
 
@@ -94,25 +96,27 @@ echo "✅ Ready!"
 | Agent not responding | Reload VS Code window       |
 | Vague requirements   | Ask "What SLA? What's RTO?" |
 
-### Block 3: Challenge 2 - Architecture (1:40 - 2:30)
+### Block 3: Challenge 2 - Architecture (11:15 - 12:00)
 
-| Time | Activity | Action                             |
-| ---- | -------- | ---------------------------------- |
-| 1:40 | Start    | Verify handoff from **plan** agent |
-| 1:55 | Check-in | Getting WAF recommendations?       |
-| 2:10 | Cost     | Pricing MCP working?               |
-| 2:25 | Wrap     | Finalize architecture doc          |
-| 2:30 | Break    | 10 minutes                         |
+| Time  | Activity | Action                             |
+| ----- | -------- | ---------------------------------- |
+| 11:15 | Start    | Verify handoff from **plan** agent |
+| 11:30 | Check-in | Getting WAF recommendations?       |
+| 11:45 | Cost     | Pricing MCP working?               |
+| 11:55 | Wrap     | Finalize architecture doc          |
+| 12:00 | Lunch    | 45 minutes                         |
 
-### Block 4: Challenge 3 - Bicep (2:40 - 3:30)
+### 🍽️ Lunch Break (12:00 - 12:45)
 
-| Time | Activity | Action                             |
-| ---- | -------- | ---------------------------------- |
-| 2:40 | Start    | Teams start **bicep-plan** agent   |
-| 2:55 | Plan     | Implementation plan ready?         |
-| 3:05 | Code     | Transition to **bicep-code** agent |
-| 3:20 | Validate | Check `bicep build`                |
-| 3:30 | Break    | 10 minutes                         |
+### Block 4: Challenge 3 - Bicep (12:45 - 13:30)
+
+| Time  | Activity | Action                             |
+| ----- | -------- | ---------------------------------- |
+| 12:45 | Start    | Teams start **bicep-plan** agent   |
+| 13:00 | Plan     | Implementation plan ready?         |
+| 13:10 | Code     | Transition to **bicep-code** agent |
+| 13:25 | Validate | Check `bicep build`                |
+| 13:30 | Break    | 5 minutes                          |
 
 **Common Issues:**
 
@@ -121,9 +125,9 @@ echo "✅ Ready!"
 | Key Vault name too long | ≤24 chars              |
 | Storage account invalid | Lowercase+numbers only |
 
-### Block 5: ⚡ CURVEBALL + Challenges 4-5 (3:40 - 4:15)
+### Block 5: ⚡ CURVEBALL + Challenges 4-5 (13:30 - 14:15)
 
-#### 📢 Announcement Script (3:40)
+#### 📢 Announcement Script (13:30)
 
 Stand up, get everyone's attention:
 
@@ -143,17 +147,16 @@ Stand up, get everyone's attention:
 >
 > _Budget has increased by €200/month to accommodate this._
 >
-> _You have 25 minutes! GO GO GO!_ 🚀"
+> _You have 20 minutes! GO GO GO!_ 🚀"
 
-| Time | Activity  | Action                                   |
-| ---- | --------- | ---------------------------------------- |
-| 3:40 | Announce  | Read the script!                         |
-| 3:50 | DR        | Teams update architecture                |
-| 4:00 | Load Test | Teams run k6                             |
-| 4:10 | Deploy    | Final push                               |
-| 4:15 | Break     | 10 minutes (teams prepare presentations) |
+| Time  | Activity  | Action                                   |
+| ----- | --------- | ---------------------------------------- |
+| 13:30 | Announce  | Read the script!                         |
+| 13:50 | DR        | Teams update architecture                |
+| 14:00 | Load Test | Teams run k6                             |
+| 14:10 | Break     | 5 minutes (teams prepare presentations)  |
 
-### Block 6: Challenge 6 - Partner Showcase 🎤 (4:25 - 5:15)
+### Block 6: Challenge 6 - Partner Showcase 🎤 (14:15 - 14:55)
 
 #### Presentation Setup
 
@@ -168,7 +171,7 @@ Pair teams for the role-play:
 | Team 5               | Team 6                 |
 | Team 6               | Team 1                 |
 
-#### 📢 Announcement Script (4:25)
+#### 📢 Announcement Script (14:15)
 
 > _"Time for the Partner Showcase! 🎤_
 >
@@ -176,19 +179,19 @@ Pair teams for the role-play:
 >
 > _When you're not presenting, you'll play the **Customer** — asking tough but fair questions!_
 >
-> _Format: 5 min pitch + 2 min Q&A + 1 min Microsoft feedback._
+> _Format: 4 min pitch + 2 min Q&A + 30 sec transition._
 >
 > _Team 1, you're up first!"_
 
-| Time | Activity | Team                                  |
-| ---- | -------- | ------------------------------------- |
-| 4:25 | Intro    | Explain format, assign pairings       |
-| 4:28 | Present  | Team 1 (Partner) vs Team 2 (Customer) |
-| 4:36 | Present  | Team 2 (Partner) vs Team 3 (Customer) |
-| 4:44 | Present  | Team 3 (Partner) vs Team 4 (Customer) |
-| 4:52 | Present  | Team 4 (Partner) vs Team 5 (Customer) |
-| 5:00 | Present  | Team 5 (Partner) vs Team 6 (Customer) |
-| 5:08 | Present  | Team 6 (Partner) vs Team 1 (Customer) |
+| Time  | Activity | Team                                  |
+| ----- | -------- | ------------------------------------- |
+| 14:15 | Intro    | Explain format, assign pairings       |
+| 14:17 | Present  | Team 1 (Partner) vs Team 2 (Customer) |
+| 14:24 | Present  | Team 2 (Partner) vs Team 3 (Customer) |
+| 14:31 | Present  | Team 3 (Partner) vs Team 4 (Customer) |
+| 14:38 | Present  | Team 4 (Partner) vs Team 5 (Customer) |
+| 14:45 | Present  | Team 5 (Partner) vs Team 6 (Customer) |
+| 14:52 | Present  | Team 6 (Partner) vs Team 1 (Customer) |
 
 > **Tip**: Keep presentations moving! Use a visible timer.
 
@@ -203,7 +206,7 @@ After each presentation, briefly comment on:
 | **WAF Alignment**   | Reliability, security, cost, operations covered? |
 | **Professionalism** | How would this land with a real customer?        |
 
-### Wrap-up (5:15 - 5:20)
+### Wrap-up (14:55 - 15:00)
 
 ```powershell
 # Score all teams

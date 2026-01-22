@@ -1,10 +1,10 @@
 # Challenge 4: The Curveball — Multi-Region DR
 
-> **Duration**: 20 minutes | **Announced at**: 4:15 | **Output**: Updated architecture + Bicep
+> **Duration**: 20 minutes | **Announced at**: 13:30 | **Output**: Updated architecture + Bicep
 
 ## ⚡ The Announcement
 
-> **FACILITATOR READS AT 4:15:**
+> **FACILITATOR READS AT 13:30:**
 >
 > *"ATTENTION ALL TEAMS! 📣*
 >
