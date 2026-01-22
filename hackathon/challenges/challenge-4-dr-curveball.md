@@ -6,26 +6,26 @@
 
 > **FACILITATOR READS AT 13:20:**
 >
-> *"ATTENTION ALL TEAMS! 📣*
+> _"ATTENTION ALL TEAMS! 📣_
 >
-> *We've just received urgent news from Nordic Fresh Foods headquarters!*
+> _We've just received urgent news from Nordic Fresh Foods headquarters!_
 >
-> *They've signed a major contract with a Danish restaurant chain — Smørrebrød Express — worth
+> _They've signed a major contract with a Danish restaurant chain — Smørrebrød Express — worth
 > €500K annually. The board has convened an emergency meeting and mandated new business
-> continuity requirements.*
+> continuity requirements._
 >
-> *Your infrastructure must now support multi-region disaster recovery!*
+> _Your infrastructure must now support multi-region disaster recovery!_
 >
-> *The clock is ticking! You have 20 minutes!* 🚀"
+> _The clock is ticking! You have 20 minutes!_ 🚀"
 
 ## New Requirements
 
-| Requirement | Value | Impact |
-|-------------|-------|--------|
-| **RTO** | ≤1 hour | Must recover operations within 1 hour |
-| **RPO** | ≤15 minutes | Maximum 15 minutes of data loss acceptable |
-| **Secondary Region** | `germanywestcentral` | Fallback region for DR |
-| **Budget Increase** | +€200/month | Total now ~€700/month |
+| Requirement          | Value                | Impact                                     |
+| -------------------- | -------------------- | ------------------------------------------ |
+| **RTO**              | ≤1 hour              | Must recover operations within 1 hour      |
+| **RPO**              | ≤15 minutes          | Maximum 15 minutes of data loss acceptable |
+| **Secondary Region** | `germanywestcentral` | Fallback region for DR                     |
+| **Budget Increase**  | +€200/month          | Total now ~€700/month                      |
 
 ## What You Must Do
 
@@ -127,18 +127,21 @@ Add a section to `02-architecture-assessment.md`:
 ## Disaster Recovery Strategy
 
 ### RTO/RPO Targets
+
 - **RTO**: 1 hour (automated failover via Traffic Manager)
 - **RPO**: 15 minutes (SQL geo-replication with async mode)
 
 ### DR Components
-| Component | Primary | Secondary | Failover Method |
-|-----------|---------|-----------|-----------------|
-| App Service | swedencentral | germanywestcentral | Traffic Manager |
+
+| Component    | Primary       | Secondary          | Failover Method |
+| ------------ | ------------- | ------------------ | --------------- |
+| App Service  | swedencentral | germanywestcentral | Traffic Manager |
 | SQL Database | swedencentral | germanywestcentral | Geo-replication |
-| Storage | GRS | - | Automatic |
-| Key Vault | swedencentral | germanywestcentral | Manual |
+| Storage      | GRS           | -                  | Automatic       |
+| Key Vault    | swedencentral | germanywestcentral | Manual          |
 
 ### Failover Process
+
 1. Traffic Manager detects primary endpoint failure
 2. DNS automatically routes to secondary endpoint
 3. SQL failover group promotes replica to primary
@@ -147,13 +150,13 @@ Add a section to `02-architecture-assessment.md`:
 
 ## Success Criteria
 
-| Criterion | Points |
-|-----------|--------|
-| DR strategy documented | 3 |
-| Secondary region in Bicep | 3 |
-| SQL geo-replication configured | 4 |
-| Traffic Manager/Front Door added | 5 |
-| **Bonus: Automated failover** | +10 |
+| Criterion                        | Points |
+| -------------------------------- | ------ |
+| DR strategy documented           | 3      |
+| Secondary region in Bicep        | 3      |
+| SQL geo-replication configured   | 4      |
+| Traffic Manager/Front Door added | 5      |
+| **Bonus: Automated failover**    | +10    |
 
 ## Tips
 

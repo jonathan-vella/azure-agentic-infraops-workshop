@@ -56,20 +56,17 @@ Deploy Azure Policies to create realistic governance constraints. Teams will enc
 
 ---
 
-## Detailed Schedule
+## Schedule
+
+📅 **See [AGENDA.md](../AGENDA.md) for the full schedule overview.**
 
 > **Event runs 10:00 - 15:00** (5 hours with 35-min lunch)
 
-### Block 1: Intro (10:00 - 10:30)
+---
 
-| Time  | Activity           | Action                             |
-| ----- | ------------------ | ---------------------------------- |
-| 10:00 | Welcome            | Share WiFi, logistics              |
-| 10:05 | Overview           | Walk through README.md             |
-| 10:12 | Workflow demo      | Show 7-step diagram                |
-| 10:18 | Setup verification | Teams verify Dev Container, Azure  |
-| 10:24 | Team formation     | Form teams, assign roles           |
-| 10:27 | Scenario briefing  | Review scenario, clarify questions |
+## Block-by-Block Facilitator Notes
+
+### Block 1: Intro (10:00 - 10:30)
 
 **Setup Check Script:**
 
@@ -81,14 +78,6 @@ echo "✅ Ready!"
 
 ### Block 2: Challenge 1 - Requirements (10:30 - 11:15)
 
-| Time  | Activity | Action                                       |
-| ----- | -------- | -------------------------------------------- |
-| 10:30 | Start    | Ensure teams invoke **plan** agent correctly |
-| 10:45 | Check-in | All teams started a conversation?            |
-| 11:00 | Progress | Draft requirements?                          |
-| 11:10 | Push     | Encourage approval                           |
-| 11:15 | Break    | 5 minutes                                    |
-
 **Common Issues:**
 
 | Issue                | Solution                    |
@@ -98,25 +87,11 @@ echo "✅ Ready!"
 
 ### Block 3: Challenge 2 - Architecture (11:15 - 12:00)
 
-| Time  | Activity | Action                             |
-| ----- | -------- | ---------------------------------- |
-| 11:15 | Start    | Verify handoff from **plan** agent |
-| 11:30 | Check-in | Getting WAF recommendations?       |
-| 11:45 | Cost     | Pricing MCP working?               |
-| 11:55 | Wrap     | Finalize architecture doc          |
-| 12:00 | Lunch    | 35 minutes                         |
+No common issues — monitor Pricing MCP functionality.
 
 ### 🍽️ Lunch Break (12:00 - 12:35)
 
 ### Block 4: Challenge 3 - Bicep (12:35 - 13:20)
-
-| Time  | Activity | Action                             |
-| ----- | -------- | ---------------------------------- |
-| 12:35 | Start    | Teams start **bicep-plan** agent   |
-| 12:50 | Plan     | Implementation plan ready?         |
-| 13:00 | Code     | Transition to **bicep-code** agent |
-| 13:15 | Validate | Check `bicep build`                |
-| 13:20 | Break    | 5 minutes                          |
 
 **Common Issues:**
 
@@ -149,16 +124,7 @@ Stand up, get everyone's attention:
 >
 > _You have 20 minutes! GO GO GO!_ 🚀"
 
-| Time  | Activity  | Action                     |
-| ----- | --------- | -------------------------- |
-| 13:20 | Announce  | Read the script!           |
-| 13:40 | DR        | Teams update architecture  |
-| 13:50 | Load Test | Teams run k6               |
-| 14:00 | Prep      | Presentation prep begins   |
-
 ### 🎯 Presentation Prep (14:00 - 14:15)
-
-> **15 minutes** for teams to prepare their Partner Showcase presentations.
 
 **Facilitator Actions:**
 
@@ -193,16 +159,6 @@ Pair teams for the role-play:
 > _Format: 4 min pitch + 2 min Q&A + 30 sec transition._
 >
 > _Team 1, you're up first!"_
-
-| Time  | Activity | Team                                  |
-| ----- | -------- | ------------------------------------- |
-| 14:15 | Intro    | Explain format, assign pairings       |
-| 14:17 | Present  | Team 1 (Partner) vs Team 2 (Customer) |
-| 14:24 | Present  | Team 2 (Partner) vs Team 3 (Customer) |
-| 14:31 | Present  | Team 3 (Partner) vs Team 4 (Customer) |
-| 14:38 | Present  | Team 4 (Partner) vs Team 5 (Customer) |
-| 14:45 | Present  | Team 5 (Partner) vs Team 6 (Customer) |
-| 14:52 | Present  | Team 6 (Partner) vs Team 1 (Customer) |
 
 > **Tip**: Keep presentations moving! Use a visible timer.
 

@@ -15,7 +15,7 @@ Switch to the **architect** agent in the Chat view (`Ctrl+Shift+I` to switch to 
 Invoke with:
 
 ```
-Review the requirements in agent-output/freshconnect/01-requirements.md 
+Review the requirements in agent-output/freshconnect/01-requirements.md
 and create a comprehensive WAF assessment with cost estimates.
 ```
 
@@ -23,27 +23,27 @@ and create a comprehensive WAF assessment with cost estimates.
 
 The **architect** agent will analyze your requirements against the five WAF pillars:
 
-| Pillar | Key Questions |
-|--------|---------------|
-| **Reliability** | How will the system handle failures? What's the SLA? |
-| **Security** | How is data protected? Authentication model? |
-| **Cost Optimization** | Does it fit the €500/month budget? Where can you optimize? |
-| **Operational Excellence** | How will you monitor and maintain the system? |
-| **Performance Efficiency** | Can it handle 500 concurrent users? |
+| Pillar                     | Key Questions                                              |
+| -------------------------- | ---------------------------------------------------------- |
+| **Reliability**            | How will the system handle failures? What's the SLA?       |
+| **Security**               | How is data protected? Authentication model?               |
+| **Cost Optimization**      | Does it fit the €500/month budget? Where can you optimize? |
+| **Operational Excellence** | How will you monitor and maintain the system?              |
+| **Performance Efficiency** | Can it handle 500 concurrent users?                        |
 
 ### Step 3: Review Service Selection (15 min)
 
 Verify the proposed Azure services make sense:
 
-| Capability | Expected Service | Alternative |
-|------------|------------------|-------------|
-| Web Portal | App Service (Linux) | Container Apps |
-| API Backend | App Service (Linux) | Azure Functions |
-| Database | Azure SQL Database | Cosmos DB |
-| File Storage | Blob Storage | — |
-| Secrets | Key Vault | — |
-| Monitoring | Application Insights | — |
-| Logging | Log Analytics | — |
+| Capability   | Expected Service     | Alternative     |
+| ------------ | -------------------- | --------------- |
+| Web Portal   | App Service (Linux)  | Container Apps  |
+| API Backend  | App Service (Linux)  | Azure Functions |
+| Database     | Azure SQL Database   | Cosmos DB       |
+| File Storage | Blob Storage         | —               |
+| Secrets      | Key Vault            | —               |
+| Monitoring   | Application Insights | —               |
+| Logging      | Log Analytics        | —               |
 
 ### Step 4: Review Cost Estimate (15 min)
 
@@ -55,15 +55,15 @@ The Azure Pricing MCP will provide cost estimates. Verify:
 
 **Expected cost breakdown:**
 
-| Resource | Estimated Cost |
-|----------|----------------|
-| App Service Plan (P1v3) | ~€75/month |
-| Azure SQL (S2) | ~€60/month |
-| Storage Account | ~€5/month |
-| Key Vault | ~€1/month |
-| Application Insights | ~€5/month |
-| Log Analytics | ~€10/month |
-| **Total** | **~€156/month** |
+| Resource                | Estimated Cost  |
+| ----------------------- | --------------- |
+| App Service Plan (P1v3) | ~€75/month      |
+| Azure SQL (S2)          | ~€60/month      |
+| Storage Account         | ~€5/month       |
+| Key Vault               | ~€1/month       |
+| Application Insights    | ~€5/month       |
+| Log Analytics           | ~€10/month      |
+| **Total**               | **~€156/month** |
 
 ### Step 5: Approve and Save (5 min)
 
@@ -71,14 +71,14 @@ Ask the agent to create the file: `agent-output/freshconnect/02-architecture-ass
 
 ## Success Criteria
 
-| Criterion | Points |
-|-----------|--------|
-| Cost estimation included | 5 |
-| Reliability patterns addressed | 5 |
-| Security controls identified | 5 |
-| Scalability approach defined | 5 |
-| Service selection justified | 5 |
-| **Total** | **25** |
+| Criterion                      | Points |
+| ------------------------------ | ------ |
+| Cost estimation included       | 5      |
+| Reliability patterns addressed | 5      |
+| Security controls identified   | 5      |
+| Scalability approach defined   | 5      |
+| Service selection justified    | 5      |
+| **Total**                      | **25** |
 
 ## WAF Quick Reference
 
@@ -128,6 +128,6 @@ After architecture is approved, proceed to [Challenge 3: Implementation](challen
 Optionally, generate design artifacts first:
 
 ```
-@diagram Create an architecture diagram for FreshConnect based on 
+@diagram Create an architecture diagram for FreshConnect based on
 agent-output/freshconnect/02-architecture-assessment.md
 ```

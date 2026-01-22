@@ -28,12 +28,14 @@ By the end of this hackathon, you will:
 
 | Document | Description |
 |----------|-------------|
+| 📅 **[AGENDA](AGENDA.md)** | **Full schedule with timing** |
 | **Challenges** | |
 | [Challenge 1: Requirements](challenges/challenge-1-requirements.md) | Gather requirements with **plan** agent |
 | [Challenge 2: Architecture](challenges/challenge-2-architecture.md) | WAF assessment with **architect** agent |
 | [Challenge 3: Implementation](challenges/challenge-3-implementation.md) | Bicep planning and code generation |
 | [Challenge 4: DR Curveball](challenges/challenge-4-dr-curveball.md) | Multi-region disaster recovery |
 | [Challenge 5: Load Testing](challenges/challenge-5-load-testing.md) | Validate infrastructure performance |
+| [Challenge 6: Partner Showcase](challenges/challenge-6-partner-showcase.md) | Team presentations |
 | **Participant Materials** | |
 | [Scenario Brief](participant/scenario-brief.md) | Nordic Fresh Foods business challenge |
 | [Pre-Work Checklist](participant/pre-work-checklist.md) | Setup before the event |

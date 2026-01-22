@@ -1,15 +1,17 @@
 # Challenges
 
-This folder contains the six hackathon challenges:
+This folder contains the six hackathon challenges.
 
-| File                                                               | Challenge            | Duration | Points |
-| ------------------------------------------------------------------ | -------------------- | -------- | ------ |
-| [challenge-1-requirements.md](challenge-1-requirements.md)         | Requirements Capture | 40 min   | 20     |
-| [challenge-2-architecture.md](challenge-2-architecture.md)         | Architecture Design  | 40 min   | 25     |
-| [challenge-3-implementation.md](challenge-3-implementation.md)     | Bicep Implementation | 40 min   | 25     |
-| [challenge-4-dr-curveball.md](challenge-4-dr-curveball.md)         | DR Curveball ⚡      | 20 min   | 10     |
-| [challenge-5-load-testing.md](challenge-5-load-testing.md)         | Load Testing         | 15 min   | 5      |
-| [challenge-6-partner-showcase.md](challenge-6-partner-showcase.md) | Partner Showcase 🎤  | 40 min   | —      |
+📅 **See [AGENDA.md](../AGENDA.md) for the full schedule with timing.**
+
+| File                                                               | Challenge            | Points |
+| ------------------------------------------------------------------ | -------------------- | ------ |
+| [challenge-1-requirements.md](challenge-1-requirements.md)         | Requirements Capture | 20     |
+| [challenge-2-architecture.md](challenge-2-architecture.md)         | Architecture Design  | 25     |
+| [challenge-3-implementation.md](challenge-3-implementation.md)     | Bicep Implementation | 25     |
+| [challenge-4-dr-curveball.md](challenge-4-dr-curveball.md)         | DR Curveball ⚡      | 10     |
+| [challenge-5-load-testing.md](challenge-5-load-testing.md)         | Load Testing         | 5      |
+| [challenge-6-partner-showcase.md](challenge-6-partner-showcase.md) | Partner Showcase 🎤  | —      |
 
 **Total**: 100 base points + 25 bonus points available
 

@@ -15,7 +15,7 @@ Generate an implementation plan and Bicep templates for the FreshConnect infrast
 Switch to the **bicep-plan** agent in Chat view (`Ctrl+Shift+I` to switch to Agent mode):
 
 ```
-Create an implementation plan for FreshConnect based on 
+Create an implementation plan for FreshConnect based on
 agent-output/freshconnect/02-architecture-assessment.md
 ```
 
@@ -47,7 +47,7 @@ Ask the agent to create: `agent-output/freshconnect/04-implementation-plan.md`
 Switch to the **bicep-code** agent:
 
 ```
-Generate Bicep templates for FreshConnect based on 
+Generate Bicep templates for FreshConnect based on
 agent-output/freshconnect/04-implementation-plan.md
 ```
 
@@ -120,23 +120,23 @@ properties: {
 
 ## Success Criteria
 
-| Criterion | Points |
-|-----------|--------|
-| Bicep compiles without errors | 5 |
-| Bicep lints clean (warnings OK) | 5 |
-| CAF naming conventions used | 5 |
-| Security settings applied | 5 |
-| Modular structure | 5 |
-| **Total** | **25** |
+| Criterion                       | Points |
+| ------------------------------- | ------ |
+| Bicep compiles without errors   | 5      |
+| Bicep lints clean (warnings OK) | 5      |
+| CAF naming conventions used     | 5      |
+| Security settings applied       | 5      |
+| Modular structure               | 5      |
+| **Total**                       | **25** |
 
 ## Common Issues
 
-| Issue | Solution |
-|-------|----------|
-| Key Vault name too long | Max 24 chars: `kv-${take(projectName, 8)}-${env}-${take(uniqueSuffix, 6)}` |
-| Storage account invalid | Lowercase + numbers only, no hyphens |
-| SQL Azure AD policy error | Set `azureADOnlyAuthentication: true` |
-| Zone redundancy not supported | Use P1v3 or higher for App Service Plan |
+| Issue                         | Solution                                                                   |
+| ----------------------------- | -------------------------------------------------------------------------- |
+| Key Vault name too long       | Max 24 chars: `kv-${take(projectName, 8)}-${env}-${take(uniqueSuffix, 6)}` |
+| Storage account invalid       | Lowercase + numbers only, no hyphens                                       |
+| SQL Azure AD policy error     | Set `azureADOnlyAuthentication: true`                                      |
+| Zone redundancy not supported | Use P1v3 or higher for App Service Plan                                    |
 
 ## Tips
 

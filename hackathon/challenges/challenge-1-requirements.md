@@ -14,8 +14,8 @@ Press `Ctrl+Alt+I` to open Copilot Chat, then `Ctrl+Shift+I` to switch to Agent 
 Select the **plan** agent from the dropdown and paste:
 
 ```
-I need to plan Azure infrastructure for "FreshConnect" - a farm-to-table delivery platform 
-for Nordic Fresh Foods. 
+I need to plan Azure infrastructure for "FreshConnect" - a farm-to-table delivery platform
+for Nordic Fresh Foods.
 
 Key context:
 - Stockholm-based company, 500+ partner restaurants, 10,000 consumers
@@ -34,14 +34,14 @@ Please help me capture comprehensive requirements for this project.
 
 The **plan** agent will ask questions. Use these answers as guidance:
 
-| Question | Suggested Answer |
-|----------|------------------|
-| **SLA target?** | 99.9% is acceptable for MVP |
-| **RTO/RPO?** | RTO: 4 hours, RPO: 1 hour |
-| **Authentication?** | Azure AD for internal users, Azure AD B2C for restaurants/consumers |
-| **Network security?** | Public endpoints acceptable for MVP |
-| **Monitoring?** | Application Insights + Log Analytics |
-| **Backup strategy?** | Azure-managed backups, 7-day retention |
+| Question              | Suggested Answer                                                    |
+| --------------------- | ------------------------------------------------------------------- |
+| **SLA target?**       | 99.9% is acceptable for MVP                                         |
+| **RTO/RPO?**          | RTO: 4 hours, RPO: 1 hour                                           |
+| **Authentication?**   | Azure AD for internal users, Azure AD B2C for restaurants/consumers |
+| **Network security?** | Public endpoints acceptable for MVP                                 |
+| **Monitoring?**       | Application Insights + Log Analytics                                |
+| **Backup strategy?**  | Azure-managed backups, 7-day retention                              |
 
 ### Step 3: Review and Approve (20 min)
 
@@ -62,14 +62,14 @@ Confirm your requirements document includes:
 
 ## Success Criteria
 
-| Criterion | Points |
-|-----------|--------|
-| Document exists at correct path | 4 |
-| Project context complete | 4 |
-| Functional requirements listed | 4 |
-| NFRs specified (SLA, RTO, RPO) | 4 |
-| Compliance identified | 4 |
-| **Total** | **20** |
+| Criterion                       | Points |
+| ------------------------------- | ------ |
+| Document exists at correct path | 4      |
+| Project context complete        | 4      |
+| Functional requirements listed  | 4      |
+| NFRs specified (SLA, RTO, RPO)  | 4      |
+| Compliance identified           | 4      |
+| **Total**                       | **20** |
 
 ## Tips
 
@@ -85,6 +85,6 @@ After requirements are approved, proceed to [Challenge 2: Architecture](challeng
 Hand off to the **architect** agent or manually invoke:
 
 ```
-Review the requirements in agent-output/freshconnect/01-requirements.md 
+Review the requirements in agent-output/freshconnect/01-requirements.md
 and create a comprehensive WAF assessment with cost estimates.
 ```

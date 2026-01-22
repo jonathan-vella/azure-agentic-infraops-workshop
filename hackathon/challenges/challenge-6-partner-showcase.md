@@ -52,10 +52,10 @@ The facilitator will pair teams:
 
 **Time per team**: ~6 minutes
 
-| Segment            | Duration | Content                          |
-| ------------------ | -------- | -------------------------------- |
-| Partner Pitch      | 4 min    | Present your solution            |
-| Customer Q&A       | 2 min    | Customer team asks questions     |
+| Segment       | Duration | Content                      |
+| ------------- | -------- | ---------------------------- |
+| Partner Pitch | 4 min    | Present your solution        |
+| Customer Q&A  | 2 min    | Customer team asks questions |
 
 ---
 
