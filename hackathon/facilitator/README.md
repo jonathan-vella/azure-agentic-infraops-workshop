@@ -1,0 +1,38 @@
+# Facilitator Materials
+
+> **For hackathon coaches and facilitators only.**
+
+| File | Purpose |
+|------|---------|
+| [facilitator-guide.md](facilitator-guide.md) | Detailed schedule, curveball script, troubleshooting |
+| [scoring-rubric.md](scoring-rubric.md) | WAF-aligned scoring criteria (100+25 pts) |
+| [solution-reference.md](solution-reference.md) | Expected outputs, Bicep patterns, commands |
+
+## Quick Reference
+
+### Scoring Commands
+
+```powershell
+# Score individual team
+.\scripts\hackathon\Score-Team.ps1 -TeamName "freshconnect"
+
+# Score all teams
+Get-ChildItem .\agent-output -Directory | ForEach-Object {
+    .\scripts\hackathon\Score-Team.ps1 -TeamName $_.Name -SkipAzureCheck
+}
+
+# Display leaderboard
+.\scripts\hackathon\Get-Leaderboard.ps1
+```
+
+### Curveball Timing
+
+⚡ **4:15** — Announce the multi-region DR requirement (see [facilitator-guide.md](facilitator-guide.md) for script)
+
+### Emergency Contacts
+
+| Issue | Action |
+|-------|--------|
+| Copilot down | Use template files, extend time |
+| Azure issues | Check status.azure.com, try secondary region |
+| Team stuck | Direct help, skip design artifacts if needed |
