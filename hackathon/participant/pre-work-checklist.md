@@ -106,7 +106,7 @@ az login
 az account list --output table
 ```
 
-You should see at least one subscription where you have Contributor access.
+You should see at least one subscription where you have Owner access.
 
 ---
 
@@ -170,12 +170,12 @@ az account show --query "{Name:name, SubscriptionId:id, TenantId:tenantId}" -o t
 
 Ensure your network allows connections to:
 
-| Service | Domains | Ports |
-|---------|---------|-------|
-| GitHub | `github.com`, `api.github.com` | 443 |
-| GitHub Copilot | `copilot.github.com`, `*.githubusercontent.com` | 443 |
-| Azure | `*.azure.com`, `*.microsoft.com`, `login.microsoftonline.com` | 443 |
-| Docker | `docker.io`, `registry-1.docker.io` | 443 |
+| Service        | Domains                                                       | Ports |
+| -------------- | ------------------------------------------------------------- | ----- |
+| GitHub         | `github.com`, `api.github.com`                                | 443   |
+| GitHub Copilot | `copilot.github.com`, `*.githubusercontent.com`               | 443   |
+| Azure          | `*.azure.com`, `*.microsoft.com`, `login.microsoftonline.com` | 443   |
+| Docker         | `docker.io`, `registry-1.docker.io`                           | 443   |
 
 ---
 
@@ -185,7 +185,7 @@ Ensure your network allows connections to:
 - [ ] **VS Code** installed with required extensions
 - [ ] **Git** installed
 - [ ] **GitHub account** with active Copilot subscription
-- [ ] **Azure subscription** with Contributor access
+- [ ] **Azure subscription** with Owner access (required for Azure Policy)
 - [ ] **Repository cloned** locally
 - [ ] **Dev Container built** (F1 → Reopen in Container)
 - [ ] **Azure CLI authenticated** (`az login` successful)

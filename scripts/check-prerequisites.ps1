@@ -159,7 +159,7 @@ if ($azLoggedIn) {
 }
 $results += Write-CheckResult -Name "Resource Group Access" -Passed $canCreateRg `
     -Details $(if ($canCreateRg) { "Can list/create resource groups" } else { "" }) `
-    -Remediation "Ensure you have Contributor role on the subscription"
+    -Remediation "Ensure you have Owner role on the subscription (required for Azure Policy)"
 
 # Check allowed locations (governance policy check)
 $locationOk = $false
