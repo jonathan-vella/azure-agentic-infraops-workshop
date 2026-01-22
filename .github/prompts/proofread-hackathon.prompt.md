@@ -1,6 +1,6 @@
 ---
-description: 'Proofread and polish all hackathon documentation for consistency, clarity, and professional quality'
-agent: 'agent'
+description: "Proofread and polish all hackathon documentation for consistency, clarity, and professional quality"
+agent: "agent"
 tools:
   - read_file
   - replace_string_in_file
@@ -65,32 +65,32 @@ instructional clarity — while preserving the workshop's energetic, hands-on sp
 
 Ensure these terms are used consistently across ALL files:
 
-| Correct Term | Avoid |
-|--------------|-------|
-| GitHub Copilot | Copilot, copilot, GH Copilot |
+| Correct Term                     | Avoid                             |
+| -------------------------------- | --------------------------------- |
+| GitHub Copilot                   | Copilot, copilot, GH Copilot      |
 | Azure Well-Architected Framework | WAF (first use), Well Architected |
-| Bicep | BICEP, bicep (except in code) |
-| Dev Container | devcontainer, dev-container |
-| Nordic Fresh Foods | Nordic Foods, the company |
-| FreshConnect | Fresh Connect, freshconnect |
-| Partner Showcase | partner showcase, Presentation |
-| `plan` agent | Plan agent, plan Agent |
+| Bicep                            | BICEP, bicep (except in code)     |
+| Dev Container                    | devcontainer, dev-container       |
+| Nordic Fresh Foods               | Nordic Foods, the company         |
+| FreshConnect                     | Fresh Connect, freshconnect       |
+| Partner Showcase                 | partner showcase, Presentation    |
+| `plan` agent                     | Plan agent, plan Agent            |
 
 ### 3. Timing Consistency
 
 All timing references must match `hackathon/AGENDA.md`:
 
-| Block | Time | Duration |
-|-------|------|----------|
-| Intro | 10:00-10:30 | 30 min |
-| C1 | 10:30-11:15 | 40+5 min |
-| C2 | 11:15-12:00 | 40 min |
-| Lunch | 12:00-12:35 | 35 min |
-| C3 | 12:35-13:20 | 40+5 min |
-| C4-5 | 13:20-14:00 | 40 min |
-| Prep | 14:00-14:15 | 15 min |
-| C6 | 14:15-14:55 | 40 min |
-| Wrap | 14:55-15:00 | 5 min |
+| Block | Time        | Duration |
+| ----- | ----------- | -------- |
+| Intro | 10:00-10:30 | 30 min   |
+| C1    | 10:30-11:15 | 40+5 min |
+| C2    | 11:15-12:00 | 40 min   |
+| Lunch | 12:00-12:35 | 35 min   |
+| C3    | 12:35-13:20 | 40+5 min |
+| C4-5  | 13:20-14:00 | 40 min   |
+| Prep  | 14:00-14:15 | 15 min   |
+| C6    | 14:15-14:55 | 40 min   |
+| Wrap  | 14:55-15:00 | 5 min    |
 
 ### 4. Formatting Standards
 
@@ -157,15 +157,18 @@ Provide a summary report:
 ## Proofreading Summary
 
 ### Files Reviewed
+
 - [x] file1.md - X issues found, X fixed
 - [x] file2.md - Clean
 
 ### Issues Fixed
+
 | File | Issue | Fix |
-|------|-------|-----|
-| ... | ... | ... |
+| ---- | ----- | --- |
+| ...  | ...   | ... |
 
 ### Remaining Items (if any)
+
 - Item requiring human decision
 ```
 
