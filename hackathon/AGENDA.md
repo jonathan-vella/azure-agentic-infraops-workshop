@@ -27,7 +27,7 @@
 | 1   | Requirements Capture | 40 min   | 20     | `plan`                     |
 | 2   | Architecture Design  | 40 min   | 25     | `architect`                |
 | 3   | Bicep Implementation | 40 min   | 25     | `bicep-plan`, `bicep-code` |
-| 4   | *TBA*                | 20 min   | 10     | —                          |
+| 4   | _TBA_                | 20 min   | 10     | —                          |
 | 5   | Load Testing         | 15 min   | 5      | (k6 scripts)               |
 | 6   | Partner Showcase 🎤  | 40 min   | —      | (presentation)             |
 
@@ -85,12 +85,12 @@
 
 ### Block 5: Challenges 4-5 (13:20 - 14:00)
 
-| Time  | Activity                         |
-| ----- | -------------------------------- |
+| Time  | Activity                        |
+| ----- | ------------------------------- |
 | 13:20 | 📣 **Facilitator Announcement** |
-| 13:40 | Challenge 4                      |
-| 13:50 | Load Test — run k6               |
-| 14:00 | Prep begins                      |
+| 13:40 | Challenge 4                     |
+| 13:50 | Load Test — run k6              |
+| 14:00 | Prep begins                     |
 
 ### 🎯 Presentation Prep (14:00 - 14:15)
 
