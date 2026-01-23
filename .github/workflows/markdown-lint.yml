@@ -2,12 +2,12 @@ name: Markdown Linting
 
 on:
   push:
-    branches: [main, master]
+    branches: [main]
     paths:
       - "**/*.md"
       - ".markdownlint-cli2.jsonc"
   pull_request:
-    branches: [main, master]
+    branches: [main]
     paths:
       - "**/*.md"
       - ".markdownlint-cli2.jsonc"

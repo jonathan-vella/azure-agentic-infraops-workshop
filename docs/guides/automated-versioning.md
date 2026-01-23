@@ -99,14 +99,14 @@ If you need to manually bump the version:
 # Then commit with [skip ci] to prevent workflow from running
 git commit -m "chore(release): bump version to 2.0.0 [skip ci]"
 git tag -a v2.0.0 -m "Release v2.0.0"
-git push origin master --tags
+git push origin main --tags
 ```
 
 ## Workflow Triggers
 
 The auto-version workflow runs on:
 
-- ✅ Push to `master` or `main` branch
+- ✅ Push to `main` branch
 - ❌ Ignores changes to `VERSION.md`, `CHANGELOG.md`, and the workflow file itself
 - ❌ Skips if commit message contains `[skip ci]`
 
@@ -154,7 +154,7 @@ git show v1.0.0
 
 ### Workflow didn't run
 
-- Check that your commit is on `master` or `main` branch
+- Check that your commit is on `main` branch
 - Verify commit message follows conventional commits format
 - Check workflow logs in GitHub Actions tab
 

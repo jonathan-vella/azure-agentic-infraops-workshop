@@ -1,7 +1,7 @@
 {
-  "name": "azure-agentic-infraops-workshop",
-  "version": "1.0.1",
-  "description": "Agentic InfraOps Workshop - 5-hour hands-on hackathon for learning Infrastructure as Code with AI agents",
+  "name": "azure-agentic-infraops",
+  "version": "7.4.0",
+  "description": "Agentic InfraOps - Azure infrastructure engineered by agents. Verified. Well-Architected. Deployable.",
   "private": true,
   "scripts": {
     "prepare": "lefthook install",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jonathan-vella/azure-agentic-infraops-workshop.git"
+    "url": "https://github.com/jonathan-vella/azure-agentic-infraops.git"
   },
   "keywords": [
     "azure",
@@ -30,9 +30,7 @@
     "agents",
     "agentic",
     "well-architected",
-    "hackathon",
-    "workshop",
-    "training"
+    "azure-verified-modules"
   ],
   "author": "Jonathan Vella",
   "license": "MIT"

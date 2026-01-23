@@ -5,7 +5,7 @@ automated checks, and version management.
 
 ## Overview
 
-This repository uses a **protected master branch** with automated quality checks and versioning.
+This repository uses a **protected main branch** with automated quality checks and versioning.
 All changes must go through pull requests with passing checks before merging.
 
 ```mermaid
@@ -47,7 +47,7 @@ graph TB
 
 ## Repository Rulesets
 
-Master branch is protected using [GitHub rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets)
+The main branch is protected using [GitHub rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets)
 (the modern replacement for classic branch protection):
 
 | Rule                        | Description                  | Bypass     |
@@ -55,7 +55,7 @@ Master branch is protected using [GitHub rulesets](https://docs.github.com/en/re
 | **Require PR**              | Direct pushes blocked        | Admin only |
 | **Require approval**        | 1 approval needed            | Admin only |
 | **Status checks**           | `markdown-lint` must pass    | None       |
-| **Up-to-date branch**       | Must be current with master  | None       |
+| **Up-to-date branch**       | Must be current with main    | None       |
 | **Conversation resolution** | All threads must be resolved | None       |
 | **Linear history**          | Squash merge only            | None       |
 | **No force push**           | History cannot be rewritten  | None       |
@@ -100,9 +100,9 @@ npm install  # If not in Dev Container
 ### 2. Create Feature Branch
 
 ```bash
-# Always branch from latest master
-git checkout master
-git pull origin master
+# Always branch from latest main
+git checkout main
+git pull origin main
 
 # Create feature branch (use descriptive names)
 git checkout -b feat/add-challenge-7
@@ -170,7 +170,7 @@ gh pr create \
   ### Testing
   - Validated markdown formatting
   - Checked all internal links" \
-  --base master \
+  --base main \
   --head feat/add-challenge-7
 
 # Or create via GitHub web UI
@@ -324,7 +324,7 @@ stateDiagram-v2
 
 **Why squash?**
 
-- Creates single commit on master
+- Creates single commit on main
 - Clean, linear history
 - Easier to revert if needed
 - All PR context preserved in commit body
@@ -340,7 +340,7 @@ gh pr merge 123 --squash --delete-branch
 **After merge:**
 
 - Feature branch automatically deleted
-- Commit added to master
+- Commit added to main
 - Auto-version workflow may trigger (if `feat:` or `fix:`)
 
 ## Version Management Integration
@@ -348,7 +348,7 @@ gh pr merge 123 --squash --delete-branch
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
 flowchart TD
-    A[Commit Merged to Master] --> B{Commit type?}
+    A[Commit Merged to Main] --> B{Commit type?}
 
     B -->|feat: or fix:| C[Auto-Version Workflow Triggers]
     B -->|docs:, chore:, etc.| D[No Version Bump]
@@ -433,7 +433,7 @@ git commit -m "fix: correct markdown formatting"
 
 ```bash
 # 1. Create branch
-git checkout master && git pull
+git checkout main && git pull
 git checkout -b docs/fix-typo
 
 # 2. Make change
@@ -455,7 +455,7 @@ gh pr merge --squash --delete-branch
 
 ```bash
 # 1. Create branch
-git checkout master && git pull
+git checkout main && git pull
 git checkout -b feat/challenge-8
 
 # 2. Make multiple commits
@@ -504,7 +504,7 @@ gh pr review --approve
 gh pr merge --squash --delete-branch
 
 # Create the release
-git checkout master && git pull
+git checkout main && git pull
 gh release create v1.2.0 --generate-notes
 ```
 
@@ -514,7 +514,7 @@ gh release create v1.2.0 --generate-notes
 
 **Error:** `remote: error: GH006: Protected branch update failed`
 
-**Solution:** You cannot push directly to master. Create a branch and PR:
+**Solution:** You cannot push directly to main. Create a branch and PR:
 
 ```bash
 git checkout -b fix/my-changes
@@ -556,16 +556,16 @@ git commit --amend -m "feat: use sentence case for subject"
 **Solution:**
 
 ```bash
-# Update your branch with latest master
-git checkout master
+# Update your branch with latest main
+git checkout main
 git pull
 git checkout your-feature-branch
-git merge master
+git merge main
 
 # Resolve conflicts in editor
 # Then commit the merge
 git add .
-git commit -m "chore: resolve merge conflicts with master"
+git commit -m "chore: resolve merge conflicts with main"
 git push
 ```
 
@@ -583,7 +583,7 @@ git push
 
 ### Do ✅
 
-- **Pull before branching** - Always start from latest master
+- **Pull before branching** - Always start from latest main
 - **Commit frequently** - Small, logical commits are easier to review
 - **Write descriptive commit messages** - Future you will thank you
 - **Run checks locally** - Catch issues before pushing
@@ -593,7 +593,7 @@ git push
 
 ### Don't ❌
 
-- **Don't push directly to master** - Always use PRs
+- **Don't push directly to main** - Always use PRs
 - **Don't bypass checks** - They exist for good reason
 - **Don't mix unrelated changes** - Separate concerns
 - **Don't force push** - Rewrites history and confuses reviewers
