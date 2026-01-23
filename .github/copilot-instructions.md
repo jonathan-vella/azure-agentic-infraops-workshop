@@ -28,6 +28,19 @@ aligned with Azure Well-Architected Framework and Azure Verified Modules.
 
 **Audience**: SI partners delivering Azure projects • IT Pros learning IaC • Customers evaluating agentic workflows
 
+## Hackathon
+
+This repository includes a **6-hour hands-on hackathon** with 8 progressive challenges using a coaching approach:
+
+- **Duration**: 6 hours (09:00-15:00) with 30min lunch
+- **Challenges**: 8 challenges covering the complete 7-step workflow
+- **Approach**: Coaching, not training - questions over solutions
+- **Philosophy**: "Business is the driver, IT is the enabler"
+- **Points**: 105 base points across all challenges
+- **Terminology**: Use "hackathon" (not "workshop"), "challenge" (not "step"), "coach" (not "facilitator")
+
+📖 **Hackathon details**: `hackathon/README.md`
+
 ## Seven-Step Workflow
 
 ```mermaid
@@ -60,13 +73,17 @@ graph LR
 ```
 azure-agentic-infraops/
 ├── .github/
-│   ├── agents/                  # 7 custom agents
+│   ├── agents/                  # 8 custom agents
 │   │   ├── _shared/defaults.md  # Regions, tags, AVM, security
 │   │   └── *.agent.md           # Agent definitions
 │   ├── instructions/            # File-type specific rules
 │   └── copilot-instructions.md  # THIS FILE
 ├── agent-output/{project}/      # Agent-generated artifacts
 ├── infra/bicep/                 # Generated Bicep templates
+├── hackathon/                   # 6-hour hands-on hackathon
+│   ├── challenges/              # 8 progressive challenges
+│   ├── participant/             # Reference cards, scenario brief
+│   └── facilitator/             # Coach guide, scoring rubric
 ├── scenarios/                   # Demo scenarios S01-S08
 └── mcp/azure-pricing-mcp/       # Azure Pricing MCP server
 ```
