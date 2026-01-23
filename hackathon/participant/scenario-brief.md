@@ -7,13 +7,13 @@
 **Nordic Fresh Foods** is a growing farm-to-table delivery company based in Stockholm, Sweden.
 They connect local organic farmers with restaurants and consumers across Scandinavia.
 
-| Fact | Details |
-|------|---------|
-| Founded | 2022 |
-| Partner Restaurants | 500+ |
-| Active Consumers | 10,000 |
-| Current Tech | Spreadsheets, WordPress, manual processes |
-| Funding | €2M Series A (just secured) |
+| Fact                | Details                                   |
+| ------------------- | ----------------------------------------- |
+| Founded             | 2022                                      |
+| Partner Restaurants | 500+                                      |
+| Active Consumers    | 10,000                                    |
+| Current Tech        | Spreadsheets, WordPress, manual processes |
+| Funding             | €2M Series A (just secured)               |
 
 ## The Problem
 
@@ -58,52 +58,52 @@ Design and deploy the Azure infrastructure for the **FreshConnect MVP** (Minimum
 
 ### Functional Requirements
 
-| Capability | Description |
-|------------|-------------|
-| **Web Portal** | Restaurant and consumer order entry (expect 500 concurrent users at peak) |
-| **API Backend** | RESTful APIs for mobile apps and integrations |
-| **Database** | Store orders, customers, inventory, delivery schedules |
-| **File Storage** | Product images, invoices, delivery receipts |
-| **Secrets Management** | API keys, connection strings, certificates |
-| **Monitoring** | Application health, performance metrics, alerts |
+| Capability             | Description                                                               |
+| ---------------------- | ------------------------------------------------------------------------- |
+| **Web Portal**         | Restaurant and consumer order entry (expect 500 concurrent users at peak) |
+| **API Backend**        | RESTful APIs for mobile apps and integrations                             |
+| **Database**           | Store orders, customers, inventory, delivery schedules                    |
+| **File Storage**       | Product images, invoices, delivery receipts                               |
+| **Secrets Management** | API keys, connection strings, certificates                                |
+| **Monitoring**         | Application health, performance metrics, alerts                           |
 
 ### Constraints
 
-| Constraint | Value | Notes |
-|------------|-------|-------|
-| **Budget** | ~€500/month | Infrastructure only (increases to €700 after Challenge 4) |
-| **Compliance** | GDPR | Customer PII must stay in EU |
-| **Region** | `swedencentral` | Primary region (Stockholm proximity) |
-| **Timeline** | 3 months to production | MVP for peak season |
-| **Team** | 3 developers, 1 DevOps | Small team, needs managed services |
+| Constraint     | Value                  | Notes                                                     |
+| -------------- | ---------------------- | --------------------------------------------------------- |
+| **Budget**     | ~€500/month            | Infrastructure only (increases to €700 after Challenge 4) |
+| **Compliance** | GDPR                   | Customer PII must stay in EU                              |
+| **Region**     | `swedencentral`        | Primary region (Stockholm proximity)                      |
+| **Timeline**   | 3 months to production | MVP for peak season                                       |
+| **Team**       | 3 developers, 1 DevOps | Small team, needs managed services                        |
 
 ### Out of Scope (for MVP)
 
 - Mobile app infrastructure (Phase 2)
 - AI/ML for route optimization (Phase 2)
-- Multi-region disaster recovery *(initially — see Challenge 4!)*
+- Multi-region disaster recovery _(initially — see Challenge 4!)_
 - Real-time IoT from delivery vehicles (Phase 3)
 
 ## Non-Functional Requirements
 
-| Requirement | Target |
-|-------------|--------|
-| SLA | 99.9% |
-| RTO | 4 hours (initially) |
-| RPO | 1 hour (initially) |
-| Peak Load | 500 concurrent users |
-| Seasonal Spike | 3x normal volume |
+| Requirement    | Target                                       |
+| -------------- | -------------------------------------------- |
+| SLA            | 99.9%                                        |
+| RTO            | 4 hours (initially)                          |
+| RPO            | 1 hour (initially)                           |
+| Peak Load      | 500 concurrent users                         |
+| Seasonal Spike | 3x normal volume                             |
 | Authentication | Azure AD (internal), Azure AD B2C (external) |
-| Network | Public endpoints acceptable for MVP |
+| Network        | Public endpoints acceptable for MVP          |
 
 ## Key Stakeholders
 
-| Role | Priorities |
-|------|------------|
-| **CEO** | On-time delivery, budget control |
-| **CTO** | Scalability, modern architecture |
-| **CFO** | Cost optimization, ROI |
-| **Operations** | Reliability, easy maintenance |
+| Role           | Priorities                       |
+| -------------- | -------------------------------- |
+| **CEO**        | On-time delivery, budget control |
+| **CTO**        | Scalability, modern architecture |
+| **CFO**        | Cost optimization, ROI           |
+| **Operations** | Reliability, easy maintenance    |
 
 ---
 

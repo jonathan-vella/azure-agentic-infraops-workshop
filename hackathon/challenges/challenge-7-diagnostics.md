@@ -176,13 +176,13 @@ Create a troubleshooting runbook that includes:
 
 ## Success Criteria
 
-| Criterion                                       | Points |
-| ----------------------------------------------- | ------ |
+| Criterion                                             | Points |
+| ----------------------------------------------------- | ------ |
 | Runbook addresses at least 3 common failure scenarios | 2      |
-| Includes specific diagnostic commands/queries   | 1      |
-| Clear decision points (check X, then Y)         | 1      |
-| Actionable remediation steps provided           | 1      |
-| **Total**                                       | **5**  |
+| Includes specific diagnostic commands/queries         | 1      |
+| Clear decision points (check X, then Y)               | 1      |
+| Actionable remediation steps provided                 | 1      |
+| **Total**                                             | **5**  |
 
 ## Coaching Questions
 

@@ -130,6 +130,7 @@ For **8 challenges**, consider rotating every 2 challenges:
 | 7-8        | D      | A         | B         | C          |
 
 **Suggested Lead Roles for New Challenges:**
+
 - **Challenge 6 (Documentation)**: Documenter leads — they know what's missing!
 - **Challenge 7 (Diagnostics)**: Architect leads — technical troubleshooting perspective
 - **Challenge 8 (Showcase)**: Documenter presents, everyone supports
@@ -148,13 +149,13 @@ Before starting, agree on:
 
 ---
 
-**Team Name**: _________________
+**Team Name**: ********\_********
 
-| Role | Name |
-|------|------|
-| 🚗 Driver | |
-| 🧭 Navigator | |
-| 🏗️ Architect | |
-| 📝 Documenter | |
+| Role          | Name |
+| ------------- | ---- |
+| 🚗 Driver     |      |
+| 🧭 Navigator  |      |
+| 🏗️ Architect  |      |
+| 📝 Documenter |      |
 
 **Coaching Philosophy**: We discover solutions together through questions, not by following prescriptive steps!

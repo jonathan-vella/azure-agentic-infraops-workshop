@@ -6,20 +6,20 @@
 
 ## Schedule Overview
 
-| Time        | Block               | Duration | Activity                       |
-| ----------- | ------------------- | -------- | ------------------------------ |
-| 09:00-09:30 | **Intro**           | 30 min   | Welcome, setup, team formation |
-| 09:30-10:20 | **Challenge 1**     | 50 min   | Requirements Capture           |
-| 10:20-11:10 | **Challenge 2**     | 50 min   | Architecture Design            |
-| 11:10-11:40 | 🍽️ **Lunch**        | 30 min   | Break                          |
-| 11:40-12:40 | **Challenge 3**     | 60 min   | Bicep Implementation           |
-| 12:40-13:10 | **Challenge 4**     | 30 min   | DR Curveball                   |
-| 13:10-13:30 | **Challenge 5**     | 20 min   | Load Testing                   |
-| 13:30-13:50 | **Challenge 6**     | 20 min   | Documentation                  |
-| 13:50-14:00 | **Challenge 7**     | 10 min   | Diagnostics                    |
-| 14:00-14:15 | 🎯 **Prep**         | 15 min   | Presentation Preparation       |
-| 14:15-14:55 | **Challenge 8**     | 40 min   | Partner Showcase 🎤            |
-| 14:55-15:00 | **Wrap-up**         | 5 min    | Leaderboard, cleanup, close    |
+| Time        | Block           | Duration | Activity                       |
+| ----------- | --------------- | -------- | ------------------------------ |
+| 09:00-09:30 | **Intro**       | 30 min   | Welcome, setup, team formation |
+| 09:30-10:20 | **Challenge 1** | 50 min   | Requirements Capture           |
+| 10:20-11:10 | **Challenge 2** | 50 min   | Architecture Design            |
+| 11:10-11:40 | 🍽️ **Lunch**    | 30 min   | Break                          |
+| 11:40-12:40 | **Challenge 3** | 60 min   | Bicep Implementation           |
+| 12:40-13:10 | **Challenge 4** | 30 min   | DR Curveball                   |
+| 13:10-13:30 | **Challenge 5** | 20 min   | Load Testing                   |
+| 13:30-13:50 | **Challenge 6** | 20 min   | Documentation                  |
+| 13:50-14:00 | **Challenge 7** | 10 min   | Diagnostics                    |
+| 14:00-14:15 | 🎯 **Prep**     | 15 min   | Presentation Preparation       |
+| 14:15-14:55 | **Challenge 8** | 40 min   | Partner Showcase 🎤            |
+| 14:55-15:00 | **Wrap-up**     | 5 min    | Leaderboard, cleanup, close    |
 
 ---
 
@@ -58,23 +58,23 @@
 
 ### Block 2: Challenge 1 (09:30 - 10:20)
 
-| Time  | Activity                                  |
-| ----- | ----------------------------------------- |
-| 09:30 | Start — invoke **requirements** agent     |
-| 09:45 | Check-in — conversations started?         |
-| 10:00 | Progress — draft requirements?            |
-| 10:10 | Push — encourage approval                 |
-| 10:20 | Complete — move to Challenge 2            |
+| Time  | Activity                              |
+| ----- | ------------------------------------- |
+| 09:30 | Start — invoke **requirements** agent |
+| 09:45 | Check-in — conversations started?     |
+| 10:00 | Progress — draft requirements?        |
+| 10:10 | Push — encourage approval             |
+| 10:20 | Complete — move to Challenge 2        |
 
 ### Block 3: Challenge 2 (10:20 - 11:10)
 
-| Time  | Activity                                        |
-| ----- | ----------------------------------------------- |
-| 10:20 | Start — handoff from **requirements** agent     |
-| 10:35 | Check-in — WAF recommendations?                 |
-| 10:50 | Cost — Pricing MCP working?                     |
-| 11:00 | Wrap — finalize architecture                    |
-| 11:10 | Lunch                                           |
+| Time  | Activity                                    |
+| ----- | ------------------------------------------- |
+| 10:20 | Start — handoff from **requirements** agent |
+| 10:35 | Check-in — WAF recommendations?             |
+| 10:50 | Cost — Pricing MCP working?                 |
+| 11:00 | Wrap — finalize architecture                |
+| 11:10 | Lunch                                       |
 
 ### 🍽️ Lunch (11:10 - 11:40)
 
@@ -90,18 +90,18 @@
 
 ### Block 5: Challenges 4-7 (12:40 - 14:00)
 
-| Time  | Activity                                  |
-| ----- | ----------------------------------------- |
-| 12:40 | 📣 **Challenge 4: DR Curveball Announced**|
-| 12:45 | Update architecture for multi-region      |
-| 13:00 | Generate updated Bicep templates          |
-| 13:10 | **Challenge 5: Load Testing**             |
-| 13:20 | Run k6 load tests                         |
-| 13:30 | **Challenge 6: Documentation**            |
-| 13:40 | Generate workload docs with **docs** agent|
-| 13:50 | **Challenge 7: Diagnostics**              |
-| 13:55 | Run diagnostics with **diagnose** agent   |
-| 14:00 | Prep begins                               |
+| Time  | Activity                                   |
+| ----- | ------------------------------------------ |
+| 12:40 | 📣 **Challenge 4: DR Curveball Announced** |
+| 12:45 | Update architecture for multi-region       |
+| 13:00 | Generate updated Bicep templates           |
+| 13:10 | **Challenge 5: Load Testing**              |
+| 13:20 | Run k6 load tests                          |
+| 13:30 | **Challenge 6: Documentation**             |
+| 13:40 | Generate workload docs with **docs** agent |
+| 13:50 | **Challenge 7: Diagnostics**               |
+| 13:55 | Run diagnostics with **diagnose** agent    |
+| 14:00 | Prep begins                                |
 
 ### 🎯 Presentation Prep (14:00 - 14:15)
 

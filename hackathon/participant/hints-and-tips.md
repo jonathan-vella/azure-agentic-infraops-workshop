@@ -1,7 +1,7 @@
 # Hints & Tips
 
 > **Coaching approach**: These hints use questions to guide your thinking.
-> The best solutions come from understanding *why*, not just copying *what*.
+> The best solutions come from understanding _why_, not just copying _what_.
 
 ## Architecture Hints
 
@@ -11,15 +11,16 @@
 Before asking the `architect` agent, consider these questions:
 
 **Understanding the Requirements:**
+
 - What are the key capabilities FreshConnect needs? (web portal, API, database, file storage, secrets, monitoring)
 - How many concurrent users need to be supported at peak?
 - What's the growth trajectory? (seasonal spikes, planned expansion)
 
 **Evaluating Service Options:**
+
 - For the web portal: What Azure compute services support web hosting?
   - What are the trade-offs between App Service, Container Apps, and AKS for this workload?
   - Does the team have container expertise, or would PaaS be more appropriate?
-  
 - For the database: What data characteristics matter most?
   - Relational vs. NoSQL — what does the order/customer/inventory data structure suggest?
   - What availability SLA is required?
@@ -30,6 +31,7 @@ Before asking the `architect` agent, consider these questions:
   - What's the cost difference between separate plans vs. deployment slots?
 
 **Prompt the architect agent with business context:**
+
 ```
 "Design Azure architecture for FreshConnect: farm-to-table delivery platform
 serving 500 concurrent users, with order management, inventory tracking,
@@ -37,7 +39,7 @@ and delivery scheduling. Budget: €500/month. GDPR compliant (EU region).
 Small team needs managed services."
 ```
 
-💡 **Coaching tip**: Services aren't "recommended" — they're *chosen* based on requirements.
+💡 **Coaching tip**: Services aren't "recommended" — they're _chosen_ based on requirements.
 What requirements drive your service selection?
 
 </details>
@@ -65,6 +67,7 @@ Before asking for cost estimates, ask yourself:
    - What region affects pricing?
 
 **Example Prompt for Azure Pricing MCP:**
+
 ```
 "Compare costs for App Service plans in swedencentral:
 - P1v3 (production)
@@ -78,9 +81,10 @@ it's about matching cost to value. What does each €10/month buy you?
 **Estimated Budget Breakdown to Discuss:**
 
 Consider these categories for your €500/month budget:
+
 - Compute (App Service): What percentage?
 - Data (SQL, Storage): What percentage?
-- Networking (if any): What percentage?  
+- Networking (if any): What percentage?
 - Observability (App Insights, Log Analytics): What percentage?
 - Security (Key Vault): What percentage?
 
@@ -94,6 +98,7 @@ Where is most of your budget going? Does that align with business priorities?
 **Discovery Questions:**
 
 **GDPR Compliance:**
+
 - How would you discover what GDPR requires for customer PII?
   - What Azure documentation or tools help identify GDPR requirements?
   - Which Azure regions qualify as "EU data residency"?
@@ -105,7 +110,8 @@ Where is most of your budget going? Does that align with business priorities?
   - How do you enable audit trails for compliance teams?
 
 **Security Architecture:**
-- What security defaults should *every* Azure resource have?
+
+- What security defaults should _every_ Azure resource have?
   - HTTPS enforcement? TLS version? Public access settings?
   - How do you avoid storing secrets in code or templates?
   - What's the difference between connection strings and managed identities?
@@ -113,14 +119,15 @@ Where is most of your budget going? Does that align with business priorities?
 **Prompt Engineering for Security:**
 
 Instead of asking "make it secure," try:
+
 ```
 "Review my architecture for GDPR compliance. Data residency must be EU.
 Customer PII includes: names, emails, delivery addresses, order history.
 Identify gaps and recommend controls."
 ```
 
-💡 **Coaching tip**: Security isn't a checklist — it's about understanding *what*
-you're protecting and *why*. What data does FreshConnect store?
+💡 **Coaching tip**: Security isn't a checklist — it's about understanding _what_
+you're protecting and _why_. What data does FreshConnect store?
 What's the impact if it's compromised?
 
 **Example Bicep Security Pattern:**
@@ -252,7 +259,6 @@ When the DR curveball hits, instead of looking for "the answer," ask:
    - If swedencentral goes down, what business operations must continue?
    - What's the cost of 1 hour of downtime? 4 hours? 24 hours?
    - Which data can you afford to lose? (RPO question)
-   
 2. **Technical Options**: What Azure services support multi-region?
    - Can App Services fail over automatically, or do you need Traffic Manager?
    - What's the difference between SQL geo-replication and failover groups?
@@ -267,14 +273,14 @@ When the DR curveball hits, instead of looking for "the answer," ask:
 4. **Architecture Documentation**: How do you communicate the change?
    - What format best shows before/after architecture?
    - Should you document this as an ADR (Architecture Decision Record)?
-   - What context does your team need to understand *why* you chose this approach?
+   - What context does your team need to understand _why_ you chose this approach?
 
 **Prompt Engineering for DR:**
 
 ```
 "Update FreshConnect architecture for disaster recovery:
 - Primary: swedencentral
-- Secondary: germanywestcentral  
+- Secondary: germanywestcentral
 - RTO: 4 hours, RPO: 1 hour
 - Budget increased to €700/month
 Recommend services and configuration changes.
@@ -282,7 +288,7 @@ Create ADR documenting decision."
 ```
 
 💡 **Coaching tip**: DR isn't about copying everything twice —
-it's about identifying what *must* survive and what recovery time the business can accept.
+it's about identifying what _must_ survive and what recovery time the business can accept.
 
 </details>
 
@@ -293,7 +299,7 @@ it's about identifying what *must* survive and what recovery time the business c
 
 Before running tests, ask:
 
-1. **What are you testing?** 
+1. **What are you testing?**
    - Endpoint availability? Response time? Error rate under load?
    - Are you testing a single API endpoint or the whole application flow?
 
@@ -317,17 +323,17 @@ import { check, sleep } from "k6";
 
 export const options = {
   stages: [
-    { duration: "1m", target: 100 },   // What does this stage test?
-    { duration: "2m", target: 500 },   // What does this stage test?
-    { duration: "1m", target: 0 },     // Why ramp down?
+    { duration: "1m", target: 100 }, // What does this stage test?
+    { duration: "2m", target: 500 }, // What does this stage test?
+    { duration: "1m", target: 0 }, // Why ramp down?
   ],
   thresholds: {
     http_req_duration: ["p(95)<2000"], // Why P95? Why 2000ms?
-    http_req_failed: ["rate<0.01"],    // Why 1%?
+    http_req_failed: ["rate<0.01"], // Why 1%?
   },
 };
 
-export default function() {
+export default function () {
   const res = http.get("https://your-app.azurewebsites.net/api/health");
   check(res, { "status is 200": (r) => r.status === 200 });
   sleep(1);
@@ -337,6 +343,7 @@ export default function() {
 **Analyzing Results:**
 
 After running k6, ask:
+
 - Did you meet your thresholds? If not, why not?
 - What Azure Monitor metrics correlate with load test results?
 - Would scaling up (bigger SKU) or out (more instances) help?
@@ -394,6 +401,7 @@ Include:
 Which documents provide the most value for FreshConnect's specific needs?
 
 **Document Types to Consider:**
+
 - Operations runbook (troubleshooting)
 - Architecture documentation (system understanding)
 - Cost estimate with optimization guide
@@ -455,7 +463,7 @@ For each scenario provide:
 4. Escalation criteria"
 ```
 
-💡 **Coaching tip**: Good diagnostic documentation includes the *why* not just the *what*.
+💡 **Coaching tip**: Good diagnostic documentation includes the _why_ not just the _what_.
 Why check database DTU before App Service CPU? What's the reasoning?
 
 **Example Diagnostic Flow:**
@@ -481,17 +489,18 @@ Why check database DTU before App Service CPU? What's the reasoning?
 </details>
 
 export default function () {
-  const res = http.get("https://YOUR-APP.azurewebsites.net/");
-  check(res, { "status is 200": (r) => r.status === 200 });
-  sleep(1);
+const res = http.get("https://YOUR-APP.azurewebsites.net/");
+check(res, { "status is 200": (r) => r.status === 200 });
+sleep(1);
 }
-```
+
+````
 
 **Run:**
 
 ```bash
 k6 run load-test.js
-```
+````
 
 </details>
 
@@ -511,6 +520,7 @@ k6 run load-test.js
 ### `requirements` Agent (Challenge 1)
 
 **Instead of asking "what should I do?"**, ask:
+
 - "What NFRs should I capture for a farm-to-table delivery platform?"
 - "How do I translate 'peak season = 3x volume' into technical requirements?"
 - "What questions help uncover hidden requirements?"
@@ -520,6 +530,7 @@ k6 run load-test.js
 ### `architect` Agent (Challenge 2)
 
 **Instead of "design my architecture"**, try:
+
 - "What are the trade-offs between App Service and Container Apps for this workload?"
 - "How does the €500/month budget constraint affect service selection?"
 - "What WAF pillar is most at risk with this approach?"
@@ -529,6 +540,7 @@ k6 run load-test.js
 ### `bicep-plan` Agent (Challenge 3)
 
 **Instead of "write Bicep"**, ask:
+
 - "What's the dependency order for deploying these resources?"
 - "Should Key Vault be in a separate module or main.bicep?"
 - "How do I structure modules for reusability?"
@@ -538,6 +550,7 @@ k6 run load-test.js
 ### `bicep-code` Agent (Challenge 3)
 
 **Instead of "generate all the code"**, try:
+
 - "Generate Key Vault module with name validation and uniqueSuffix parameter"
 - Start with one module, validate it works, then expand
 - Run `bicep build` after each major change
@@ -547,6 +560,7 @@ k6 run load-test.js
 ### `docs` Agent (Challenges 6-7)
 
 **Instead of "document everything"**, ask:
+
 - "Who is the audience for this documentation?"
 - "What specific problem does this document solve?"
 - "Generate [document type] for [audience] covering [scenarios]"

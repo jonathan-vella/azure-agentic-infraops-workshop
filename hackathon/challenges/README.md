@@ -31,7 +31,7 @@ graph LR
     C5 --> C6[C6: Docs]
     C6 --> C7[C7: Diagnose]
     C7 --> C8[C8: Showcase]
-    
+
     style CB fill:#ff6b6b,color:#fff
     style C8 fill:#0078d4,color:#fff
 ```

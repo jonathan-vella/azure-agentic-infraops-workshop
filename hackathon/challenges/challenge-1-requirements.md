@@ -12,6 +12,7 @@ Nordic Fresh Foods needs cloud infrastructure to power their farm-to-table deliv
 They've given you the business context — now you must translate it into technical requirements.
 
 **Business Context:**
+
 - Stockholm-based, 500+ restaurant partners, 10,000 consumers
 - Peak season: Summer and December (3x normal load)
 - Budget: ~€500/month for MVP infrastructure
@@ -24,6 +25,7 @@ They've given you the business context — now you must translate it into techni
 Use the `requirements` agent to capture comprehensive infrastructure requirements.
 
 **Prompt Engineering Focus:**
+
 - How do you frame the business context for the agent?
 - What information is critical vs nice-to-have?
 - How much detail should you provide upfront?
@@ -31,6 +33,7 @@ Use the `requirements` agent to capture comprehensive infrastructure requirement
 **Guiding Questions:**
 
 **SLA & Reliability:**
+
 - What availability does the business need? (99%? 99.9%? 99.99%?)
 - What's the cost difference between these tiers?
 - What does "acceptable downtime" mean for a food delivery platform?
@@ -38,23 +41,27 @@ Use the `requirements` agent to capture comprehensive infrastructure requirement
 - How much data loss is acceptable? (RTO/RPO considerations)
 
 **Authentication & Security:**
+
 - Who are the users? (Internal staff? Restaurants? Consumers?)
 - Should everyone use the same auth method?
 - What about social login for consumers?
 - How do you secure API access?
 
 **Network & Compliance:**
+
 - Does GDPR require specific Azure regions?
 - Are public endpoints acceptable for MVP?
 - What data must stay in EU?
 - What security controls are mandatory?
 
 **Monitoring & Operations:**
+
 - How will the ops team know if something breaks?
 - What metrics matter most for this business?
 - How long should logs be retained?
 
 **Backup & Recovery:**
+
 - What data is critical?
 - How often should backups occur?
 - Who manages backup retention?
@@ -77,6 +84,7 @@ Key Questions:
 ```
 
 **Iterative Approach:**
+
 1. Start with high-level context
 2. Let the agent ask clarifying questions
 3. Refine your understanding through conversation
@@ -85,6 +93,7 @@ Key Questions:
 ## Expected Conversation Flow
 
 The `requirements` agent will likely ask questions like:
+
 - "What's your target SLA?"
 - "What's your RTO/RPO tolerance?"
 - "What authentication methods do you need?"
@@ -92,6 +101,7 @@ The `requirements` agent will likely ask questions like:
 **Your job**: Answer based on business needs, not just technical preferences.
 
 **Ask yourself:**
+
 - What would the business stakeholder say?
 - What does the MVP actually require vs nice-to-have?
 - Where can we simplify for launch and enhance later?
@@ -99,6 +109,7 @@ The `requirements` agent will likely ask questions like:
 ## Verification
 
 Your requirements document should capture:
+
 - ✅ Project overview (name, purpose, timeline, budget)
 - ✅ Functional requirements (what capabilities are needed?)
 - ✅ Non-functional requirements (SLA, performance, scalability)
@@ -131,6 +142,7 @@ Your requirements document should capture:
 ## Reflection Questions
 
 After completing this challenge:
+
 - How did your initial prompt affect the quality of the agent's response?
 - What questions caught you off-guard?
 - What would you do differently next time?

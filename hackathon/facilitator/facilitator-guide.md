@@ -29,12 +29,12 @@ to provide direct solutions.
 
 ### Coaching Phrases to Use
 
-| Situation                     | Say This                                         |
-| ----------------------------- | ------------------------------------------------ |
-| Team asks how to fix error    | "What does the error message tell you?"          |
-| Team asks for solution        | "What have you tried so far?"                   |
-| Team stuck on agent prompt    | "How would you prompt the agent to solve this?" |
-| Team unsure about decision    | "What business requirement drives this?"        |
+| Situation                    | Say This                                        |
+| ---------------------------- | ----------------------------------------------- |
+| Team asks how to fix error   | "What does the error message tell you?"         |
+| Team asks for solution       | "What have you tried so far?"                   |
+| Team stuck on agent prompt   | "How would you prompt the agent to solve this?" |
+| Team unsure about decision   | "What business requirement drives this?"        |
 | Team asks "Should we use X?" | "What would you try? What are the tradeoffs?"   |
 
 ### When to Provide Direct Help
@@ -224,10 +224,10 @@ Stand up, get everyone's attention:
 
 **Common Issues:**
 
-| Issue                 | Solution                           |
-| --------------------- | ---------------------------------- |
-| Docs agent too verbose| Prompt: "Create concise runbook"  |
-| Missing monitoring    | Use Application Insights logs      |
+| Issue                  | Solution                         |
+| ---------------------- | -------------------------------- |
+| Docs agent too verbose | Prompt: "Create concise runbook" |
+| Missing monitoring     | Use Application Insights logs    |
 
 ---
 

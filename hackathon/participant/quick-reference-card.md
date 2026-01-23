@@ -11,7 +11,7 @@
 | 09:00-09:30 | Intro           | 30 min   | —      |
 | 09:30-10:20 | **Challenge 1** | 50 min   | 20     |
 | 10:20-11:10 | **Challenge 2** | 50 min   | 25     |
-| 11:10-11:40 | 🍽️ Lunch       | 30 min   | —      |
+| 11:10-11:40 | 🍽️ Lunch        | 30 min   | —      |
 | 11:40-12:40 | **Challenge 3** | 60 min   | 25     |
 | 12:40-13:10 | **Challenge 4** | 30 min   | 10     |
 | 13:10-13:30 | **Challenge 5** | 20 min   | 5      |
@@ -43,14 +43,14 @@
 
 Select from the **agent dropdown** in Chat view:
 
-| Agent            | Purpose                            | Challenges   |
-| ---------------- | ---------------------------------- | ------------ |
-| **requirements** | Capture requirements               | 1            |
-| **architect**    | Design architecture (WAF)          | 2            |
-| **bicep-plan**   | Create implementation plan         | 3, 4         |
-| **bicep-code**   | Generate Bicep templates           | 3, 4         |
-| **docs**         | Generate documentation             | 6, 7         |
-| **diagnose**     | Troubleshooting runbooks           | 7            |
+| Agent            | Purpose                    | Challenges |
+| ---------------- | -------------------------- | ---------- |
+| **requirements** | Capture requirements       | 1          |
+| **architect**    | Design architecture (WAF)  | 2          |
+| **bicep-plan**   | Create implementation plan | 3, 4       |
+| **bicep-code**   | Generate Bicep templates   | 3, 4       |
+| **docs**         | Generate documentation     | 6, 7       |
+| **diagnose**     | Troubleshooting runbooks   | 7          |
 
 **How to use**: `Ctrl+Alt+I` → Click agent dropdown → Select agent → Type prompt
 
@@ -113,35 +113,43 @@ az group delete -n rg-freshconnect-dev-swc --yes --no-wait
 ## Pro Tips
 
 **Challenge 3 — Mermaid Flowcharts:**
-```markdown
-```mermaid
+
+````markdown
+````mermaid
 graph TD
     A[Start] --> B[Decision]
     B -->|Yes| C[Deploy]
     B -->|No| D[Refine]
 \```
-```
+````
+````
 
 **Challenge 4 — ADR Template:**
+
 ```markdown
 # ADR: Multi-Region Disaster Recovery
 
 ## Context
+
 [Why DR is needed now]
 
 ## Decision
+
 [What approach we chose]
 
 ## Consequences
+
 [Cost, complexity, benefits]
 ```
 
 **Challenge 6 — Documentation Prompts:**
+
 - "Generate ops runbook for [audience]"
 - "Create cost breakdown with optimization tips"
 - "Document DR procedures for compliance audit"
 
 **Challenge 7 — Diagnostic Queries:**
+
 ```bash
 # Quick health check
 az webapp show --name <app-name> --resource-group <rg> --query state
@@ -210,4 +218,4 @@ var uniqueSuffix = uniqueString(resourceGroup().id)
 
 ---
 
-**Team**: ********\_******** **Score**: **\_**/130
+**Team**: **\*\*\*\***\_**\*\*\*\*** **Score**: **\_**/130

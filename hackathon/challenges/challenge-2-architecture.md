@@ -8,6 +8,7 @@ You have requirements — now translate them into an Azure architecture that's r
 secure, cost-effective, and Well-Architected.
 
 **Your constraints:**
+
 - ~€500/month budget for infrastructure
 - Small ops team (managed services preferred)
 - EU data residency (GDPR)
@@ -20,6 +21,7 @@ Use the `architect` agent to evaluate your requirements against Azure's Well-Arc
 and produce a comprehensive architecture assessment.
 
 **Prompt Engineering Focus:**
+
 - How do you reference previous agent work?
 - What architectural decisions should YOU make vs asking the agent?
 - How do you balance cost, reliability, and complexity?
@@ -27,6 +29,7 @@ and produce a comprehensive architecture assessment.
 **Guiding Questions:**
 
 **Service Selection:**
+
 - Web hosting: App Service vs Container Apps vs AKS?
 - Database: SQL Database vs Cosmos DB vs PostgreSQL?
 - Storage: Blob Storage tiers — Hot, Cool, Archive?
@@ -34,6 +37,7 @@ and produce a comprehensive architecture assessment.
 - Which options align with team skills and timeline?
 
 **Well-Architected Pillars:**
+
 - **Reliability**: How do you achieve 99.9%? What's your failure strategy?
 - **Security**: How do you handle secrets? What network boundaries exist?
 - **Cost**: Where can you optimize without sacrificing requirements?
@@ -41,12 +45,14 @@ and produce a comprehensive architecture assessment.
 - **Operational Excellence**: How complex can your team handle?
 
 **Cost vs Capability Trade-offs:**
+
 - Zone redundancy: Do you need it for MVP?
 - Backup retention: 7 days vs 30 days?
 - Premium tiers: When is Standard sufficient?
 - Managed services premium: Worth the cost reduction in ops burden?
 
 **Compliance Alignment:**
+
 - GDPR: Which services support EU data residency?
 - Azure Policy: What governance should be enforced?
 - Data classification: What data is most sensitive?
@@ -69,6 +75,7 @@ Please provide recommendations for [specific areas].
 ```
 
 **Architectural Thinking:**
+
 - Start with constraints (budget, compliance, timeline)
 - Consider team capabilities — can they operate it?
 - Identify critical paths — what can't fail?
@@ -77,6 +84,7 @@ Please provide recommendations for [specific areas].
 ## Expected Conversation Flow
 
 The `architect` agent will:
+
 - Review your requirements document
 - Identify gaps or ambiguities
 - Propose service options with trade-offs
@@ -84,6 +92,7 @@ The `architect` agent will:
 - Recommend specific SKUs and configurations
 
 **Your role:**
+
 - Make business-aligned decisions
 - Ask "why" when recommendations seem over-engineered
 - Challenge cost vs value
@@ -92,6 +101,7 @@ The `architect` agent will:
 ## Verification
 
 Your architecture assessment should capture:
+
 - ✅ Workload overview (business context, requirements summary)
 - ✅ Recommended Azure services with SKUs
 - ✅ Well-Architected Framework assessment (5 pillars)
@@ -102,14 +112,14 @@ Your architecture assessment should capture:
 
 ## Success Criteria
 
-| Criterion                                    | Points |
-| -------------------------------------------- | ------ |
-| Architecture assessment document created     | 5      |
-| Azure services selected with justification   | 5      |
-| WAF assessment complete (all 5 pillars)      | 5      |
-| Trade-offs documented                        | 5      |
-| Cost estimate provided                       | 5      |
-| **Total**                                    | **25** |
+| Criterion                                  | Points |
+| ------------------------------------------ | ------ |
+| Architecture assessment document created   | 5      |
+| Azure services selected with justification | 5      |
+| WAF assessment complete (all 5 pillars)    | 5      |
+| Trade-offs documented                      | 5      |
+| Cost estimate provided                     | 5      |
+| **Total**                                  | **25** |
 
 ## Coaching Tips
 
@@ -126,6 +136,7 @@ Your architecture assessment should capture:
 ## Reflection Questions
 
 After completing this challenge:
+
 - Did the `architect` agent suggest services you hadn't considered?
 - How did you balance cost optimization with reliability requirements?
 - What architectural decisions were hardest to make? Why?

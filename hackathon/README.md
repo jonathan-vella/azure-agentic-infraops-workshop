@@ -26,10 +26,10 @@ By the end of this hackathon, you will:
 
 ## Quick Links
 
-| Document                                                                    | Description                             |
-| --------------------------------------------------------------------------- | --------------------------------------- |
-| 📅 **[AGENDA](AGENDA.md)**                                                  | **Full schedule with timing**           |
-| **Challenges**                                                              |                                         |
+| Document                                                                    | Description                                     |
+| --------------------------------------------------------------------------- | ----------------------------------------------- |
+| 📅 **[AGENDA](AGENDA.md)**                                                  | **Full schedule with timing**                   |
+| **Challenges**                                                              |                                                 |
 | [Challenge 1: Requirements](challenges/challenge-1-requirements.md)         | Gather requirements with **requirements** agent |
 | [Challenge 2: Architecture](challenges/challenge-2-architecture.md)         | WAF assessment with **architect** agent         |
 | [Challenge 3: Implementation](challenges/challenge-3-implementation.md)     | Bicep planning and code generation              |
@@ -38,14 +38,14 @@ By the end of this hackathon, you will:
 | [Challenge 6: Documentation](challenges/challenge-6-documentation.md)       | Generate workload documentation                 |
 | [Challenge 7: Diagnostics](challenges/challenge-7-diagnostics.md)           | Run diagnostic analysis                         |
 | [Challenge 8: Partner Showcase](challenges/challenge-8-partner-showcase.md) | Team presentations                              |
-| **Participant Materials**                                                   |                                         |
-| [Scenario Brief](participant/scenario-brief.md)                             | Nordic Fresh Foods business challenge   |
-| [Pre-Work Checklist](participant/pre-work-checklist.md)                     | Setup before the event                  |
-| [Hints & Tips](participant/hints-and-tips.md)                               | Architecture and cost hints             |
-| **Facilitator Materials**                                                   |                                         |
-| [Facilitator Guide](facilitator/facilitator-guide.md)                       | Detailed schedule and coaching tips     |
-| [Scoring Rubric](facilitator/scoring-rubric.md)                             | WAF-aligned evaluation criteria         |
-| [Solution Reference](facilitator/solution-reference.md)                     | Expected outputs and patterns           |
+| **Participant Materials**                                                   |                                                 |
+| [Scenario Brief](participant/scenario-brief.md)                             | Nordic Fresh Foods business challenge           |
+| [Pre-Work Checklist](participant/pre-work-checklist.md)                     | Setup before the event                          |
+| [Hints & Tips](participant/hints-and-tips.md)                               | Architecture and cost hints                     |
+| **Facilitator Materials**                                                   |                                                 |
+| [Facilitator Guide](facilitator/facilitator-guide.md)                       | Detailed schedule and coaching tips             |
+| [Scoring Rubric](facilitator/scoring-rubric.md)                             | WAF-aligned evaluation criteria                 |
+| [Solution Reference](facilitator/solution-reference.md)                     | Expected outputs and patterns                   |
 
 ## Team Structure
 
@@ -66,20 +66,20 @@ By the end of this hackathon, you will:
 
 ## Schedule (6 Hours)
 
-| Time        | Duration | Block                                                           | Activity                                                     |
-| ----------- | -------- | --------------------------------------------------------------- | ------------------------------------------------------------ |
-| 09:00-09:30 | 30 min   | **Intro**                                                       | Setup verification, workflow overview, team formation        |
-| 09:30-10:20 | 50 min   | **[Challenge 1](challenges/challenge-1-requirements.md)**       | Requirements gathering with **requirements** agent           |
-| 10:20-11:10 | 50 min   | **[Challenge 2](challenges/challenge-2-architecture.md)**       | Architecture assessment with **architect** agent             |
-| 11:10-11:40 | 30 min   | 🍽️ **Lunch**                                                    | Break                                                        |
-| 11:40-12:40 | 60 min   | **[Challenge 3](challenges/challenge-3-implementation.md)**     | Bicep planning and code generation                           |
-| 12:40-13:10 | 30 min   | **[Challenge 4](challenges/challenge-4-dr-curveball.md)**       | DR architecture (announced at 12:40)                         |
-| 13:10-13:30 | 20 min   | **[Challenge 5](challenges/challenge-5-load-testing.md)**       | Load testing                                                 |
-| 13:30-13:50 | 20 min   | **[Challenge 6](challenges/challenge-6-documentation.md)**      | Generate workload documentation with **docs** agent          |
-| 13:50-14:00 | 10 min   | **[Challenge 7](challenges/challenge-7-diagnostics.md)**        | Run diagnostic analysis with **diagnose** agent              |
-| 14:00-14:15 | 15 min   | 🎯 **Prep**                                                     | Presentation preparation                                     |
-| 14:15-14:55 | 40 min   | **[Challenge 8](challenges/challenge-8-partner-showcase.md)**   | Partner Showcase 🎤                                          |
-| 14:55-15:00 | 5 min    | **Wrap-up**                                                     | Leaderboard, cleanup, next steps                             |
+| Time        | Duration | Block                                                         | Activity                                              |
+| ----------- | -------- | ------------------------------------------------------------- | ----------------------------------------------------- |
+| 09:00-09:30 | 30 min   | **Intro**                                                     | Setup verification, workflow overview, team formation |
+| 09:30-10:20 | 50 min   | **[Challenge 1](challenges/challenge-1-requirements.md)**     | Requirements gathering with **requirements** agent    |
+| 10:20-11:10 | 50 min   | **[Challenge 2](challenges/challenge-2-architecture.md)**     | Architecture assessment with **architect** agent      |
+| 11:10-11:40 | 30 min   | 🍽️ **Lunch**                                                  | Break                                                 |
+| 11:40-12:40 | 60 min   | **[Challenge 3](challenges/challenge-3-implementation.md)**   | Bicep planning and code generation                    |
+| 12:40-13:10 | 30 min   | **[Challenge 4](challenges/challenge-4-dr-curveball.md)**     | DR architecture (announced at 12:40)                  |
+| 13:10-13:30 | 20 min   | **[Challenge 5](challenges/challenge-5-load-testing.md)**     | Load testing                                          |
+| 13:30-13:50 | 20 min   | **[Challenge 6](challenges/challenge-6-documentation.md)**    | Generate workload documentation with **docs** agent   |
+| 13:50-14:00 | 10 min   | **[Challenge 7](challenges/challenge-7-diagnostics.md)**      | Run diagnostic analysis with **diagnose** agent       |
+| 14:00-14:15 | 15 min   | 🎯 **Prep**                                                   | Presentation preparation                              |
+| 14:15-14:55 | 40 min   | **[Challenge 8](challenges/challenge-8-partner-showcase.md)** | Partner Showcase 🎤                                   |
+| 14:55-15:00 | 5 min    | **Wrap-up**                                                   | Leaderboard, cleanup, next steps                      |
 
 > ⚠️ **Curveball Challenge**: At 12:40, facilitators announce new business requirements
 > (multi-region DR). This simulates real-world requirement changes!
