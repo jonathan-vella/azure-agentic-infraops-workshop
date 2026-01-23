@@ -121,7 +121,7 @@ The auto-version workflow runs on:
    ```
 
 **Why manual release creation?**
-Branch protection requires all changes go through PRs. The workflow creates the version bump PR,
+Repository rulesets require all changes go through PRs. The workflow creates the version bump PR,
 but release creation happens after the PR is merged.
 
 ## Checking Version Status

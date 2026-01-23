@@ -1,6 +1,6 @@
 # Development Workflow Guide
 
-Complete guide to contributing to this repository, including branch protection, PR workflow,
+Complete guide to contributing to this repository, including repository rulesets, PR workflow,
 automated checks, and version management.
 
 ## Overview
@@ -45,27 +45,40 @@ graph TB
     style R fill:#fff9c4
 ```
 
-## Branch Protection Rules
+## Repository Rulesets
 
-Master branch is protected with the following rules:
+Master branch is protected using [GitHub rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets)
+(the modern replacement for classic branch protection):
 
-| Protection                  | Description                  | Bypass     |
+| Rule                        | Description                  | Bypass     |
 | --------------------------- | ---------------------------- | ---------- |
 | **Require PR**              | Direct pushes blocked        | Admin only |
 | **Require approval**        | 1 approval needed            | Admin only |
 | **Status checks**           | `markdown-lint` must pass    | None       |
 | **Up-to-date branch**       | Must be current with master  | None       |
 | **Conversation resolution** | All threads must be resolved | None       |
-| **Linear history**          | No merge commits allowed     | None       |
+| **Linear history**          | Squash merge only            | None       |
 | **No force push**           | History cannot be rewritten  | None       |
 | **No deletion**             | Branch cannot be deleted     | None       |
 
-**Why these rules?**
+**Why rulesets over classic branch protection?**
 
+- More flexible targeting (multiple branches, tags, patterns)
+- Better UI and management experience
+- Centralized rule management across repositories
 - Ensures code quality through peer review
 - Prevents accidental breaking changes
 - Maintains clean, linear history
 - Enforces documentation standards
+
+**To configure rulesets:**
+
+```bash
+# View current rulesets
+gh api repos/jonathan-vella/azure-agentic-infraops-workshop/rulesets
+
+# Create/update via UI: Settings → Rules → Rulesets
+```
 
 ## Git Workflow
 
@@ -497,7 +510,7 @@ gh release create v1.2.0 --generate-notes
 
 ## Troubleshooting
 
-### Issue: Branch protection preventing push
+### Issue: Repository ruleset preventing push
 
 **Error:** `remote: error: GH006: Protected branch update failed`
 
