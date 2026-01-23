@@ -76,7 +76,7 @@ From zero to deployed infrastructure:
 - Reusable prompt templates
 - Artifact templates
 - Best practices documentation
-- **NEW: 5-hour hands-on hackathon!**
+- **NEW: 6-hour hands-on hackathon!**
 
 </td>
 </tr>
@@ -90,7 +90,7 @@ From zero to deployed infrastructure:
 <tr>
 <td>
 
-### 🏆 5-Hour Hands-On Challenge
+### 🏆 6-Hour Hands-On Challenge
 
 Transform business requirements into deployed Azure infrastructure using AI agents.
 
@@ -98,13 +98,13 @@ Transform business requirements into deployed Azure infrastructure using AI agen
 
 - IT Pros familiar with Azure Portal, new to IaC
 - Teams of 3-4 (20-24 participants total)
-- Workshop facilitators and trainers
+- Hackathon coaches and trainers
 
 **Includes:**
 
-- 5 progressive challenges with a surprise "curveball"
+- 8 progressive challenges with a surprise "curveball"
 - Automated scoring aligned with WAF pillars
-- Facilitator guide with curveball announcement script
+- Coach guide with curveball announcement script
 - Quick reference cards and team role definitions
 
 </td>
@@ -112,7 +112,7 @@ Transform business requirements into deployed Azure infrastructure using AI agen
 
 ```
 hackathon/
-├── challenges/        # 5 challenge files
+├── challenges/        # 8 challenge files
 ├── participant/       # Scenario, hints, cards
 ├── facilitator/       # Guide, scoring, solutions
 └── feedback-form.md   # Post-event survey
