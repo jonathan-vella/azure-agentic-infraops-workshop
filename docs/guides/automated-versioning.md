@@ -111,6 +111,7 @@ The auto-version workflow runs on:
 - ❌ Skips if commit message contains `[skip ci]`
 
 **What happens after workflow runs:**
+
 1. Workflow creates a PR with version bump (e.g., `release/v1.2.0`)
 2. PR requires approval and passing checks (markdown-lint)
 3. Merge the PR using **squash and merge**

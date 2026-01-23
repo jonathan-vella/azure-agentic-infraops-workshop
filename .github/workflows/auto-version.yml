@@ -208,28 +208,28 @@ jobs:
           title: "chore(release): bump version to ${{ steps.new_version.outputs.version }}"
           body: |
             ## 🤖 Automated Version Bump
-            
+
             This PR was automatically created by the auto-version workflow.
-            
+
             ### Changes
             - Version: `${{ steps.current_version.outputs.version }}` → `${{ steps.new_version.outputs.version }}`
             - Bump type: `${{ steps.version_bump.outputs.bump_type }}`
-            
+
             ### Updated Files
             - `VERSION.md` - Version number and build metadata
             - `CHANGELOG.md` - New changelog entry
-            
+
             ### Changelog Entry
-            
+
             ```markdown
             $(cat /tmp/changelog_entry.txt)
             ```
-            
+
             ### What's Next?
             1. Review and approve this PR
             2. Merge using **squash and merge**
             3. After merge, manually create the release with tag `v${{ steps.new_version.outputs.version }}`
-            
+
             ---
             *This PR will NOT trigger another version bump due to `[skip ci]` in commit message*
           branch: "release/v${{ steps.new_version.outputs.version }}"
