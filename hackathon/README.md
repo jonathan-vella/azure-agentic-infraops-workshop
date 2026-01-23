@@ -1,6 +1,6 @@
 # Agentic InfraOps Hackathon
 
-> **5-Hour Challenge**: Transform business requirements into deployed Azure infrastructure using AI agents.
+> **6-Hour Challenge**: Transform business requirements into deployed Azure infrastructure using AI agents.
 
 ## Overview
 
@@ -30,12 +30,14 @@ By the end of this hackathon, you will:
 | --------------------------------------------------------------------------- | --------------------------------------- |
 | 📅 **[AGENDA](AGENDA.md)**                                                  | **Full schedule with timing**           |
 | **Challenges**                                                              |                                         |
-| [Challenge 1: Requirements](challenges/challenge-1-requirements.md)         | Gather requirements with **plan** agent |
-| [Challenge 2: Architecture](challenges/challenge-2-architecture.md)         | WAF assessment with **architect** agent |
-| [Challenge 3: Implementation](challenges/challenge-3-implementation.md)     | Bicep planning and code generation      |
-| [Challenge 4: DR Curveball](challenges/challenge-4-dr-curveball.md)         | Multi-region disaster recovery          |
-| [Challenge 5: Load Testing](challenges/challenge-5-load-testing.md)         | Validate infrastructure performance     |
-| [Challenge 6: Partner Showcase](challenges/challenge-6-partner-showcase.md) | Team presentations                      |
+| [Challenge 1: Requirements](challenges/challenge-1-requirements.md)         | Gather requirements with **requirements** agent |
+| [Challenge 2: Architecture](challenges/challenge-2-architecture.md)         | WAF assessment with **architect** agent         |
+| [Challenge 3: Implementation](challenges/challenge-3-implementation.md)     | Bicep planning and code generation              |
+| [Challenge 4: DR Curveball](challenges/challenge-4-dr-curveball.md)         | Multi-region disaster recovery                  |
+| [Challenge 5: Load Testing](challenges/challenge-5-load-testing.md)         | Validate infrastructure performance             |
+| [Challenge 6: Documentation](challenges/challenge-6-documentation.md)       | Generate workload documentation                 |
+| [Challenge 7: Diagnostics](challenges/challenge-7-diagnostics.md)           | Run diagnostic analysis                         |
+| [Challenge 8: Partner Showcase](challenges/challenge-8-partner-showcase.md) | Team presentations                              |
 | **Participant Materials**                                                   |                                         |
 | [Scenario Brief](participant/scenario-brief.md)                             | Nordic Fresh Foods business challenge   |
 | [Pre-Work Checklist](participant/pre-work-checklist.md)                     | Setup before the event                  |
@@ -62,21 +64,24 @@ By the end of this hackathon, you will:
 
 > 💡 Rotate roles between challenges so everyone experiences each agent!
 
-## Schedule (5 Hours)
+## Schedule (6 Hours)
 
-| Time        | Duration | Block                                                                                                   | Activity                                              |
-| ----------- | -------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| 10:00-10:30 | 30 min   | **Intro**                                                                                               | Setup verification, workflow overview, team formation |
-| 10:30-11:15 | 45 min   | **[Challenge 1](challenges/challenge-1-requirements.md)**                                               | Requirements gathering with **plan** agent            |
-| 11:15-12:00 | 45 min   | **[Challenge 2](challenges/challenge-2-architecture.md)**                                               | Architecture assessment with **architect** agent      |
-| 12:00-12:35 | 35 min   | 🍽️ **Lunch**                                                                                            | Break                                                 |
-| 12:35-13:20 | 45 min   | **[Challenge 3](challenges/challenge-3-implementation.md)**                                             | Bicep planning and code generation                    |
-| 13:20-14:00 | 40 min   | **[Challenge 4](challenges/challenge-4-dr-curveball.md) + [5](challenges/challenge-5-load-testing.md)** | DR architecture + Load testing                        |
-| 14:00-14:15 | 15 min   | 🎯 **Prep**                                                                                             | Presentation preparation                              |
-| 14:15-14:55 | 40 min   | **[Challenge 6](challenges/challenge-6-partner-showcase.md)**                                           | Partner Showcase 🎤                                   |
-| 14:55-15:00 | 5 min    | **Wrap-up**                                                                                             | Leaderboard, cleanup, next steps                      |
+| Time        | Duration | Block                                                           | Activity                                                     |
+| ----------- | -------- | --------------------------------------------------------------- | ------------------------------------------------------------ |
+| 09:00-09:30 | 30 min   | **Intro**                                                       | Setup verification, workflow overview, team formation        |
+| 09:30-10:20 | 50 min   | **[Challenge 1](challenges/challenge-1-requirements.md)**       | Requirements gathering with **requirements** agent           |
+| 10:20-11:10 | 50 min   | **[Challenge 2](challenges/challenge-2-architecture.md)**       | Architecture assessment with **architect** agent             |
+| 11:10-11:40 | 30 min   | 🍽️ **Lunch**                                                    | Break                                                        |
+| 11:40-12:40 | 60 min   | **[Challenge 3](challenges/challenge-3-implementation.md)**     | Bicep planning and code generation                           |
+| 12:40-13:10 | 30 min   | **[Challenge 4](challenges/challenge-4-dr-curveball.md)**       | DR architecture (announced at 12:40)                         |
+| 13:10-13:30 | 20 min   | **[Challenge 5](challenges/challenge-5-load-testing.md)**       | Load testing                                                 |
+| 13:30-13:50 | 20 min   | **[Challenge 6](challenges/challenge-6-documentation.md)**      | Generate workload documentation with **docs** agent          |
+| 13:50-14:00 | 10 min   | **[Challenge 7](challenges/challenge-7-diagnostics.md)**        | Run diagnostic analysis with **diagnose** agent              |
+| 14:00-14:15 | 15 min   | 🎯 **Prep**                                                     | Presentation preparation                                     |
+| 14:15-14:55 | 40 min   | **[Challenge 8](challenges/challenge-8-partner-showcase.md)**   | Partner Showcase 🎤                                          |
+| 14:55-15:00 | 5 min    | **Wrap-up**                                                     | Leaderboard, cleanup, next steps                             |
 
-> ⚠️ **Curveball Challenge**: At 13:20, facilitators announce new business requirements
+> ⚠️ **Curveball Challenge**: At 12:40, facilitators announce new business requirements
 > (multi-region DR). This simulates real-world requirement changes!
 
 ## The Challenge: Nordic Fresh Foods
@@ -102,7 +107,7 @@ See [Scenario Brief](participant/scenario-brief.md) for the full business challe
 
 ## Scoring
 
-Teams are evaluated on a **100-point scale** aligned with WAF pillars.
+Teams are evaluated on a **105-point scale** aligned with WAF pillars.
 See [Scoring Rubric](facilitator/scoring-rubric.md) for full criteria.
 
 **🤖 Automated Scoring**: Facilitators run the scoring script:
@@ -150,20 +155,24 @@ az account show --query "{Name:name, SubscriptionId:id}" -o table
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
 graph LR
-    P["plan<br/>Challenge 1"] --> A["architect<br/>Challenge 2"]
+    R["requirements<br/>Challenge 1"] --> A["architect<br/>Challenge 2"]
     A --> B["bicep-plan<br/>Challenge 3"]
     B --> I["bicep-code<br/>Challenge 3"]
     I --> DR["DR Update<br/>Challenge 4"]
     DR --> LT["Load Test<br/>Challenge 5"]
-    LT --> DEP["Deploy<br/>Final"]
+    LT --> DOC["Documentation<br/>Challenge 6"]
+    DOC --> DIAG["Diagnostics<br/>Challenge 7"]
+    DIAG --> SHOW["Showcase<br/>Challenge 8"]
 
-    style P fill:#e1f5fe
+    style R fill:#e1f5fe
     style A fill:#fff3e0
     style B fill:#e8f5e9
     style I fill:#fce4ec
     style DR fill:#ffcdd2
     style LT fill:#fff9c4
-    style DEP fill:#c8e6c9
+    style DOC fill:#e0f2f1
+    style DIAG fill:#fce4ec
+    style SHOW fill:#c8e6c9
 ```
 
 ---

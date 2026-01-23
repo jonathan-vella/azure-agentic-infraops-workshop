@@ -1,4 +1,4 @@
-# Challenge 6: Partner Showcase 🎤
+# Challenge 8: Partner Showcase 🎤
 
 > **Duration**: 40 minutes | **Format**: Role-Play Presentations | **Points**: Not Scored (Soft Skills)
 
@@ -12,23 +12,26 @@ when delivering Azure solutions professionally.
 
 ## The Setup
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        PRESENTATION ROOM                        │
-│                                                                  │
-│    ┌──────────────┐                      ┌──────────────┐       │
-│    │   PARTNER    │  ────presents to───► │   CUSTOMER   │       │
-│    │   (Team A)   │                      │   (Team B)   │       │
-│    └──────────────┘                      └──────────────┘       │
-│                                                                  │
-│                    ┌──────────────────┐                         │
-│                    │    MICROSOFT     │                         │
-│                    │   (Facilitators) │                         │
-│                    │   Observing All  │                         │
-│                    └──────────────────┘                         │
-│                                                                  │
-│           All other teams watch and learn                       │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph Room[Presentation Room]
+        P[👥 Presenting Team<br/>Team A<br/>Partner Role]
+        C[👥 Customer Team<br/>Team B<br/>Asks Tough Questions]
+        F[🎯 Microsoft Facilitators<br/>Observing & Evaluating]
+        O[👀 Other Teams<br/>Learning & Taking Notes]
+        
+        P -->|Presents Solution| C
+        C -->|Challenges With Questions| P
+        F -.->|Observes| P
+        F -.->|Observes| C
+        O -.->|Learns From| P
+        O -.->|Learns From| C
+    end
+    
+    style P fill:#0078d4,color:#fff
+    style C fill:#107c10,color:#fff
+    style F fill:#d83b01,color:#fff
+    style O fill:#5c2d91,color:#fff
 ```
 
 ## Role Assignments

@@ -6,7 +6,7 @@
 
 | Aspect       | Details                               |
 | ------------ | ------------------------------------- |
-| Duration     | 5 hours                               |
+| Duration     | 6 hours                               |
 | Participants | 20-24                                 |
 | Teams        | 5-6 (3-4 members each)                |
 | Format       | Challenge-based, full 7-step workflow |
@@ -19,6 +19,34 @@
 3. **Unblock quickly** — Don't let teams stall for more than 5 minutes on setup issues
 4. **Encourage experimentation** — There's no single "correct" architecture
 5. **Celebrate learning** — The goal is understanding, not perfection
+
+---
+
+## Coaching Philosophy
+
+**Answer questions with questions.** Your goal is to help teams develop problem-solving skills, not
+to provide direct solutions.
+
+### Coaching Phrases to Use
+
+| Situation                     | Say This                                         |
+| ----------------------------- | ------------------------------------------------ |
+| Team asks how to fix error    | "What does the error message tell you?"          |
+| Team asks for solution        | "What have you tried so far?"                   |
+| Team stuck on agent prompt    | "How would you prompt the agent to solve this?" |
+| Team unsure about decision    | "What business requirement drives this?"        |
+| Team asks "Should we use X?" | "What would you try? What are the tradeoffs?"   |
+
+### When to Provide Direct Help
+
+Only intervene directly when:
+
+- **Environment issues** (authentication, tool failures)
+- **Time-critical blocks** (team stalled >5 minutes on setup)
+- **Factual information** ("Which region supports zone redundancy?")
+
+**Remember**: Struggle leads to learning. Let teams work through challenges with guidance, not
+solutions.
 
 ---
 
@@ -60,13 +88,19 @@ Deploy Azure Policies to create realistic governance constraints. Teams will enc
 
 📅 **See [AGENDA.md](../AGENDA.md) for the full schedule overview.**
 
-> **Event runs 10:00 - 15:00** (5 hours with 35-min lunch)
+> **Event runs 09:00 - 15:00** (6 hours with 30-min lunch)
 
 ---
 
 ## Block-by-Block Facilitator Notes
 
-### Block 1: Intro (10:00 - 10:30)
+### Block 1: Intro (09:00 - 09:30)
+
+**Facilitator Actions:**
+
+- Welcome teams, introduce coaching approach ("We'll guide, not solve")
+- Verify environment setup with each team
+- Explain 8-challenge structure and showcase finale
 
 **Setup Check Script:**
 
@@ -76,7 +110,15 @@ bicep --version
 echo "✅ Ready!"
 ```
 
-### Block 2: Challenge 1 - Requirements (10:30 - 11:15)
+### Block 2: Challenge 1 - Requirements (09:30 - 10:20)
+
+**Duration**: 50 minutes
+
+**Coaching Tips:**
+
+- Ask: "What questions would you ask the customer?"
+- Prompt teams to quantify NFRs (SLA, RTO, RPO, peak load)
+- Encourage detailed requirement capture — it drives architecture
 
 **Common Issues:**
 
@@ -85,13 +127,33 @@ echo "✅ Ready!"
 | Agent not responding | Reload VS Code window       |
 | Vague requirements   | Ask "What SLA? What's RTO?" |
 
-### Block 3: Challenge 2 - Architecture (11:15 - 12:00)
+### Block 3: Challenge 2 - Architecture (10:20 - 11:10)
+
+**Duration**: 50 minutes
+
+**Coaching Tips:**
+
+- Ask: "Which Well-Architected pillar does this address?"
+- Encourage cost estimation using Azure Pricing MCP
+- Prompt: "How would you justify this service choice to the customer?"
+
+**Common Issues:**
 
 No common issues — monitor Pricing MCP functionality.
 
-### 🍽️ Lunch Break (12:00 - 12:35)
+### 🍽️ Lunch Break (11:10 - 11:40)
 
-### Block 4: Challenge 3 - Bicep (12:35 - 13:20)
+**Duration**: 30 minutes
+
+### Block 4: Challenge 3 - Implementation (11:40 - 12:40)
+
+**Duration**: 60 minutes (includes Bicep plan + code + Mermaid diagram)
+
+**Coaching Tips:**
+
+- Ask: "What module structure would make this maintainable?"
+- Prompt: "How does your naming convention ensure uniqueness?"
+- Encourage Mermaid flowchart for deployment workflow visualization
 
 **Common Issues:**
 
@@ -100,9 +162,11 @@ No common issues — monitor Pricing MCP functionality.
 | Key Vault name too long | ≤24 chars              |
 | Storage account invalid | Lowercase+numbers only |
 
-### Block 5: ⚡ CURVEBALL + Challenges 4-5 (13:20 - 14:00)
+### Block 5: ⚡ Challenge 4 - DR Curveball (12:40 - 13:10)
 
-#### 📢 Announcement Script (13:20)
+**Duration**: 30 minutes
+
+#### 📢 Announcement Script (12:40)
 
 Stand up, get everyone's attention:
 
@@ -122,7 +186,50 @@ Stand up, get everyone's attention:
 >
 > _Budget has increased by €200/month to accommodate this._
 >
-> _You have 20 minutes! GO GO GO!_ 🚀"
+> _You have 30 minutes! Document your DR strategy in an ADR! GO GO GO!_ 🚀"
+
+**Coaching Tips:**
+
+- Ask: "What replication strategy meets your RPO?"
+- Prompt: "How would you test failover?"
+- Encourage ADR creation to document DR decision rationale
+
+### Block 6: Challenges 5-7 - Load Test, Docs, Diagnose (13:10 - 14:00)
+
+**Duration**: 50 minutes (3 challenges)
+
+#### Challenge 5: Load Testing (13:10 - 13:25)
+
+**Coaching Tips:**
+
+- Ask: "What metrics validate your SLA?"
+- Prompt: "How would you simulate 500 concurrent users?"
+- Encourage docs agent for structured report generation
+
+#### Challenge 6: Documentation (13:25 - 13:40)
+
+**Coaching Tips:**
+
+- Ask: "What would a new team member need to know?"
+- Prompt: "How does docs agent ensure completeness?"
+- Encourage runbook creation for operational procedures
+
+#### Challenge 7: Diagnostics (13:40 - 14:00)
+
+**Coaching Tips:**
+
+- Ask: "What's your troubleshooting workflow?"
+- Prompt: "How would you diagnose a performance issue?"
+- Encourage diagnostic runbook with monitoring queries
+
+**Common Issues:**
+
+| Issue                 | Solution                           |
+| --------------------- | ---------------------------------- |
+| Docs agent too verbose| Prompt: "Create concise runbook"  |
+| Missing monitoring    | Use Application Insights logs      |
+
+---
 
 ### 🎯 Presentation Prep (14:00 - 14:15)
 
@@ -133,7 +240,9 @@ Stand up, get everyone's attention:
 - Assign team pairings (see below)
 - Set up presentation area (projector, timer)
 
-### Block 6: Challenge 6 - Partner Showcase 🎤 (14:15 - 14:55)
+### Block 7: Challenge 8 - Partner Showcase 🎤 (14:15 - 14:55)
+
+**Duration**: 40 minutes (6 teams × 6 min + transitions)
 
 #### Presentation Setup
 
@@ -150,9 +259,10 @@ Pair teams for the role-play:
 
 #### 📢 Announcement Script (14:15)
 
-> _"Time for the Partner Showcase! 🎤_
+> _"Time for Challenge 8 — the Partner Showcase! 🎤_
 >
-> _Each team will present their FreshConnect solution. You are now the **Partner** pitching to Nordic Fresh Foods._
+> _Each team will present their FreshConnect solution. You are now the **Partner** pitching to
+> Nordic Fresh Foods._
 >
 > _When you're not presenting, you'll play the **Customer** — asking tough but fair questions!_
 >
@@ -247,18 +357,18 @@ Get-ChildItem .\agent-output -Directory | Where-Object { $_.Name -ne ".gitkeep" 
 
 ## Team Progress Tracker
 
-| Team | C1  | C2  | C3  | C4  | C5  | C6  | Deploy | Bonus |
-| ---- | --- | --- | --- | --- | --- | --- | ------ | ----- |
-| 1    | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜     |       |
-| 2    | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜     |       |
-| 3    | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜     |       |
-| 4    | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜     |       |
-| 5    | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜     |       |
-| 6    | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜     |       |
+| Team | C1  | C2  | C3  | C4  | C5  | C6  | C7  | C8  | Deploy | Bonus |
+| ---- | --- | --- | --- | --- | --- | --- | --- | --- | ------ | ----- |
+| 1    | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜     |       |
+| 2    | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜     |       |
+| 3    | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜     |       |
+| 4    | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜     |       |
+| 5    | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜     |       |
+| 6    | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜  | ⬜     |       |
 
 Legend: ⬜ Not started | 🔄 In progress | ✅ Complete
 
-> **Note**: C6 (Partner Showcase) is not scored — track completion only.
+> **Note**: C8 (Partner Showcase) is not scored — track completion only.
 
 ---
 

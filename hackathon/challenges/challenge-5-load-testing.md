@@ -4,19 +4,19 @@
 
 ## The Business Context
 
-Nordic Fresh Foods expects 500 concurrent users during peak seasons (summer and December holidays). 
+Nordic Fresh Foods expects 500 concurrent users during peak seasons (summer and December holidays).
 Before going live, they need confidence that the infrastructure can handle this load with acceptable performance.
 
 ## Your Challenge
 
 Validate that your deployed infrastructure meets these performance targets:
 
-| Metric                  | Target       | Business Rationale                              |
-| ----------------------- | ------------ | ----------------------------------------------- |
-| **Concurrent Users**    | 500          | Peak holiday season traffic                     |
-| **Response Time (P95)** | ≤2 seconds   | User experience / cart abandonment threshold    |
-| **Error Rate**          | ≤1%          | Acceptable failure rate for MVP                 |
-| **Sustained Duration**  | 5 minutes    | Verify no degradation under sustained load      |
+| Metric                  | Target     | Business Rationale                           |
+| ----------------------- | ---------- | -------------------------------------------- |
+| **Concurrent Users**    | 500        | Peak holiday season traffic                  |
+| **Response Time (P95)** | ≤2 seconds | User experience / cart abandonment threshold |
+| **Error Rate**          | ≤1%        | Acceptable failure rate for MVP              |
+| **Sustained Duration**  | 5 minutes  | Verify no degradation under sustained load   |
 
 ## Option 1: k6 Load Testing (Recommended)
 
@@ -25,12 +25,14 @@ k6 is pre-installed in your Dev Container for quick load testing.
 ### Create Your Test Script
 
 **Consider these questions**:
+
 - What endpoint should you test? (Homepage? API? Both?)
 - How should you ramp up? (0→500 gradually or immediate spike?)
 - What constitutes a "passed" test?
 - What metrics matter most for this business?
 
 **Basic Test Structure** (expand based on your needs):
+
 ```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
@@ -49,7 +51,7 @@ export const options = {
 
 export default function () {
   const res = http.get('https://YOUR-APP-URL');  // What URL?
-  check(res, { 
+  check(res, {
     'status is 200': (r) => r.status === 200,
     'response time < 2s': (r) => r.timings.duration < 2000,
   });
@@ -64,6 +66,7 @@ k6 run load-test.js
 ```
 
 **Watch for**:
+
 - Does P95 stay under 2 seconds?
 - Does error rate stay under 1%?
 - Are there any anomalies during ramp-up?
@@ -86,12 +89,14 @@ After running your tests, use the **`docs` agent** to create a professional test
 ### Prompt Template for the `docs` Agent
 
 **Why use the `docs` agent?**
+
 - It structures raw data into professional documentation
 - It extracts key insights from test output
 - It follows documentation standards
 - It saves you time formatting
 
 **Suggested Prompt**:
+
 ```
 Create a load test results document for the FreshConnect infrastructure.
 
@@ -113,6 +118,7 @@ Context:
 ```
 
 **This demonstrates**:
+
 1. How to structure prompts for documentation tasks
 2. How to provide context for better agent output
 3. How to specify format and content requirements
@@ -122,6 +128,7 @@ Context:
 ### ✅ If Tests Pass
 
 **Questions to consider**:
+
 - What was the actual P95? How much headroom do you have?
 - Were there any performance degradation patterns?
 - What happens at 600 users? 1000 users?
@@ -131,38 +138,42 @@ Context:
 
 **Diagnostic questions**:
 
-| Symptom                  | Possible Causes                  | Where to Investigate                |
-| ------------------------ | -------------------------------- | ----------------------------------- |
-| High P95 (>2s)           | Under-provisioned compute        | App Service SKU, SQL DTUs           |
-| Error rate >1%           | Connection limits, timeouts      | SQL connection pool, App timeout    |
-| Timeouts                 | Cold start, initialization delay | App Service "Always On" setting     |
-| Degradation over time    | Memory leak, resource exhaustion | Application Insights metrics        |
+| Symptom               | Possible Causes                  | Where to Investigate             |
+| --------------------- | -------------------------------- | -------------------------------- |
+| High P95 (>2s)        | Under-provisioned compute        | App Service SKU, SQL DTUs        |
+| Error rate >1%        | Connection limits, timeouts      | SQL connection pool, App timeout |
+| Timeouts              | Cold start, initialization delay | App Service "Always On" setting  |
+| Degradation over time | Memory leak, resource exhaustion | Application Insights metrics     |
 
 **How to improve**:
+
 - What would you change in your Bicep?
 - How would you prompt the `bicep-code` agent to scale up?
 - What's the cost impact of scaling?
 
 ## Success Criteria
 
-| Criterion                                   | Points |
-| ------------------------------------------- | ------ |
-| Load test executed with realistic scenario  | 2      |
-| Results documented (using `docs` agent)     | 2      |
-| Performance interpreted correctly           | 1      |
-| **Total**                                   | **5**  |
+| Criterion                                  | Points |
+| ------------------------------------------ | ------ |
+| Load test executed with realistic scenario | 2      |
+| Results documented (using `docs` agent)    | 2      |
+| Performance interpreted correctly          | 1      |
+| **Total**                                  | **5**  |
 
 ## Coaching Questions
 
 **Before running tests**:
+
 - Q: "What endpoint should I test?"
 - A: What represents the critical user journey? Homepage? API? Checkout flow?
 
 **After seeing results**:
+
 - Q: "My P95 is 2.5 seconds. Is that a failure?"
 - A: What did the business say was acceptable? What's the user impact? What's the cost to fix it?
 
 **For the documentation**:
+
 - Q: "Should I include all the k6 output?"
 - A: What information helps the client make decisions? What's noise vs signal?
 
