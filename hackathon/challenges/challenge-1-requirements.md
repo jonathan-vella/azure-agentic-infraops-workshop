@@ -1,64 +1,120 @@
 # Challenge 1: Requirements Gathering
 
-> **Duration**: 45 minutes | **Agent**: plan | **Output**: `01-requirements.md`
+> **Duration**: 50 minutes | **Agent**: `requirements` | **Output**: `01-requirements.md`
 
 ## Objective
 
-Use the **plan** agent to capture comprehensive Azure infrastructure requirements for the FreshConnect platform.
+Use the `requirements` agent to capture comprehensive Azure infrastructure requirements for the FreshConnect platform.
 
-## Instructions
+## The Business Challenge
 
-### Step 1: Start the `plan` Agent (5 min)
+Nordic Fresh Foods needs cloud infrastructure to power their farm-to-table delivery platform.
+They've given you the business context — now you must translate it into technical requirements.
 
-Press `Ctrl+Alt+I` to open Copilot Chat, then `Ctrl+Shift+I` to switch to Agent mode.
-Select the **plan** agent from the dropdown and paste:
+**Business Context:**
 
-```
-I need to plan Azure infrastructure for "FreshConnect" - a farm-to-table delivery platform
-for Nordic Fresh Foods.
-
-Key context:
-- Stockholm-based company, 500+ partner restaurants, 10,000 consumers
-- Need web portal, API backend, database, file storage, secrets, monitoring
-- Budget: ~€500/month for infrastructure
+- Stockholm-based, 500+ restaurant partners, 10,000 consumers
+- Peak season: Summer and December (3x normal load)
+- Budget: ~€500/month for MVP infrastructure
+- Timeline: 3 months to launch
 - Compliance: GDPR (EU data residency required)
-- Timeline: 3 months to MVP for peak season
-- Team: 3 developers + 1 DevOps (need managed services)
+- Team: Small (3 devs + 1 DevOps) — need managed services
 
-Expected peak load: 500 concurrent users, seasonal spikes (3x during summer/December)
+## Your Challenge
 
-Please help me capture comprehensive requirements for this project.
+Use the `requirements` agent to capture comprehensive infrastructure requirements.
+
+**Prompt Engineering Focus:**
+
+- How do you frame the business context for the agent?
+- What information is critical vs nice-to-have?
+- How much detail should you provide upfront?
+
+**Guiding Questions:**
+
+**SLA & Reliability:**
+
+- What availability does the business need? (99%? 99.9%? 99.99%?)
+- What's the cost difference between these tiers?
+- What does "acceptable downtime" mean for a food delivery platform?
+- How long can they be offline before it impacts business?
+- How much data loss is acceptable? (RTO/RPO considerations)
+
+**Authentication & Security:**
+
+- Who are the users? (Internal staff? Restaurants? Consumers?)
+- Should everyone use the same auth method?
+- What about social login for consumers?
+- How do you secure API access?
+
+**Network & Compliance:**
+
+- Does GDPR require specific Azure regions?
+- Are public endpoints acceptable for MVP?
+- What data must stay in EU?
+- What security controls are mandatory?
+
+**Monitoring & Operations:**
+
+- How will the ops team know if something breaks?
+- What metrics matter most for this business?
+- How long should logs be retained?
+
+**Backup & Recovery:**
+
+- What data is critical?
+- How often should backups occur?
+- Who manages backup retention?
+
+## Crafting Your Prompt
+
+**Example approach** (not prescriptive — adapt based on what you discover):
+
+```
+I need to plan Azure infrastructure for [project name] - [brief description].
+
+Business Context:
+[What does the business do? Who are the users? What's the scale?]
+
+Constraints:
+[Budget, timeline, compliance, team skills]
+
+Key Questions:
+[What am I uncertain about? Where do I need the agent's expertise?]
 ```
 
-### Step 2: Answer Clarifying Questions (25 min)
+**Iterative Approach:**
 
-The **plan** agent will ask questions. Use these answers as guidance:
+1. Start with high-level context
+2. Let the agent ask clarifying questions
+3. Refine your understanding through conversation
+4. Don't expect perfection on first prompt
 
-| Question              | Suggested Answer                                                    |
-| --------------------- | ------------------------------------------------------------------- |
-| **SLA target?**       | 99.9% is acceptable for MVP                                         |
-| **RTO/RPO?**          | RTO: 4 hours, RPO: 1 hour                                           |
-| **Authentication?**   | Azure AD for internal users, Azure AD B2C for restaurants/consumers |
-| **Network security?** | Public endpoints acceptable for MVP                                 |
-| **Monitoring?**       | Application Insights + Log Analytics                                |
-| **Backup strategy?**  | Azure-managed backups, 7-day retention                              |
+## Expected Conversation Flow
 
-### Step 3: Review and Approve (10 min)
+The `requirements` agent will likely ask questions like:
 
-1. Review the generated requirements draft
-2. Request any changes or additions
-3. Ask the agent to create the file: `agent-output/freshconnect/01-requirements.md`
+- "What's your target SLA?"
+- "What's your RTO/RPO tolerance?"
+- "What authentication methods do you need?"
 
-### Step 4: Verify Output (5 min)
+**Your job**: Answer based on business needs, not just technical preferences.
 
-Confirm your requirements document includes:
+**Ask yourself:**
 
-- [ ] Project overview (name, type, timeline)
-- [ ] Functional requirements (capabilities, users, integrations)
-- [ ] Non-functional requirements (SLA, RTO, RPO, performance)
-- [ ] Compliance requirements (GDPR, data residency)
-- [ ] Budget (~€500/month)
-- [ ] Regional preference (`swedencentral`)
+- What would the business stakeholder say?
+- What does the MVP actually require vs nice-to-have?
+- Where can we simplify for launch and enhance later?
+
+## Verification
+
+Your requirements document should capture:
+
+- ✅ Project overview (name, purpose, timeline, budget)
+- ✅ Functional requirements (what capabilities are needed?)
+- ✅ Non-functional requirements (SLA, performance, scalability)
+- ✅ Compliance requirements (GDPR, data residency)
+- ✅ Operational requirements (monitoring, backup, support)
 
 ## Success Criteria
 
@@ -71,18 +127,32 @@ Confirm your requirements document includes:
 | Compliance identified           | 4      |
 | **Total**                       | **20** |
 
-## Tips
+## Coaching Tips
 
-- 💡 Don't overthink — capture what you know now
-- 💡 It's OK to mark items as "TBD" or "to be confirmed"
-- 💡 The **plan** agent will suggest defaults for missing info
-- 💡 Budget is approximate — the Pricing MCP will refine costs later
+💡 **Start broad, refine through conversation** — Don't try to have all answers upfront
+
+💡 **Business drives technical** — When uncertain, ask "What does the business need?"
+
+💡 **Agent collaboration** — The `requirements` agent suggests defaults when you're unsure
+
+💡 **MVP mindset** — Perfect is the enemy of shipped. What's essential for launch?
+
+💡 **Document unknowns** — "TBD" is valid. Capture what you need to research.
+
+## Reflection Questions
+
+After completing this challenge:
+
+- How did your initial prompt affect the quality of the agent's response?
+- What questions caught you off-guard?
+- What would you do differently next time?
+- Did you frame requirements from business perspective or technical preference?
 
 ## Next Step
 
 After requirements are approved, proceed to [Challenge 2: Architecture](challenge-2-architecture.md).
 
-Hand off to the **architect** agent or manually invoke:
+Hand off to the `architect` agent or manually invoke:
 
 ```
 Review the requirements in agent-output/freshconnect/01-requirements.md

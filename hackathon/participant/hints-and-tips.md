@@ -1,81 +1,152 @@
 # Hints & Tips
 
-> **Spoiler warning**: Only reveal these if you're stuck!
+> **Coaching approach**: These hints use questions to guide your thinking.
+> The best solutions come from understanding _why_, not just copying _what_.
 
 ## Architecture Hints
 
 <details>
 <summary>💡 Service Selection (click to reveal)</summary>
 
-A typical solution might include:
+Before asking the `architect` agent, consider these questions:
 
-| Capability   | Recommended Service            | Why                         |
-| ------------ | ------------------------------ | --------------------------- |
-| Web Portal   | App Service (Linux, P1v3)      | Managed, scalable, slots    |
-| API Backend  | App Service (same plan)        | Share the plan to save cost |
-| Database     | Azure SQL (S2 or Serverless)   | Managed, geo-replication    |
-| File Storage | Storage Account (Standard LRS) | Cheap, durable              |
-| Secrets      | Key Vault (Standard)           | Azure-native, RBAC          |
-| Monitoring   | Application Insights           | Auto-instrumentation        |
-| Logging      | Log Analytics                  | Centralized queries         |
+**Understanding the Requirements:**
 
-This combination fits within €500/month with room to spare.
+- What are the key capabilities FreshConnect needs? (web portal, API, database, file storage, secrets, monitoring)
+- How many concurrent users need to be supported at peak?
+- What's the growth trajectory? (seasonal spikes, planned expansion)
+
+**Evaluating Service Options:**
+
+- For the web portal: What Azure compute services support web hosting?
+  - What are the trade-offs between App Service, Container Apps, and AKS for this workload?
+  - Does the team have container expertise, or would PaaS be more appropriate?
+- For the database: What data characteristics matter most?
+  - Relational vs. NoSQL — what does the order/customer/inventory data structure suggest?
+  - What availability SLA is required?
+  - How can you optimize costs for dev/test vs. production?
+
+- For cost optimization: What resources could share infrastructure?
+  - Could web and API run on the same App Service Plan?
+  - What's the cost difference between separate plans vs. deployment slots?
+
+**Prompt the architect agent with business context:**
+
+```
+"Design Azure architecture for FreshConnect: farm-to-table delivery platform
+serving 500 concurrent users, with order management, inventory tracking,
+and delivery scheduling. Budget: €500/month. GDPR compliant (EU region).
+Small team needs managed services."
+```
+
+💡 **Coaching tip**: Services aren't "recommended" — they're _chosen_ based on requirements.
+What requirements drive your service selection?
 
 </details>
 
 <details>
 <summary>💰 Cost Optimization (click to reveal)</summary>
 
-**Quick Wins:**
+**Guiding Questions:**
 
-- Use **App Service slots** for staging instead of separate App Services
-- Consider **SQL Serverless** for Dev/Test (auto-pause when idle)
-- Use **Managed Identities** to avoid Key Vault secret rotation complexity
-- **Reserved Instances** for production (future optimization, not MVP)
-- Share **App Service Plan** across web + API
+Before asking for cost estimates, ask yourself:
 
-**Estimated Costs:**
+1. **Resource Sharing**: What services could share infrastructure?
+   - Can web and API applications run on the same App Service Plan?
+   - What's the cost impact of deployment slots vs. separate App Services?
+   - Could you use serverless for intermittent workloads?
 
-| Resource             | SKU          | Monthly   |
-| -------------------- | ------------ | --------- |
-| App Service Plan     | P1v3         | ~€75      |
-| Azure SQL            | S2 (50 DTU)  | ~€60      |
-| Storage Account      | Standard LRS | ~€5       |
-| Key Vault            | Standard     | ~€1       |
-| Application Insights | —            | ~€5       |
-| Log Analytics        | —            | ~€10      |
-| **Total**            |              | **~€156** |
+2. **Right-Sizing**: How do you match SKU to requirements?
+   - What SLA do you actually need? (99.9% vs. 99.95% cost difference?)
+   - What's the minimum tier for zone redundancy?
+   - Could dev/test environments use lower SKUs or serverless?
 
-Plenty of headroom under €500!
+3. **Cost Discovery**: How would you get actual pricing data?
+   - What information does the Azure Pricing MCP need?
+   - How do you compare SKU costs within a service family?
+   - What region affects pricing?
+
+**Example Prompt for Azure Pricing MCP:**
+
+```
+"Compare costs for App Service plans in swedencentral:
+- P1v3 (production)
+- S1 (staging)
+What features justify the price difference?"
+```
+
+💡 **Coaching tip**: Cost optimization isn't about picking the cheapest option —
+it's about matching cost to value. What does each €10/month buy you?
+
+**Estimated Budget Breakdown to Discuss:**
+
+Consider these categories for your €500/month budget:
+
+- Compute (App Service): What percentage?
+- Data (SQL, Storage): What percentage?
+- Networking (if any): What percentage?
+- Observability (App Insights, Log Analytics): What percentage?
+- Security (Key Vault): What percentage?
+
+Where is most of your budget going? Does that align with business priorities?
 
 </details>
 
 <details>
 <summary>🔒 Security & Compliance (click to reveal)</summary>
 
+**Discovery Questions:**
+
 **GDPR Compliance:**
 
-- Deploy to `swedencentral` (EU region) ✅
-- Enable **TLS 1.2** minimum on all services
-- Use **Azure AD** for authentication
-- Enable **diagnostic logging** for audit trails
-- Consider **Azure Policy** for compliance guardrails
+- How would you discover what GDPR requires for customer PII?
+  - What Azure documentation or tools help identify GDPR requirements?
+  - Which Azure regions qualify as "EU data residency"?
+  - What logging is required for audit trails?
 
-**Security Best Practices:**
+- What technical controls implement GDPR principles?
+  - How do you ensure data stays in EU region? (service configuration?)
+  - What authentication method protects customer data access?
+  - How do you enable audit trails for compliance teams?
+
+**Security Architecture:**
+
+- What security defaults should _every_ Azure resource have?
+  - HTTPS enforcement? TLS version? Public access settings?
+  - How do you avoid storing secrets in code or templates?
+  - What's the difference between connection strings and managed identities?
+
+**Prompt Engineering for Security:**
+
+Instead of asking "make it secure," try:
+
+```
+"Review my architecture for GDPR compliance. Data residency must be EU.
+Customer PII includes: names, emails, delivery addresses, order history.
+Identify gaps and recommend controls."
+```
+
+💡 **Coaching tip**: Security isn't a checklist — it's about understanding _what_
+you're protecting and _why_. What data does FreshConnect store?
+What's the impact if it's compromised?
+
+**Example Bicep Security Pattern:**
 
 ```bicep
-// Always set these on Storage Accounts
-properties: {
-  supportsHttpsTrafficOnly: true
-  minimumTlsVersion: 'TLS1_2'
-  allowBlobPublicAccess: false
-}
-
-// Use managed identities
-identity: {
-  type: 'SystemAssigned'
+// Storage Account - what does each setting protect against?
+resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
+  properties: {
+    supportsHttpsTrafficOnly: true    // Why is HTTP blocked?
+    minimumTlsVersion: 'TLS1_2'       // What vulnerability does this mitigate?
+    allowBlobPublicAccess: false      // When would you ever want this true?
+  }
+  identity: {
+    type: 'SystemAssigned'            // How does this improve security?
+  }
 }
 ```
+
+Ask yourself: What attack does each setting prevent?
 
 </details>
 
@@ -180,41 +251,71 @@ var tags = {
 <details>
 <summary>🌍 Multi-Region DR (Challenge 4)</summary>
 
-**Key Components:**
+**Discovery Questions:**
 
-| Component    | Primary       | Secondary          | Failover        |
-| ------------ | ------------- | ------------------ | --------------- |
-| App Service  | swedencentral | germanywestcentral | Traffic Manager |
-| SQL Database | swedencentral | germanywestcentral | Geo-replication |
-| Storage      | swedencentral | —                  | Use GRS         |
-| Key Vault    | swedencentral | germanywestcentral | Manual sync     |
+When the DR curveball hits, instead of looking for "the answer," ask:
 
-**Minimal Implementation:**
+1. **Business Impact**: What does "disaster recovery" mean for FreshConnect?
+   - If swedencentral goes down, what business operations must continue?
+   - What's the cost of 1 hour of downtime? 4 hours? 24 hours?
+   - Which data can you afford to lose? (RPO question)
+2. **Technical Options**: What Azure services support multi-region?
+   - Can App Services fail over automatically, or do you need Traffic Manager?
+   - What's the difference between SQL geo-replication and failover groups?
+   - Does storage need to be in both regions, or can you use GRS?
+   - How do secrets (Key Vault) work across regions?
 
-1. Add `secondaryLocation` parameter
-2. Create SQL geo-replica
-3. Add Traffic Manager profile
-4. Update architecture docs
+3. **Cost Trade-offs**: What does HA/DR cost?
+   - Budget increases from €500 → €700. What does that extra €200 buy?
+   - Which components are most expensive to replicate?
+   - Could you do active-passive instead of active-active?
 
-**SQL Geo-Replication:**
+4. **Architecture Documentation**: How do you communicate the change?
+   - What format best shows before/after architecture?
+   - Should you document this as an ADR (Architecture Decision Record)?
+   - What context does your team need to understand _why_ you chose this approach?
 
-```bicep
-resource dbReplica 'Microsoft.Sql/servers/databases@2023-05-01-preview' = {
-  name: 'freshconnect-db'
-  location: secondaryLocation
-  properties: {
-    createMode: 'OnlineSecondary'
-    sourceDatabaseId: primaryDatabase.id
-  }
-}
+**Prompt Engineering for DR:**
+
 ```
+"Update FreshConnect architecture for disaster recovery:
+- Primary: swedencentral
+- Secondary: germanywestcentral
+- RTO: 4 hours, RPO: 1 hour
+- Budget increased to €700/month
+Recommend services and configuration changes.
+Create ADR documenting decision."
+```
+
+💡 **Coaching tip**: DR isn't about copying everything twice —
+it's about identifying what _must_ survive and what recovery time the business can accept.
 
 </details>
 
 <details>
-<summary>🔥 Load Testing Quick Start</summary>
+<summary>🔥 Load Testing (Challenge 5)</summary>
 
-**k6 (Recommended):**
+**Understanding Load Testing:**
+
+Before running tests, ask:
+
+1. **What are you testing?**
+   - Endpoint availability? Response time? Error rate under load?
+   - Are you testing a single API endpoint or the whole application flow?
+
+2. **What's "success"?**
+   - What P95 response time is acceptable for users? (2 seconds? 5 seconds?)
+   - What error rate is tolerable? (1%? 0.1%?)
+   - How many concurrent users represent "peak load"?
+
+3. **What does failure tell you?**
+   - If response time degrades, what's the bottleneck? (database? compute? network?)
+   - If errors spike, what's failing? (connections? timeouts? application logic?)
+   - What would you change in the architecture to handle more load?
+
+**k6 Tool (Installed in Dev Container):**
+
+k6 is a modern load testing tool. Basic structure:
 
 ```javascript
 import http from "k6/http";
@@ -222,28 +323,184 @@ import { check, sleep } from "k6";
 
 export const options = {
   stages: [
-    { duration: "1m", target: 100 },
-    { duration: "2m", target: 500 },
-    { duration: "1m", target: 0 },
+    { duration: "1m", target: 100 }, // What does this stage test?
+    { duration: "2m", target: 500 }, // What does this stage test?
+    { duration: "1m", target: 0 }, // Why ramp down?
   ],
   thresholds: {
-    http_req_duration: ["p(95)<2000"],
-    http_req_failed: ["rate<0.01"],
+    http_req_duration: ["p(95)<2000"], // Why P95? Why 2000ms?
+    http_req_failed: ["rate<0.01"], // Why 1%?
   },
 };
 
 export default function () {
-  const res = http.get("https://YOUR-APP.azurewebsites.net/");
+  const res = http.get("https://your-app.azurewebsites.net/api/health");
   check(res, { "status is 200": (r) => r.status === 200 });
   sleep(1);
 }
 ```
 
+**Analyzing Results:**
+
+After running k6, ask:
+
+- Did you meet your thresholds? If not, why not?
+- What Azure Monitor metrics correlate with load test results?
+- Would scaling up (bigger SKU) or out (more instances) help?
+
+💡 **Coaching tip**: Load testing isn't pass/fail — it's discovering your system's limits so you can make informed decisions.
+
+</details>
+
+<details>
+<summary>📚 Documentation (Challenge 6)</summary>
+
+**The Documentation Question:**
+
+The infrastructure works today. Will your team understand it tomorrow?
+
+**Discovery Questions:**
+
+1. **Who's the audience?**
+   - Operations team troubleshooting at 2 AM?
+   - New developer joining the team?
+   - Compliance auditor asking for DR procedures?
+   - CFO asking why costs increased?
+
+2. **What questions does documentation answer?**
+   - "How do I fix it?" → Operational runbook
+   - "How does it work?" → Architecture overview
+   - "What does it cost?" → Cost breakdown
+   - "Is it compliant?" → Security/compliance docs
+   - "How do I deploy changes?" → Deployment guide
+
+3. **What makes documentation useful?**
+   - Step-by-step procedures vs. conceptual overviews?
+   - Diagrams vs. text descriptions?
+   - Troubleshooting decision trees?
+   - Links to Azure Portal resources?
+
+**Prompt Engineering for Documentation:**
+
+```
+"Generate operational runbook for FreshConnect targeted at on-call engineers.
+
+Context:
+- Deployed in swedencentral with DR in germanywestcentral
+- Using App Service, Azure SQL, Storage Account, Key Vault
+- Common scenarios: high latency, connection errors, storage throttling
+
+Include:
+- Initial assessment checklist (first 60 seconds)
+- Diagnostic steps for common scenarios
+- Azure CLI commands for health checks
+- Escalation criteria"
+```
+
+💡 **Coaching tip**: The `docs` agent can generate multiple document types.
+Which documents provide the most value for FreshConnect's specific needs?
+
+**Document Types to Consider:**
+
+- Operations runbook (troubleshooting)
+- Architecture documentation (system understanding)
+- Cost estimate with optimization guide
+- Disaster recovery procedures
+- Deployment guide with rollback steps
+- Security and compliance documentation
+
+</details>
+
+<details>
+<summary>🔍 Diagnostics (Challenge 7)</summary>
+
+**The 2 AM Question:**
+
+Your pager goes off. FreshConnect API is slow. Error rate climbing. You have 10 minutes before customers notice.
+
+What do you check first?
+
+**Building a Diagnostic Strategy:**
+
+1. **What are the likely failure modes?**
+   - Database connection pool exhausted?
+   - App Service out of memory?
+   - Storage account throttling?
+   - Network connectivity to dependencies?
+   - External API timeout (payment gateway?)?
+
+2. **What's the diagnostic sequence?**
+   - Start with application health endpoint or infrastructure metrics?
+   - Check current state or compare to historical baseline?
+   - Look at logs or metrics first?
+
+3. **What tools exist in Azure?**
+   - Azure Portal health dashboards
+   - Application Insights queries (Kusto/KQL)
+   - Azure Monitor metrics and alerts
+   - Kudu console for App Service diagnostics
+   - Azure CLI diagnostic commands
+
+4. **Quick fix vs. escalation?**
+   - What can on-call engineer safely restart?
+   - When do you wake up the architect?
+   - What changes need approval vs. immediate action?
+
+**Prompt for Diagnostic Runbook:**
+
+```
+"Create troubleshooting runbook for FreshConnect production incidents.
+
+Scenarios:
+- High API latency (P95 > 5 seconds)
+- Database connection errors
+- Storage 503 errors (throttling)
+
+For each scenario provide:
+1. Likely root causes
+2. Diagnostic commands (Azure CLI, KQL queries)
+3. Remediation steps
+4. Escalation criteria"
+```
+
+💡 **Coaching tip**: Good diagnostic documentation includes the _why_ not just the _what_.
+Why check database DTU before App Service CPU? What's the reasoning?
+
+**Example Diagnostic Flow:**
+
+```
+1. Initial Assessment (60 seconds)
+   → Check Azure Status page (is it a platform issue?)
+   → Check Application Insights overview (which component is failing?)
+   → Check recent deployments (did something change?)
+
+2. If High Latency Detected
+   → Query: What's the P95 latency by dependency?
+   → Check: Database DTU utilization
+   → Check: App Service CPU/Memory
+   → Decision: Scale up, scale out, or investigate query?
+
+3. If Connection Errors
+   → Check: Connection string configuration
+   → Check: Managed identity permissions
+   → Check: Network security groups / firewall rules
+```
+
+</details>
+
+export default function () {
+const res = http.get("https://YOUR-APP.azurewebsites.net/");
+check(res, { "status is 200": (r) => r.status === 200 });
+sleep(1);
+}
+
+````
+
 **Run:**
 
 ```bash
 k6 run load-test.js
-```
+````
 
 </details>
 
@@ -255,37 +512,68 @@ k6 run load-test.js
 | Storage account with hyphens | Use lowercase letters and numbers only              |
 | Missing uniqueSuffix         | Generate once in main.bicep, pass to all modules    |
 | Hardcoded secrets            | Use Key Vault references or managed identity        |
-| Over-engineering MVP         | Keep it simple — you have 5 hours!                  |
+| Over-engineering MVP         | Keep it simple — you have 6 hours!                  |
 | Forgetting to deploy         | Run `bicep build` often, deploy incrementally       |
 
 ## Agent-Specific Tips
 
-### `plan` Agent
+### `requirements` Agent (Challenge 1)
 
-- Be specific about your requirements
-- Answer clarifying questions thoroughly
-- Don't be afraid to say "I don't know" — the agent will suggest defaults
+**Instead of asking "what should I do?"**, ask:
 
-### architect Agent
+- "What NFRs should I capture for a farm-to-table delivery platform?"
+- "How do I translate 'peak season = 3x volume' into technical requirements?"
+- "What questions help uncover hidden requirements?"
 
-- Trust the WAF analysis
-- Question cost estimates if they seem off
-- Ask about trade-offs between options
+💡 Be specific about business context, not just technical features.
 
-### `bicep-plan` Agent
+### `architect` Agent (Challenge 2)
 
-- Review the module structure before moving to code
-- Ensure dependencies are in the right order
-- Check for governance constraints
+**Instead of "design my architecture"**, try:
 
-### bicep-code Agent
+- "What are the trade-offs between App Service and Container Apps for this workload?"
+- "How does the €500/month budget constraint affect service selection?"
+- "What WAF pillar is most at risk with this approach?"
 
-- Let it generate first, then refine
+💡 Question recommendations — ask "why this service?" not just "what service?"
+
+### `bicep-plan` Agent (Challenge 3)
+
+**Instead of "write Bicep"**, ask:
+
+- "What's the dependency order for deploying these resources?"
+- "Should Key Vault be in a separate module or main.bicep?"
+- "How do I structure modules for reusability?"
+
+💡 Review the module structure before generating code.
+
+### `bicep-code` Agent (Challenge 3)
+
+**Instead of "generate all the code"**, try:
+
+- "Generate Key Vault module with name validation and uniqueSuffix parameter"
+- Start with one module, validate it works, then expand
 - Run `bicep build` after each major change
-- Check for lint warnings (not all are critical)
+
+💡 Iterate incrementally — don't generate everything at once.
+
+### `docs` Agent (Challenges 6-7)
+
+**Instead of "document everything"**, ask:
+
+- "Who is the audience for this documentation?"
+- "What specific problem does this document solve?"
+- "Generate [document type] for [audience] covering [scenarios]"
+
+💡 Good documentation answers questions before they're asked.
 
 ---
 
 ## Still Stuck?
 
-Raise your hand and ask a facilitator! That's what they're here for. 🙋
+Ask yourself: "What question would help me discover the answer?"
+
+If still blocked, raise your hand — facilitators are here to coach, not solve! 🙋
+
+**Remember**: This hackathon has 8 challenges total, not all will be completed by all teams.
+Focus on learning the workflow and prompt engineering skills!

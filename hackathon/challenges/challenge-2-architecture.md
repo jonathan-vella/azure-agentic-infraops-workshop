@@ -1,86 +1,146 @@
 # Challenge 2: Architecture Assessment
 
-> **Duration**: 45 minutes | **Agent**: architect | **Output**: `02-architecture-assessment.md`
+> **Duration**: 50 minutes | **Agent**: `architect` | **Output**: `02-architecture-assessment.md`
 
-## Objective
+## The Architecture Challenge
 
-Use the **architect** agent to create a Well-Architected Framework (WAF) aligned architecture assessment with cost estimates.
+You have requirements — now translate them into an Azure architecture that's reliable,
+secure, cost-effective, and Well-Architected.
 
-## Instructions
+**Your constraints:**
 
-### Step 1: Hand Off from Challenge 1 (5 min)
+- ~€500/month budget for infrastructure
+- Small ops team (managed services preferred)
+- EU data residency (GDPR)
+- 99.9% SLA target
+- 3-month timeline to MVP
 
-Switch to the **architect** agent in the Chat view (`Ctrl+Shift+I` to switch to Agent mode).
+## Your Challenge
 
-Invoke with:
+Use the `architect` agent to evaluate your requirements against Azure's Well-Architected Framework
+and produce a comprehensive architecture assessment.
+
+**Prompt Engineering Focus:**
+
+- How do you reference previous agent work?
+- What architectural decisions should YOU make vs asking the agent?
+- How do you balance cost, reliability, and complexity?
+
+**Guiding Questions:**
+
+**Service Selection:**
+
+- Web hosting: App Service vs Container Apps vs AKS?
+- Database: SQL Database vs Cosmos DB vs PostgreSQL?
+- Storage: Blob Storage tiers — Hot, Cool, Archive?
+- What factors drive each decision?
+- Which options align with team skills and timeline?
+
+**Well-Architected Pillars:**
+
+- **Reliability**: How do you achieve 99.9%? What's your failure strategy?
+- **Security**: How do you handle secrets? What network boundaries exist?
+- **Cost**: Where can you optimize without sacrificing requirements?
+- **Performance**: Where will bottlenecks occur? How do you mitigate?
+- **Operational Excellence**: How complex can your team handle?
+
+**Cost vs Capability Trade-offs:**
+
+- Zone redundancy: Do you need it for MVP?
+- Backup retention: 7 days vs 30 days?
+- Premium tiers: When is Standard sufficient?
+- Managed services premium: Worth the cost reduction in ops burden?
+
+**Compliance Alignment:**
+
+- GDPR: Which services support EU data residency?
+- Azure Policy: What governance should be enforced?
+- Data classification: What data is most sensitive?
+
+## Crafting Your Prompt
+
+**Example approach** (adapt based on your requirements):
 
 ```
-Review the requirements in agent-output/freshconnect/01-requirements.md
-and create a comprehensive WAF assessment with cost estimates.
+Review my requirements in [file path] and assess the architecture against
+Azure Well-Architected Framework.
+
+Key decisions I need guidance on:
+[What are you uncertain about? Where do trade-offs exist?]
+
+Business constraints to consider:
+[Budget, timeline, team, compliance]
+
+Please provide recommendations for [specific areas].
 ```
 
-### Step 2: Review WAF Analysis (20 min)
+**Architectural Thinking:**
 
-The **architect** agent will analyze your requirements against the five WAF pillars:
+- Start with constraints (budget, compliance, timeline)
+- Consider team capabilities — can they operate it?
+- Identify critical paths — what can't fail?
+- Think iteratively — what's MVP vs future enhancement?
 
-| Pillar                     | Key Questions                                              |
-| -------------------------- | ---------------------------------------------------------- |
-| **Reliability**            | How will the system handle failures? What's the SLA?       |
-| **Security**               | How is data protected? Authentication model?               |
-| **Cost Optimization**      | Does it fit the €500/month budget? Where can you optimize? |
-| **Operational Excellence** | How will you monitor and maintain the system?              |
-| **Performance Efficiency** | Can it handle 500 concurrent users?                        |
+## Expected Conversation Flow
 
-### Step 3: Review Service Selection (15 min)
+The `architect` agent will:
 
-Verify the proposed Azure services make sense:
+- Review your requirements document
+- Identify gaps or ambiguities
+- Propose service options with trade-offs
+- Assess against Well-Architected pillars
+- Recommend specific SKUs and configurations
 
-| Capability   | Expected Service     | Alternative     |
-| ------------ | -------------------- | --------------- |
-| Web Portal   | App Service (Linux)  | Container Apps  |
-| API Backend  | App Service (Linux)  | Azure Functions |
-| Database     | Azure SQL Database   | Cosmos DB       |
-| File Storage | Blob Storage         | —               |
-| Secrets      | Key Vault            | —               |
-| Monitoring   | Application Insights | —               |
-| Logging      | Log Analytics        | —               |
+**Your role:**
 
-### Step 4: Review Cost Estimate (15 min)
+- Make business-aligned decisions
+- Ask "why" when recommendations seem over-engineered
+- Challenge cost vs value
+- Validate against requirements
 
-The Azure Pricing MCP will provide cost estimates. Verify:
+## Verification
 
-- [ ] Total monthly cost is under €500
-- [ ] Major cost drivers are identified
-- [ ] Optimization opportunities are noted
+Your architecture assessment should capture:
 
-**Expected cost breakdown:**
-
-| Resource                | Estimated Cost  |
-| ----------------------- | --------------- |
-| App Service Plan (P1v3) | ~€75/month      |
-| Azure SQL (S2)          | ~€60/month      |
-| Storage Account         | ~€5/month       |
-| Key Vault               | ~€1/month       |
-| Application Insights    | ~€5/month       |
-| Log Analytics           | ~€10/month      |
-| **Total**               | **~€156/month** |
-
-### Step 5: Approve and Save (5 min)
-
-Ask the agent to create the file: `agent-output/freshconnect/02-architecture-assessment.md`
+- ✅ Workload overview (business context, requirements summary)
+- ✅ Recommended Azure services with SKUs
+- ✅ Well-Architected Framework assessment (5 pillars)
+- ✅ Trade-off analysis (cost, complexity, capability)
+- ✅ Risk identification and mitigation strategies
+- ✅ Specific recommendations for improvement
+- ✅ Cost estimate or reference to pricing considerations
 
 ## Success Criteria
 
-| Criterion                      | Points |
-| ------------------------------ | ------ |
-| Cost estimation included       | 5      |
-| Reliability patterns addressed | 5      |
-| Security controls identified   | 5      |
-| Scalability approach defined   | 5      |
-| Service selection justified    | 5      |
-| **Total**                      | **25** |
+| Criterion                                  | Points |
+| ------------------------------------------ | ------ |
+| Architecture assessment document created   | 5      |
+| Azure services selected with justification | 5      |
+| WAF assessment complete (all 5 pillars)    | 5      |
+| Trade-offs documented                      | 5      |
+| Cost estimate provided                     | 5      |
+| **Total**                                  | **25** |
 
-## WAF Quick Reference
+## Coaching Tips
+
+💡 **Challenge recommendations** — If something seems over-engineered, ask "Why do we need this?"
+
+💡 **Cost vs value** — Premium tiers cost more. What business value do they provide?
+
+💡 **Managed services** — With a small team, operational burden matters as much as cost
+
+💡 **MVP mindset** — What's essential for launch vs nice-to-have later?
+
+💡 **Compliance first** — GDPR violations are expensive. Data residency is non-negotiable.
+
+## Reflection Questions
+
+After completing this challenge:
+
+- Did the `architect` agent suggest services you hadn't considered?
+- How did you balance cost optimization with reliability requirements?
+- What architectural decisions were hardest to make? Why?
+- Did you prioritize business constraints or technical preferences?
 
 <details>
 <summary>📊 Reliability Checklist</summary>
@@ -128,6 +188,6 @@ After architecture is approved, proceed to [Challenge 3: Implementation](challen
 Optionally, generate design artifacts first:
 
 ```
-@diagram Create an architecture diagram for FreshConnect based on
+Use the `diagram` agent to create an architecture diagram for FreshConnect based on
 agent-output/freshconnect/02-architecture-assessment.md
 ```

@@ -72,22 +72,30 @@ Ensure these terms are used consistently across ALL files:
 | FreshConnect                     | Fresh Connect, freshconnect       |
 | Partner Showcase                 | partner showcase, Presentation    |
 | `plan` agent                     | Plan agent, plan Agent            |
+| hackathon                        | workshop (for this event)         |
+| challenge-based                  | workshop-style, training          |
+| coach / coaching                 | trainer / instructor              |
+| attendee / participant           | student, learner (acceptable too) |
 
 ### 3. Timing Consistency
 
-All timing references must match `hackathon/AGENDA.md`:
+All timing references must match `hackathon/AGENDA.md` (6-hour schedule):
 
 | Block | Time        | Duration |
 | ----- | ----------- | -------- |
-| Intro | 10:00-10:30 | 30 min   |
-| C1    | 10:30-11:15 | 40+5 min |
-| C2    | 11:15-12:00 | 40 min   |
-| Lunch | 12:00-12:35 | 35 min   |
-| C3    | 12:35-13:20 | 40+5 min |
-| C4-5  | 13:20-14:00 | 40 min   |
+| Intro | 09:00-09:30 | 30 min   |
+| C1    | 09:30-10:20 | 50 min   |
+| C2    | 10:20-11:10 | 50 min   |
+| Lunch | 11:10-11:40 | 30 min   |
+| C3    | 11:40-12:40 | 60 min   |
+| C4    | 12:40-13:10 | 30 min   |
+| C5    | 13:10-13:30 | 20 min   |
+| C6-7  | 13:30-14:00 | 30 min   |
 | Prep  | 14:00-14:15 | 15 min   |
-| C6    | 14:15-14:55 | 40 min   |
+| C8    | 14:15-14:55 | 40 min   |
 | Wrap  | 14:55-15:00 | 5 min    |
+
+**Note**: This is the NEW 6-hour schedule. Update any references to the old 5-hour format.
 
 ### 4. Formatting Standards
 
