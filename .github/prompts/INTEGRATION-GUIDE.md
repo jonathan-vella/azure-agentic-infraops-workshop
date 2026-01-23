@@ -2,7 +2,8 @@
 
 ## Overview
 
-This document explains how the expert persona refactoring prompt and the proofread prompt work together to ensure high-quality, consistent hackathon content transformation.
+This document explains how the expert persona refactoring prompt and the proofread prompt work
+together to ensure high-quality, consistent hackathon content transformation.
 
 ## Two-Phase Approach
 

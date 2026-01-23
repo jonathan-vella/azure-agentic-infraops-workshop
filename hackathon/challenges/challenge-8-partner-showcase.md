@@ -1,11 +1,11 @@
 # Challenge 8: Partner Showcase 🎤
 
-> **Duration**: 40 minutes | **Format**: Role-Play Presentations | **Points**: Not Scored (Soft Skills)
+> **Duration**: 40 minutes | **Format**: Role-Play Presentations | **Points**: 10
 
 ## Overview
 
 This is your moment to shine! Each team will present their FreshConnect solution to a "customer"
-(played by another team) while Microsoft facilitators observe and provide feedback.
+(played by another team) while Microsoft coaches observe and provide feedback.
 
 **This challenge simulates a real partner-customer engagement** — the kind you'll experience
 when delivering Azure solutions professionally.
@@ -17,7 +17,7 @@ graph TB
     subgraph Room[Presentation Room]
         P[👥 Presenting Team<br/>Team A<br/>Partner Role]
         C[👥 Customer Team<br/>Team B<br/>Asks Tough Questions]
-        F[🎯 Microsoft Facilitators<br/>Observing & Evaluating]
+        F[🎯 Microsoft Coaches<br/>Observing & Evaluating]
         O[👀 Other Teams<br/>Learning & Taking Notes]
         
         P -->|Presents Solution| C
@@ -36,7 +36,7 @@ graph TB
 
 ## Role Assignments
 
-The facilitator will pair teams:
+The coach will pair teams:
 
 | Presenting Team (Partner) | Challenging Team (Customer) |
 | ------------------------- | --------------------------- |
@@ -254,7 +254,7 @@ Pick 2-3 questions that are relevant to their presentation.
 - Get defensive about questions
 - Blame tools or time constraints
 - Oversell features you didn't implement
-- Go over time (the facilitator will cut you off!)
+- Go over time (the coach will cut you off!)
 
 ---
 
@@ -278,7 +278,7 @@ Pick 2-3 questions that are relevant to their presentation.
 
 ## Microsoft Feedback Focus
 
-Facilitators will provide brief feedback on:
+Coaches will provide brief feedback on:
 
 | Area                | What We'll Comment On                                     |
 | ------------------- | --------------------------------------------------------- |
@@ -291,15 +291,16 @@ Facilitators will provide brief feedback on:
 
 ## Success Criteria
 
-There are **no points** for this challenge — it's about learning professional skills:
+This challenge is worth **10 points** and focuses on professional skills:
 
-| Skill                       | What You're Practicing                |
-| --------------------------- | ------------------------------------- |
-| **Technical Communication** | Explaining complex solutions simply   |
-| **Customer Engagement**     | Handling questions under pressure     |
-| **Solution Justification**  | Defending architectural decisions     |
-| **Team Collaboration**      | Presenting as a unified team          |
-| **Active Listening**        | Learning from other teams' approaches |
+| Skill                       | Points | What You're Practicing                |
+| --------------------------- | ------ | ------------------------------------- |
+| **Technical Communication** | 3      | Explaining complex solutions simply   |
+| **Customer Engagement**     | 2      | Handling questions under pressure     |
+| **Solution Justification**  | 2      | Defending architectural decisions     |
+| **Team Collaboration**      | 2      | Presenting as a unified team          |
+| **Active Listening**        | 1      | Learning from other teams' approaches |
+| **Total**                   | **10** |                                       |
 
 ---
 
@@ -307,7 +308,7 @@ There are **no points** for this challenge — it's about learning professional 
 
 Once all teams have presented:
 
-1. **Facilitator shares observations** — common patterns, creative solutions
+1. **Coach shares observations** — common patterns, creative solutions
 2. **Open discussion** — what did teams learn from each other?
 3. **Celebrate!** — everyone built real Azure infrastructure today
 

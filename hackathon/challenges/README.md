@@ -13,11 +13,11 @@ This folder contains the eight hackathon challenges.
 | [challenge-5-load-testing.md](challenge-5-load-testing.md)         | Load Testing                  | 5      |
 | [challenge-6-documentation.md](challenge-6-documentation.md)       | Workload Documentation        | 5      |
 | [challenge-7-diagnostics.md](challenge-7-diagnostics.md)           | Troubleshooting & Diagnostics | 5      |
-| [challenge-8-partner-showcase.md](challenge-8-partner-showcase.md) | Partner Showcase 🎤           | —      |
+| [challenge-8-partner-showcase.md](challenge-8-partner-showcase.md) | Partner Showcase 🎤           | 10     |
 
-**Total**: 100 base points + bonus points available
+**Total**: 105 base points + bonus points available
 
-> **Note**: Challenge 8 is not scored — it focuses on professional communication and soft skills.
+> **Note**: Challenge 8 focuses on professional communication and presentation skills.
 
 ## Challenge Flow
 

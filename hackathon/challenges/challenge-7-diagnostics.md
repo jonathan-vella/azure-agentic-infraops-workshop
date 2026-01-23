@@ -227,4 +227,4 @@ Create a troubleshooting runbook that includes:
 ## Next Step
 
 Congratulations! You've completed the technical challenges. Move to [Challenge 8: Partner
-Showcase](challenge-6-partner-showcase.md) to present your FreshConnect solution.
+Showcase](challenge-8-partner-showcase.md) to present your FreshConnect solution.

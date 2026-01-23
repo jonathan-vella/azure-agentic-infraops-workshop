@@ -1,6 +1,6 @@
 # Challenge 5: Load Testing & Performance Validation
 
-> **Duration**: 20 minutes | **Agent**: docs | **Output**: `05-load-test-results.md`
+> **Duration**: 20 minutes | **Agent**: `docs` | **Output**: `05-load-test-results.md`
 
 ## The Business Context
 
@@ -185,6 +185,7 @@ Context:
 
 ## Next Steps
 
-After validating performance, proceed to [Challenge 6: Documentation](challenge-6-documentation.md) to create comprehensive workload documentation.
+After validating performance, proceed to [Challenge 6: Documentation](challenge-6-documentation.md)
+to create comprehensive workload documentation.
 
 Create a deployment summary and prepare for team showcase!

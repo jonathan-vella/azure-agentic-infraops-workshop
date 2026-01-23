@@ -4,7 +4,7 @@
 
 ## ⚡ The Announcement
 
-> **FACILITATOR READS AT 12:40:**
+> **COACH READS AT 12:40:**
 >
 > _"ATTENTION ALL TEAMS! 📣_
 >
@@ -202,10 +202,12 @@ This challenge tests your ability to:
 - Document architectural decisions clearly
 - Use AI agents effectively with well-crafted prompts
 
-**Remember**: There's no single "right answer" - the quality of your decision-making process matters more than the specific option you choose.
+**Remember**: There's no single "right answer" - the quality of your decision-making process
+matters more than the specific option you choose.
 
 ## Next Step
 
 After completing your ADR and Bicep updates:
 
-Proceed to [Challenge 5: Load Testing](challenge-5-load-testing.md) to validate your infrastructure can handle the expected load.
+Proceed to [Challenge 5: Load Testing](challenge-5-load-testing.md) to validate your
+infrastructure can handle the expected load.

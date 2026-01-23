@@ -107,7 +107,24 @@ Design and deploy the Azure infrastructure for the **FreshConnect MVP** (Minimum
 
 ---
 
+## The Hackathon Journey
+
+This 6-hour hackathon walks you through the full infrastructure lifecycle across **8 challenges**:
+
+1. **Requirements** — Capture business needs using `requirements` agent
+2. **Architecture** — Design Azure solution aligned with Well-Architected Framework
+3. **Implementation** — Generate Bicep templates for deployment
+4. **DR Curveball** — Adapt to multi-region disaster recovery requirements
+5. **Load Testing** — Validate performance under stress
+6. **Documentation** — Create operational guides and runbooks
+7. **Diagnostics** — Build troubleshooting procedures
+8. **Partner Showcase** — Present your solution professionally
+
+Not all teams will complete all challenges — the goal is learning the agentic workflow and prompt engineering skills!
+
+---
+
 ## Getting Started
 
 Begin with [Challenge 1: Requirements](../challenges/challenge-1-requirements.md) to capture these
-requirements using the **plan** agent.
+requirements using the **requirements** agent.

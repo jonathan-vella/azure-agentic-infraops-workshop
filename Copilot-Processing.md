@@ -99,6 +99,60 @@ Created processing log to track all changes.
 - [ ] Update any other participant materials
   - [ ] Apply proofread checklist
 
+### Phase 5: Update Participant Materials for 6-Hour, 8-Challenge Format ✅ COMPLETE
+
+**Current Task: Transform participant materials to coaching-focused approach**
+
+Files to update:
+- [x] hints-and-tips.md - Changed from prescriptive answers to guiding questions
+- [x] quick-reference-card.md - Updated to 6-hour schedule, 8 challenges, added docs/diagnose agents
+- [x] scenario-brief.md - Verified hackathon terminology, 8-challenge flow
+- [x] team-role-cards.md - Updated for coaching emphasis, 8 challenges, new challenge roles
+
+Coaching philosophy applied:
+- ✅ Turned "answers" into questions that help discover solutions
+- ✅ Replaced "do this" with "consider: what if...?"
+- ✅ Emphasized prompt engineering skills
+- ✅ Business context drives technical decisions
+
+**Detailed Changes Made:**
+
+1. **hints-and-tips.md**:
+   - Transformed service selection from prescriptive table to guiding questions
+   - Updated cost optimization with discovery questions about resource sharing, right-sizing
+   - Changed security section to ask "How would you discover GDPR requirements?"
+   - Added Challenge 6 (Documentation) hints with audience/format/value questions
+   - Added Challenge 7 (Diagnostics) hints with failure modes and diagnostic strategy
+   - Updated DR curveball to use questions instead of complete implementation
+   - Updated load testing with understanding-focused questions
+   - Changed agent tips to question-based coaching
+   - Updated from 6 to 8 challenges, 5 hours to 6 hours
+   - Changed all "workshop" references to "hackathon"
+
+2. **quick-reference-card.md**:
+   - Added 6-hour schedule table (09:00-15:00) with all 8 challenges
+   - Updated agent list to include `docs` and `diagnose` agents
+   - Added expected outputs for Challenges 6-7
+   - Added Pro Tips section with Mermaid flowchart example (Challenge 3)
+   - Added ADR template tip (Challenge 4)
+   - Added documentation prompt templates (Challenge 6)
+   - Added diagnostic query examples (Challenge 7)
+
+3. **scenario-brief.md**:
+   - Added "The Hackathon Journey" section explaining 8-challenge structure
+   - Updated from "plan" agent to "requirements" agent
+   - Clarified not all teams complete all challenges — focus is learning
+   - Verified all terminology uses "hackathon"
+
+4. **team-role-cards.md**:
+   - Updated all role descriptions to emphasize coaching/collaboration mindset
+   - Added specific tips for Challenges 6-7 in each role
+   - Updated role rotation table for 8 challenges (rotate every 2 challenges)
+   - Added suggested lead roles for new challenges (Documenter for C6, Architect for C7)
+   - Expanded "Team Agreement" to include coaching philosophy
+   - Added coaching mindset bullets to Navigator role
+   - Updated references to 8 challenges throughout
+
 **Note**: Each file update must include immediate proofreading for consistency
 un comprehensive proofread pass across all changed files using proofread-hackathon.prompt.md
 
@@ -187,13 +241,77 @@ un comprehensive proofread pass across all changed files using proofread-hackath
 ### 4. Specific Challenge Updates
 
 - **Challenge 3**: Attendees explain validation/lint/deploy, create mermaid flowchart
-- **Challenge 4**: Parameterize HA (multi-region vs single-region), mandate ADRs, remove complete solutions
-- **Challenge 5**: Ensure k6 in devcontainer, provide prompt for generating load test results doc, specify which agent to use
+- **Challenge 4**: Parameterize HA (multi-region vs single-region), mandate ADRs,
+  remove complete solutions
+- **Challenge 5**: Ensure k6 in devcontainer, provide prompt for generating load test results doc,
+  specify which agent to use
 - **Challenge 6**: Convert ASCII diagrams to mermaid
 
 ### 5. Technical
 
 - Add k6 load testing tool to devcontainer
+
+---
+
+## Summary
+
+### Phase 5 Complete: Participant Materials Updated ✅
+
+**Successfully transformed all 4 participant materials files** to reflect the new 6-hour,
+8-challenge, coaching-focused hackathon format.
+
+**Files Updated:**
+1. ✅ `hackathon/participant/hints-and-tips.md` (292 → 531 lines)
+2. ✅ `hackathon/participant/quick-reference-card.md` (121 → ~180 lines)
+3. ✅ `hackathon/participant/scenario-brief.md` (120 → 142 lines)
+4. ✅ `hackathon/participant/team-role-cards.md` (115 → 180 lines)
+
+**Key Transformations:**
+
+✅ **Coaching Philosophy Applied**:
+- Every "answer" converted to guiding questions
+- "Do this" replaced with "Consider: what if...?"
+- Emphasis on prompt engineering and discovery
+- Business context drives all technical decisions
+
+✅ **8-Challenge Structure**:
+- All references updated from 6 to 8 challenges
+- Challenge 6: Documentation (20 min, 5 points)
+- Challenge 7: Diagnostics (10 min, 5 points)
+- Challenge 8: Partner Showcase (40 min, 10 points)
+
+✅ **6-Hour Schedule**:
+- Updated from 5-hour to 6-hour format (09:00-15:00)
+- Includes 30-minute lunch break (11:10-11:40)
+- All timing references updated consistently
+
+✅ **Terminology Consistency**:
+- Changed all "workshop" to "hackathon"
+- Changed "plan" agent to "requirements" agent
+- Added "docs" and "diagnose" agents
+
+✅ **Enhanced Content**:
+- Added Mermaid flowchart tips for Challenge 3
+- Added ADR template guidance for Challenge 4
+- Added documentation prompt templates for Challenge 6
+- Added diagnostic query examples for Challenge 7
+- Added role suggestions for new challenges
+
+**Quality Assurance:**
+- All changes align with `proofread-hackathon.prompt.md` standards
+- Consistent with AGENDA.md 6-hour schedule
+- Maintains professional yet approachable tone
+- Emphasizes discovery over prescription
+
+**Next Steps (if needed):**
+- Review changes for consistency with other hackathon files
+- Consider applying similar coaching approach to facilitator materials
+- Ensure challenge files themselves reflect coaching philosophy
+
+---
+
+**Note**: Please review these updated files and confirm they meet your expectations before
+removing this `Copilot-Processing.md` file from the repository.
 - Create template prompts for agent interactions
 
 ## Next Steps
@@ -223,3 +341,83 @@ Ready to proceed with Phase 1: Analysis & Discovery
 - 2 JavaScript validators: ✅ Syntax OK, functioning
 - Path bugs fixed in 2 scripts
 - All WhatIf/dry-run modes work correctly
+
+---
+
+## FINAL COMPLETION STATUS
+
+### ✅ ALL PHASES COMPLETE
+
+**Transformation Summary:**
+- 10 files modified in challenge transformation
+- 21 consistency issues fixed in comprehensive proofread
+- 8 challenges fully transformed to coaching approach
+- Supporting documentation updated (AGENDA, READMEs, facilitator guides, participant materials)
+- Technical infrastructure enhanced (k6, Mermaid diagrams)
+- All files aligned with 6-hour/8-challenge format
+
+### Completed Phases
+
+1. ✅ **Phase 1: Analysis & Discovery**
+2. ✅ **Phase 2: Expert Persona & Integration Guide**
+3. ✅ **Phase 3: Core Challenge Files (1-8)**
+4. ✅ **Phase 4: Supporting Documentation**
+5. ✅ **Phase 5: Technical Infrastructure**
+6. ✅ **Phase 6: Comprehensive Proofread** (21 issues fixed)
+
+### Proofreading Results
+
+**21 Total Issues Fixed:**
+- 7 agent name formatting fixes
+- 6 terminology fixes (coach vs facilitator)
+- 3 point allocation corrections
+- 3 agent formatting improvements
+- 1 file path cross-reference fix
+- 1 timing consistency fix
+
+**All Challenges Verified:**
+- ✅ Terminology consistent (hackathon, challenge, coach)
+- ✅ Timing matches AGENDA.md
+- ✅ Points total 105
+- ✅ Agent names lowercase with backticks
+- ✅ Coaching tone maintained
+- ✅ Mermaid diagrams (no ASCII)
+- ✅ Cross-references accurate
+
+### Files Modified (25 Total)
+
+**Foundation:**
+- `.github/prompts/expert-persona-hackathon-refactor.prompt.md` (NEW)
+- `.github/prompts/INTEGRATION-GUIDE.md` (NEW)
+- `.github/prompts/proofread-hackathon.prompt.md` (UPDATED)
+
+**Challenges (8):**
+- Challenges 1-5 (TRANSFORMED to coaching)
+- Challenge 6 (NEW - Documentation)
+- Challenge 7 (NEW - Diagnostics)
+- Challenge 8 (RENAMED, Mermaid diagram)
+- challenges/README.md (UPDATED)
+
+**Supporting (13):**
+- AGENDA.md, README.md
+- facilitator/* (3 files)
+- participant/* (4 files)
+- .devcontainer/devcontainer.json (k6 added)
+
+### Business Value
+
+1. **Learning**: Prompt engineering focus, not just Azure syntax
+2. **Engagement**: Questions drive critical thinking
+3. **Scalability**: Coaches guide, don't solve
+4. **Real-World**: Mirrors actual development workflows
+5. **Complete**: All 7 agent workflow steps covered
+
+---
+
+🎉 **TRANSFORMATION COMPLETE**
+
+All hackathon content successfully refactored to challenge-based coaching approach.
+
+**Philosophy**: "I am a coach, not a trainer. Business is the driver, IT is the enabler."
+
+**Next**: Remove this file before committing to main branch.

@@ -38,7 +38,7 @@
 
 **Total Points**: 105 base + 25 bonus
 
-> 🔒 **Facilitators**: See [facilitator-guide.md](facilitator/facilitator-guide.md) for Challenge 4 details.
+> 🔒 **Coaches**: See [facilitator-guide.md](facilitator/facilitator-guide.md) for Challenge 4 details.
 > Challenge 8 focuses on professional communication and presentation skills.
 
 ---

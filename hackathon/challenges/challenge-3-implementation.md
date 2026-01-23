@@ -1,6 +1,6 @@
 # Challenge 3: Bicep Implementation & Workflow Understanding
 
-> **Duration**: 60 minutes | **Agents**: bicep-plan, bicep-code, deploy | **Output**: Bicep templates + Workflow diagram
+> **Duration**: 60 minutes | **Agents**: `bicep-plan`, `bicep-code`, `deploy` | **Output**: Bicep templates + Workflow diagram
 
 ## The Business Challenge
 
@@ -25,7 +25,8 @@ Your task: Generate Bicep templates and **demonstrate you understand the agent w
 - How should you structure your prompt to get a phased implementation plan?
 - What governance constraints might affect your deployment?
 
-**Prompt Engineering Tip**: The agent works best when you provide context about your architecture decisions, not just a file reference.
+**Prompt Engineering Tip**: The agent works best when you provide context about your
+architecture decisions, not just a file reference.
 
 **Expected Output**: `agent-output/freshconnect/04-implementation-plan.md`
 
@@ -80,7 +81,8 @@ Your flowchart must show:
 5. Common errors and how agents adjust
 6. The feedback loop when issues are discovered
 
-**Why This Matters**: In your Partner Showcase, you'll need to explain this workflow to demonstrate you understand the process, not just executed commands.
+**Why This Matters**: In your Partner Showcase, you'll need to explain this workflow to
+demonstrate you understand the process, not just executed commands.
 
 **Save your flowchart** in your presentation materials - you'll need it for Challenge 8.
 
@@ -216,7 +218,7 @@ az deployment group what-if \
 
 After templates are validated and you've created your workflow diagram:
 
-⏸️ **Wait for Challenge 4** - The facilitator will announce a business change at 12:40 that will test your agility!
+⏸️ **Wait for Challenge 4** - The coach will announce a business change at 12:40 that will test your agility!
 
 Use any extra time to:
 
