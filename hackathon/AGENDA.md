@@ -1,40 +1,49 @@
 # Hackathon Agenda
 
-> **Agentic InfraOps Hackathon** — 6 hours (09:00 - 15:00)
+> **Agentic InfraOps Hackathon** — 6 hours (10:00 - 16:00)
+
+---
+
+## Team Structure
+
+| Aspect          | Details                  |
+| --------------- | ------------------------ |
+| Team Size       | Up to 5 members per team |
+| Number of Teams | Maximum 4 teams          |
 
 ---
 
 ## Schedule Overview
 
-| Time        | Block           | Duration | Activity                       |
-| ----------- | --------------- | -------- | ------------------------------ |
-| 09:00-09:30 | **Intro**       | 30 min   | Welcome, setup, team formation |
-| 09:30-10:20 | **Challenge 1** | 50 min   | Requirements Capture           |
-| 10:20-11:10 | **Challenge 2** | 50 min   | Architecture Design            |
-| 11:10-11:40 | 🍽️ **Lunch**    | 30 min   | Break                          |
-| 11:40-12:40 | **Challenge 3** | 60 min   | Bicep Implementation           |
-| 12:40-13:10 | **Challenge 4** | 30 min   | DR Curveball                   |
-| 13:10-13:30 | **Challenge 5** | 20 min   | Load Testing                   |
-| 13:30-13:50 | **Challenge 6** | 20 min   | Documentation                  |
-| 13:50-14:00 | **Challenge 7** | 10 min   | Diagnostics                    |
-| 14:00-14:15 | 🎯 **Prep**     | 15 min   | Presentation Preparation       |
-| 14:15-14:55 | **Challenge 8** | 40 min   | Partner Showcase 🎤            |
-| 14:55-15:00 | **Wrap-up**     | 5 min    | Leaderboard, cleanup, close    |
+| Time        | Block           | Duration | Activity                          |
+| ----------- | --------------- | -------- | --------------------------------- |
+| 10:00-10:30 | **Intro**       | 30 min   | Welcome, setup, team formation    |
+| 10:30-11:20 | **Challenge 1** | 50 min   | Requirements Capture              |
+| 11:20-12:10 | **Challenge 2** | 50 min   | Architecture Design               |
+| 12:10-12:40 | 🍽️ **Lunch**    | 30 min   | Break                             |
+| 12:40-13:50 | **Challenge 3** | 70 min   | Bicep Implementation & Deployment |
+| 13:50-14:30 | **Challenge 4** | 40 min   | DR Curveball & Deployment         |
+| 14:30-14:50 | **Challenge 5** | 20 min   | Load Testing                      |
+| 14:50-15:10 | **Challenge 6** | 20 min   | Documentation                     |
+| 15:10-15:15 | **Challenge 7** | 5 min    | Diagnostics                       |
+| 15:15-15:25 | 🎯 **Prep**     | 10 min   | Presentation Preparation          |
+| 15:25-15:55 | **Challenge 8** | 30 min   | Partner Showcase 🎤               |
+| 15:55-16:00 | **Wrap-up**     | 5 min    | Leaderboard, cleanup, close       |
 
 ---
 
 ## Challenge Summary
 
-| #   | Challenge            | Duration | Points | Agent(s)                   |
-| --- | -------------------- | -------- | ------ | -------------------------- |
-| 1   | Requirements Capture | 50 min   | 20     | `requirements`             |
-| 2   | Architecture Design  | 50 min   | 25     | `architect`                |
-| 3   | Bicep Implementation | 60 min   | 25     | `bicep-plan`, `bicep-code` |
-| 4   | DR Curveball         | 30 min   | 10     | `bicep-plan`, `bicep-code` |
-| 5   | Load Testing         | 20 min   | 5      | (k6 scripts)               |
-| 6   | Documentation        | 20 min   | 5      | `docs`                     |
-| 7   | Diagnostics          | 10 min   | 5      | `diagnose`                 |
-| 8   | Partner Showcase 🎤  | 40 min   | 10     | (presentation)             |
+| #   | Challenge                     | Duration | Points | Agent(s)                             |
+| --- | ----------------------------- | -------- | ------ | ------------------------------------ |
+| 1   | Requirements Capture          | 50 min   | 20     | `requirements`                       |
+| 2   | Architecture Design           | 50 min   | 25     | `architect`                          |
+| 3   | Bicep Implementation & Deploy | 70 min   | 25     | `bicep-plan`, `bicep-code`, `deploy` |
+| 4   | DR Curveball & Deploy         | 40 min   | 10     | `bicep-plan`, `bicep-code`, `deploy` |
+| 5   | Load Testing                  | 20 min   | 5      | (k6 scripts)                         |
+| 6   | Documentation                 | 20 min   | 5      | `docs`                               |
+| 7   | Diagnostics                   | 5 min    | 5      | `diagnose`                           |
+| 8   | Partner Showcase 🎤           | 30 min   | 10     | (presentation)                       |
 
 **Total Points**: 105 base + 25 bonus
 
@@ -45,81 +54,86 @@
 
 ## Detailed Timing
 
-### Block 1: Intro (09:00 - 09:30)
+### Block 1: Intro (10:00 - 10:30)
 
 | Time  | Activity             |
 | ----- | -------------------- |
-| 09:00 | Welcome & logistics  |
-| 09:05 | Hackathon overview   |
-| 09:12 | 7-step workflow demo |
-| 09:18 | Setup verification   |
-| 09:24 | Team formation       |
-| 09:27 | Scenario briefing    |
+| 10:00 | Welcome & logistics  |
+| 10:05 | Hackathon overview   |
+| 10:12 | 7-step workflow demo |
+| 10:18 | Setup verification   |
+| 10:24 | Team formation       |
+| 10:27 | Scenario briefing    |
 
-### Block 2: Challenge 1 (09:30 - 10:20)
+### Block 2: Challenge 1 (10:30 - 11:20)
 
 | Time  | Activity                              |
 | ----- | ------------------------------------- |
-| 09:30 | Start — invoke **requirements** agent |
-| 09:45 | Check-in — conversations started?     |
-| 10:00 | Progress — draft requirements?        |
-| 10:10 | Push — encourage approval             |
-| 10:20 | Complete — move to Challenge 2        |
+| 10:30 | Start — invoke **requirements** agent |
+| 10:45 | Check-in — conversations started?     |
+| 11:00 | Progress — draft requirements?        |
+| 11:10 | Push — encourage approval             |
+| 11:20 | Complete — move to Challenge 2        |
 
-### Block 3: Challenge 2 (10:20 - 11:10)
+### Block 3: Challenge 2 (11:20 - 12:10)
 
 | Time  | Activity                                    |
 | ----- | ------------------------------------------- |
-| 10:20 | Start — handoff from **requirements** agent |
-| 10:35 | Check-in — WAF recommendations?             |
-| 10:50 | Cost — Pricing MCP working?                 |
-| 11:00 | Wrap — finalize architecture                |
-| 11:10 | Lunch                                       |
+| 11:20 | Start — handoff from **requirements** agent |
+| 11:35 | Check-in — WAF recommendations?             |
+| 11:50 | Cost — Pricing MCP working?                 |
+| 12:00 | Wrap — finalize architecture                |
+| 12:10 | Lunch                                       |
 
-### 🍽️ Lunch (11:10 - 11:40)
+### 🍽️ Lunch (12:10 - 12:40)
 
-### Block 4: Challenge 3 (11:40 - 12:40)
+### Block 4: Challenge 3 (12:40 - 13:50)
 
-| Time  | Activity                          |
-| ----- | --------------------------------- |
-| 11:40 | Start — **bicep-plan** agent      |
-| 11:55 | Plan — implementation plan ready? |
-| 12:10 | Code — **bicep-code** agent       |
-| 12:30 | Validate — `bicep build`          |
-| 12:40 | Complete — move to Challenge 4    |
+| Time  | Activity                                |
+| ----- | --------------------------------------- |
+| 12:40 | Start — **bicep-plan** agent            |
+| 12:55 | Plan — implementation plan ready?       |
+| 13:10 | Code — **bicep-code** agent             |
+| 13:30 | Validate — `bicep build` + `bicep lint` |
+| 13:40 | Deploy — **deploy** agent               |
+| 13:50 | Complete — move to Challenge 4          |
 
-### Block 5: Challenges 4-7 (12:40 - 14:00)
+### Block 5: Challenge 4 (13:50 - 14:30)
 
 | Time  | Activity                                   |
 | ----- | ------------------------------------------ |
-| 12:40 | 📣 **Challenge 4: DR Curveball Announced** |
-| 12:45 | Update architecture for multi-region       |
-| 13:00 | Generate updated Bicep templates           |
-| 13:10 | **Challenge 5: Load Testing**              |
-| 13:20 | Run k6 load tests                          |
-| 13:30 | **Challenge 6: Documentation**             |
-| 13:40 | Generate workload docs with **docs** agent |
-| 13:50 | **Challenge 7: Diagnostics**               |
-| 13:55 | Run diagnostics with **diagnose** agent    |
-| 14:00 | Prep begins                                |
+| 13:50 | 📣 **Challenge 4: DR Curveball Announced** |
+| 13:55 | Update architecture for multi-region       |
+| 14:10 | Generate updated Bicep templates           |
+| 14:20 | Deploy DR infrastructure                   |
+| 14:30 | Complete — move to Challenge 5             |
 
-### 🎯 Presentation Prep (14:00 - 14:15)
+### Block 6: Challenges 5-7 (14:30 - 15:15)
 
-Teams prepare their Partner Showcase presentations (4-min pitch + 2-min Q&A format).
+| Time  | Activity                                   |
+| ----- | ------------------------------------------ |
+| 14:30 | **Challenge 5: Load Testing**              |
+| 14:40 | Run k6 load tests                          |
+| 14:50 | **Challenge 6: Documentation**             |
+| 15:00 | Generate workload docs with **docs** agent |
+| 15:10 | **Challenge 7: Diagnostics**               |
+| 15:15 | Prep begins                                |
 
-### Block 6: Challenge 8 (14:15 - 14:55)
+### 🎯 Presentation Prep (15:15 - 15:25)
 
-| Time  | Team             |
-| ----- | ---------------- |
-| 14:15 | Intro & pairings |
-| 14:17 | Team 1 presents  |
-| 14:24 | Team 2 presents  |
-| 14:31 | Team 3 presents  |
-| 14:38 | Team 4 presents  |
-| 14:45 | Team 5 presents  |
-| 14:52 | Team 6 presents  |
+Teams prepare their Partner Showcase presentations (5-min pitch + 2-min Q&A format).
 
-### Wrap-up (14:55 - 15:00)
+### Block 7: Challenge 8 (15:25 - 15:55)
+
+| Time  | Team                     |
+| ----- | ------------------------ |
+| 15:25 | Intro & pairings         |
+| 15:27 | Team 1 presents (~7 min) |
+| 15:34 | Team 2 presents (~7 min) |
+| 15:41 | Team 3 presents (~7 min) |
+| 15:48 | Team 4 presents (~7 min) |
+
+### Wrap-up (15:55 - 16:00)
 
 - Announce leaderboard
 - Key learnings

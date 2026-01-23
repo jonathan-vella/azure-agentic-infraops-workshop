@@ -1,6 +1,7 @@
-# Challenge 3: Bicep Implementation & Workflow Understanding
+# Challenge 3: Bicep Implementation, Deployment & Workflow Understanding
 
-> **Duration**: 60 minutes | **Agents**: `bicep-plan`, `bicep-code`, `deploy` | **Output**: Bicep templates + Workflow diagram
+> **Duration**: 70 minutes | **Agents**: `bicep-plan`, `bicep-code`, `deploy`
+> **Output**: Deployed infrastructure + Workflow diagram
 
 ## The Business Challenge
 
@@ -11,11 +12,12 @@ Nordic Fresh Foods needs production-ready infrastructure code that:
 - Is maintainable by their small DevOps team
 - Follows infrastructure-as-code best practices
 
-Your task: Generate Bicep templates and **demonstrate you understand the agent workflow** by explaining it.
+Your task: Generate Bicep templates, **deploy them to Azure**, and **demonstrate you understand
+the agent workflow** by explaining it.
 
 ## Your Challenge
 
-### Part A: Implementation Planning (20 min)
+### Part A: Implementation Planning (15 min)
 
 **Your Task**: Use the `bicep-plan` agent to create an implementation strategy.
 
@@ -32,7 +34,7 @@ architecture decisions, not just a file reference.
 
 ---
 
-### Part B: Code Generation (30 min)
+### Part B: Code Generation (25 min)
 
 **Your Task**: Use the `bicep-code` agent to generate Infrastructure as Code.
 
@@ -68,7 +70,46 @@ bicep lint main.bicep       # What does this validate?
 
 ---
 
-### Part C: Understanding the Workflow (10 min) ⭐ REQUIRED
+### Part C: Deployment (20 min) ⭐ REQUIRED
+
+**Your Task**: Use the `deploy` agent to deploy your infrastructure to Azure.
+
+**Before Deploying**:
+
+```powershell
+# Preview what will be created (What-If)
+az deployment group what-if \
+  --resource-group rg-freshconnect-dev-swc \
+  --template-file main.bicep \
+  --parameters main.bicepparam
+```
+
+**Deployment Questions**:
+
+- Does the What-If output match your expectations?
+- Are there any unexpected changes or deletions?
+- Do you understand what each resource does?
+
+**Deploy Your Infrastructure**:
+
+Use the `deploy` agent or run:
+
+```powershell
+az deployment group create \
+  --resource-group rg-freshconnect-dev-swc \
+  --template-file main.bicep \
+  --parameters main.bicepparam
+```
+
+**If Deployment Fails**:
+
+- Read the error message carefully — what does it tell you?
+- Is it a naming conflict? A policy violation? A missing parameter?
+- How would you prompt the `bicep-code` agent to fix the issue?
+
+---
+
+### Part D: Understanding the Workflow (10 min) ⭐ REQUIRED
 
 **Critical Deliverable**: Create a Mermaid flowchart that explains the agent-driven deployment workflow.
 
@@ -157,8 +198,8 @@ properties: {
 | ------------------------------------------ | ------ |
 | Implementation plan created                | 5      |
 | Bicep templates generated                  | 5      |
-| Templates compile without errors           | 5      |
-| Security baseline requirements understood  | 5      |
+| Templates compile without errors           | 3      |
+| **Infrastructure deployed successfully**   | 7      |
 | **Workflow diagram created and explained** | 5      |
 | **Total**                                  | **25** |
 
@@ -186,43 +227,15 @@ When you encounter issues, ask yourself:
 - Q: "My Bicep lints clean but deployment fails. Why?"
 - Consider: What's the difference between syntax validation and runtime deployment?
 
-## Deployment (Optional for this phase)
-
-If time permits, attempt deployment to validate your templates:
-
-```powershell
-# Preview what will be created (What-If)
-az deployment group what-if \
-  --resource-group rg-freshconnect-dev-swc \
-  --template-file main.bicep \
-  --parameters main.bicepparam
-```
-
-**Before deploying, consider**:
-
-- Does the What-If output match your expectations?
-- Are there any unexpected changes or deletions?
-- Do you understand what each resource does?
-
-## Tips for Success
-
-💡 **Don't memorize patterns** - understand the principles. Why are these patterns used?
-
-💡 **Errors are learning opportunities** - each policy violation teaches you about Azure governance.
-
-💡 **The agent is a collaborator** - if the output isn't what you need, refine your prompt with more context.
-
-💡 **Document your decisions** - your flowchart will help explain your solution in the Partner Showcase.
-
 ## Next Step
 
-After templates are validated and you've created your workflow diagram:
+After your infrastructure is deployed and you've created your workflow diagram:
 
-⏸️ **Wait for Challenge 4** - The coach will announce a business change at 12:40 that will test your agility!
+⏸️ **Wait for Challenge 4** - The coach will announce a business change at 13:50 that will test your agility!
 
 Use any extra time to:
 
-- Refine your Bicep templates
+- Verify deployed resources in Azure Portal
 - Explore alternative architectures
 - Practice explaining your workflow diagram
-- Begin deployment (if confident)
+- Prepare for the DR curveball

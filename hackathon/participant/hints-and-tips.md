@@ -3,6 +3,57 @@
 > **Coaching approach**: These hints use questions to guide your thinking.
 > The best solutions come from understanding _why_, not just copying _what_.
 
+## Understanding Agent Output Templates
+
+<details>
+<summary>📄 How Agent Outputs Work (click to reveal)</summary>
+
+### Templatized Agent Outputs
+
+The agents in this hackathon use **templates** to generate consistent, structured documentation.
+These templates are located in `.github/templates/` and include:
+
+```
+.github/templates/
+├── 01-requirements.template.md
+├── 02-architecture-assessment.template.md
+├── 03-des-cost-estimate.template.md
+├── 04-implementation-plan.template.md
+├── 06-deployment-summary.template.md
+├── 07-operations-runbook.template.md
+└── ... (and more)
+```
+
+### Why Templates Matter
+
+1. **Deterministic Behavior**: Templates make agent outputs more predictable and consistent.
+   The agent fills in the template structure with your specific requirements.
+
+2. **Quality Assurance**: Templates ensure all critical sections are covered — the agent
+   won't forget important aspects like security considerations or cost breakdowns.
+
+3. **Professional Standards**: The output follows industry best practices for documentation
+   format and content organization.
+
+### What This Means for You
+
+- **Expect structured output**: Agent responses follow a predictable format
+- **Focus on content, not format**: The template handles structure; you focus on requirements
+- **Understand the patterns**: Reviewing templates helps you understand what the agent will produce
+
+### Exploring Templates
+
+Take a moment to browse `.github/templates/` to understand:
+
+- What sections each template includes
+- What information the agent needs from you to fill them in
+- How your prompts influence the content (not the structure)
+
+💡 **Key insight**: GenAI with templates is more predictable than "pure" generation.
+This is intentional — infrastructure documentation needs consistency!
+
+</details>
+
 ## Architecture Hints
 
 <details>

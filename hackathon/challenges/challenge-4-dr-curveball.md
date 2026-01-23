@@ -1,10 +1,10 @@
 # Challenge 4: The Curveball — High Availability & Disaster Recovery
 
-> **Duration**: 30 minutes | **Announced at**: 12:40 | **Output**: Updated architecture + Bicep + ADR
+> **Duration**: 40 minutes | **Announced at**: 13:50 | **Output**: Updated architecture + Deployed DR infrastructure + ADR
 
 ## ⚡ The Announcement
 
-> **COACH READS AT 12:40:**
+> **COACH READS AT 13:50:**
 >
 > _"ATTENTION ALL TEAMS! 📣_
 >
@@ -15,7 +15,7 @@
 >
 > _Your infrastructure must now support high availability with disaster recovery capabilities!_
 >
-> _You have 30 minutes to propose and plan the solution!_ 🚀"
+> _You have 40 minutes to propose, plan, and **deploy** the solution!_ 🚀"
 
 ## New Business Requirements
 
@@ -25,7 +25,7 @@
 | **RPO**              | ≤15 minutes          | Maximum acceptable data loss                  |
 | **Secondary Region** | `germanywestcentral` | Coverage for broader European market          |
 | **Budget Increase**  | +€200/month          | Total infrastructure budget now ~€700/month   |
-| **Timeline**         | 30 minutes           | Board needs decision on architecture approach |
+| **Timeline**         | 40 minutes           | Board needs decision on architecture approach |
 
 ## Your Challenge
 
@@ -103,7 +103,33 @@ param secondaryLocation string = 'germanywestcentral'
 - What resources must exist in both regions?
 - How do you handle data replication?
 
-### 3. Updated Cost Estimate
+### 3. Deploy DR Infrastructure ⭐ REQUIRED
+
+After updating your Bicep templates, deploy the DR infrastructure:
+
+```powershell
+# Preview changes first
+az deployment group what-if \
+  --resource-group rg-freshconnect-dev-swc \
+  --template-file main.bicep \
+  --parameters main.bicepparam \
+  --parameters haStrategy='multi-region'
+
+# Deploy with HA enabled
+az deployment group create \
+  --resource-group rg-freshconnect-dev-swc \
+  --template-file main.bicep \
+  --parameters main.bicepparam \
+  --parameters haStrategy='multi-region'
+```
+
+**Deployment Questions**:
+
+- What new resources appear in the What-If output?
+- Are there any resources that need to be deployed to the secondary region separately?
+- How do you verify that geo-replication is working?
+
+### 4. Updated Cost Estimate
 
 **Consider**:
 
@@ -111,87 +137,23 @@ param secondaryLocation string = 'germanywestcentral'
 - What are the major cost drivers for HA/DR?
 - Where could you optimize if over budget?
 
-## Guiding Questions
-
-**Architecture Questions**:
-
-- What services can be zone-redundant within a single region?
-- Which services require geo-replication for multi-region?
-- How does Traffic Manager vs Front Door vs Application Gateway differ for failover?
-- What's the replication lag for SQL geo-replication? Does it meet 15-minute RPO?
-
-**Cost Questions**:
-
-- What's the incremental cost of zone redundancy (single region)?
-- What's the incremental cost of full multi-region deployment?
-- Which services double in cost? Which don't?
-- Can you achieve RTO/RPO targets within +€200?
-
-**Operational Questions**:
-
-- Who triggers failover? Automatic or manual?
-- How do you test DR without affecting production?
-- What's the recovery procedure?
-- What documentation does the ops team need?
-
-**Prompt Engineering Questions**:
-
-- How do you ask the `bicep-code` agent to add DR capabilities?
-- What context does the agent need to make good choices?
-- How do you validate the agent's DR implementation?
-
-## Concepts to Research
-
-### SQL Geo-Replication
-
-**Pattern**: Primary database + read-only replica in secondary region
-
-**Key Questions**:
-
-- What Bicep resource creates a geo-replica?
-- What's the `createMode` property value?
-- How do you reference the source database?
-- What's the replication lag?
-
-### Traffic Management
-
-**Options**: Traffic Manager, Front Door, Application Gateway
-
-**Key Questions**:
-
-- Which option best fits this scenario?
-- How do you configure health probes?
-- What's the failover time?
-- How does DNS caching affect RTO?
-
-### Storage Redundancy
-
-**Options**: LRS, ZRS, GRS, GZRS
-
-**Key Questions**:
-
-- What redundancy level meets RPO requirements?
-- What's the cost difference?
-- Is GRS automatic failover? Or manual?
-
 ## Success Criteria
 
 | Criterion                           | Points |
 | ----------------------------------- | ------ |
-| ADR documented with clear rationale | 3      |
+| ADR documented with clear rationale | 2      |
 | HA/DR approach chosen and justified | 2      |
 | Bicep parameterized for HA strategy | 2      |
-| Cost estimate updated               | 2      |
+| **DR infrastructure deployed**      | 3      |
 | Trade-offs clearly understood       | 1      |
 | **Total**                           | **10** |
 
 ## Time Management Tips
 
-💡 **15 minutes**: Architecture Decision Record
-💡 **10 minutes**: Prompt the `bicep-code` agent with your requirements
-💡 **5 minutes**: Review generated changes and update cost estimate
-
-Don't try to deploy in this challenge - focus on design and planning!
+💡 **10 minutes**: Architecture Decision Record
+💡 **15 minutes**: Prompt the `bicep-code` agent and update templates
+💡 **10 minutes**: Deploy DR infrastructure
+💡 **5 minutes**: Verify deployment and update cost estimate
 
 ## Coaching Approach
 

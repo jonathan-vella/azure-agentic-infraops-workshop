@@ -8,18 +8,18 @@
 
 | Time        | Challenge       | Duration | Points |
 | ----------- | --------------- | -------- | ------ |
-| 09:00-09:30 | Intro           | 30 min   | —      |
-| 09:30-10:20 | **Challenge 1** | 50 min   | 20     |
-| 10:20-11:10 | **Challenge 2** | 50 min   | 25     |
-| 11:10-11:40 | 🍽️ Lunch        | 30 min   | —      |
-| 11:40-12:40 | **Challenge 3** | 60 min   | 25     |
-| 12:40-13:10 | **Challenge 4** | 30 min   | 10     |
-| 13:10-13:30 | **Challenge 5** | 20 min   | 5      |
-| 13:30-13:50 | **Challenge 6** | 20 min   | 5      |
-| 13:50-14:00 | **Challenge 7** | 10 min   | 5      |
-| 14:00-14:15 | Prep            | 15 min   | —      |
-| 14:15-14:55 | **Challenge 8** | 40 min   | 10     |
-| 14:55-15:00 | Wrap-up         | 5 min    | —      |
+| 10:00-10:30 | Intro           | 30 min   | —      |
+| 10:30-11:20 | **Challenge 1** | 50 min   | 20     |
+| 11:20-12:10 | **Challenge 2** | 50 min   | 25     |
+| 12:10-12:40 | 🍽️ Lunch        | 30 min   | —      |
+| 12:40-13:50 | **Challenge 3** | 70 min   | 25     |
+| 13:50-14:30 | **Challenge 4** | 40 min   | 10     |
+| 14:30-14:50 | **Challenge 5** | 20 min   | 5      |
+| 14:50-15:10 | **Challenge 6** | 20 min   | 5      |
+| 15:10-15:15 | **Challenge 7** | 5 min    | 5      |
+| 15:15-15:25 | Prep            | 10 min   | —      |
+| 15:25-15:55 | **Challenge 8** | 30 min   | 10     |
+| 15:55-16:00 | Wrap-up         | 5 min    | —      |
 
 **Total Points**: 105 base + 25 bonus
 
@@ -114,7 +114,7 @@ az group delete -n rg-freshconnect-dev-swc --yes --no-wait
 
 **Challenge 3 — Mermaid Flowcharts:**
 
-````markdown
+`````markdown
 ````mermaid
 graph TD
     A[Start] --> B[Decision]
@@ -122,6 +122,8 @@ graph TD
     B -->|No| D[Refine]
 \```
 ````
+`````
+
 ````
 
 **Challenge 4 — ADR Template:**
@@ -219,3 +221,4 @@ var uniqueSuffix = uniqueString(resourceGroup().id)
 ---
 
 **Team**: **\*\*\*\***\_**\*\*\*\*** **Score**: **\_**/130
+````

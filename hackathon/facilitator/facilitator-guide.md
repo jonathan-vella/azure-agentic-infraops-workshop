@@ -4,13 +4,13 @@
 
 ## Event Overview
 
-| Aspect       | Details                               |
-| ------------ | ------------------------------------- |
-| Duration     | 6 hours                               |
-| Participants | 20-24                                 |
-| Teams        | 5-6 (3-4 members each)                |
-| Format       | Challenge-based, full 7-step workflow |
-| Skill Level  | Azure portal familiar, new to IaC     |
+| Aspect      | Details                               |
+| ----------- | ------------------------------------- |
+| Duration    | 6 hours (10:00 - 16:00)               |
+| Team Size   | Up to 5 members per team              |
+| Teams       | Maximum 4 teams                       |
+| Format      | Challenge-based, full 7-step workflow |
+| Skill Level | Azure portal familiar, new to IaC     |
 
 ## Your Role
 
@@ -88,13 +88,13 @@ Deploy Azure Policies to create realistic governance constraints. Teams will enc
 
 📅 **See [AGENDA.md](../AGENDA.md) for the full schedule overview.**
 
-> **Event runs 09:00 - 15:00** (6 hours with 30-min lunch)
+> **Event runs 10:00 - 16:00** (6 hours with 30-min lunch)
 
 ---
 
 ## Block-by-Block Facilitator Notes
 
-### Block 1: Intro (09:00 - 09:30)
+### Block 1: Intro (10:00 - 10:30)
 
 **Facilitator Actions:**
 
@@ -110,7 +110,7 @@ bicep --version
 echo "✅ Ready!"
 ```
 
-### Block 2: Challenge 1 - Requirements (09:30 - 10:20)
+### Block 2: Challenge 1 - Requirements (10:30 - 11:20)
 
 **Duration**: 50 minutes
 
@@ -127,7 +127,7 @@ echo "✅ Ready!"
 | Agent not responding | Reload VS Code window       |
 | Vague requirements   | Ask "What SLA? What's RTO?" |
 
-### Block 3: Challenge 2 - Architecture (10:20 - 11:10)
+### Block 3: Challenge 2 - Architecture (11:20 - 12:10)
 
 **Duration**: 50 minutes
 
@@ -141,13 +141,13 @@ echo "✅ Ready!"
 
 No common issues — monitor Pricing MCP functionality.
 
-### 🍽️ Lunch Break (11:10 - 11:40)
+### 🍽️ Lunch Break (12:10 - 12:40)
 
 **Duration**: 30 minutes
 
-### Block 4: Challenge 3 - Implementation (11:40 - 12:40)
+### Block 4: Challenge 3 - Implementation & Deployment (12:40 - 13:50)
 
-**Duration**: 60 minutes (includes Bicep plan + code + Mermaid diagram)
+**Duration**: 70 minutes (includes Bicep plan + code + deployment + Mermaid diagram)
 
 **Coaching Tips:**
 
@@ -162,11 +162,11 @@ No common issues — monitor Pricing MCP functionality.
 | Key Vault name too long | ≤24 chars              |
 | Storage account invalid | Lowercase+numbers only |
 
-### Block 5: ⚡ Challenge 4 - DR Curveball (12:40 - 13:10)
+### Block 5: ⚡ Challenge 4 - DR Curveball & Deployment (13:50 - 14:30)
 
-**Duration**: 30 minutes
+**Duration**: 40 minutes
 
-#### 📢 Announcement Script (12:40)
+#### 📢 Announcement Script (13:50)
 
 Stand up, get everyone's attention:
 
@@ -186,7 +186,9 @@ Stand up, get everyone's attention:
 >
 > _Budget has increased by €200/month to accommodate this._
 >
-> _You have 30 minutes! Document your DR strategy in an ADR! GO GO GO!_ 🚀"
+> _You have 40 minutes to propose, plan, and DEPLOY the solution!_
+>
+> _Document your DR strategy in an ADR! GO GO GO!_ 🚀"
 
 **Coaching Tips:**
 
@@ -194,9 +196,9 @@ Stand up, get everyone's attention:
 - Prompt: "How would you test failover?"
 - Encourage ADR creation to document DR decision rationale
 
-### Block 6: Challenges 5-7 - Load Test, Docs, Diagnose (13:10 - 14:00)
+### Block 6: Challenges 5-7 - Load Test, Docs, Diagnose (14:30 - 15:15)
 
-**Duration**: 50 minutes (3 challenges)
+**Duration**: 45 minutes (3 challenges: 20 min + 20 min + 5 min)
 
 #### Challenge 5: Load Testing (13:10 - 13:25)
 

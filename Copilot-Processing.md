@@ -1,63 +1,92 @@
-# Copilot Processing Log: Hackathon Content Refactoring
+# Copilot Processing Log
 
 ## User Request
 
-Transform the hackathon from a workshop-style format to a challenge-based, coaching-oriented experience where:
+Update hackathon content with:
 
-- Business challenges drive IT solutions (not prescriptive steps)
-- Minimal solutions provided - guidelines and snippets only
-- Coaching approach: answer questions with questions to build prompt engineering skills
-- Extended to 6 hours (including 30min lunch) to cover full 7-step workflow including docs and diagnose phases
-- Specific improvements to challenges 3-6
-- Add k6 to devcontainer
-- Use mermaid diagrams instead of ASCII
-- Work on feature branch (not master)
-
-## Status: Phase 1 - Initialization ✅
-
-Created processing log to track all changes.
+- Start time: 10:00 (was 09:00)
+- Team structure: max 5 per team, max 4 teams (was 3-4 per team, 5-6 teams)
+- Challenge 3: Include deployment (70 min)
+- Challenge 4: Include deployment of DR services (40 min)
+- Challenge 7: Shorten to 5 min
+- Challenge 8: Adjust for 4 teams (30 min)
+- Add template awareness section
+- Delete duplicate challenge-6-partner-showcase.md
 
 ## Action Plan
 
-### Phase 1: Analysis & Discovery ✅
+### Phase 1: Core Schedule Updates
 
-**Tasks:**
+- [x] 1.1 Update AGENDA.md with new timing and team structure
+- [x] 1.2 Update hackathon/README.md
+- [x] 1.3 Update challenges/README.md
+- [x] 1.4 Update hackathon-proofreading.instructions.md timing table
 
-- [x] Review all hackathon-related files to understand current structure
-- [x] Identify all files in scope for updates
-- [x] Document current state and required changes
-- [x] Check if k6 is in devcontainer - **NOT FOUND, needs to be added**
+### Phase 2: Challenge Content Updates
 
-**Key Findings:**
+- [x] 2.1 Update challenge-3-implementation.md (add deployment, 70 min)
+- [x] 2.2 Update challenge-4-dr-curveball.md (add deployment, 40 min)
+- [x] 2.3 Update challenge-7-diagnostics.md (shorten to 5 min)
+- [x] 2.4 Update challenge-8-partner-showcase.md (4 teams, 30 min)
+- [x] 2.5 Delete challenge-6-partner-showcase.md (duplicate)
 
-- Current format: 5-hour workshop with 6 challenges
-- Stops at deployment (Challenge 3), no docs/diagnose phases
-- Challenge 4 is a "curveball" DR scenario
-- Contains many complete code solutions
-- Uses prescriptive "step-by-step" instructions
-- ASCII diagrams in Challenge 6
-- k6 is NOT in devcontainer - needs to be added
+### Phase 3: Supporting Files
 
-### Phase 2: Create Expert Persona Prompt ✅
+- [x] 3.1 Update facilitator-guide.md (team structure, timing, pairings)
+- [x] 3.2 Update scoring-rubric.md (4 teams)
+- [x] 3.3 Update team-role-cards.md (max 5 members)
+- [x] 3.4 Update quick-reference-card.md (timing)
+- [x] 3.5 Update scenario-brief.md - No changes needed (already says "6-hour hackathon")
 
-**Tasks:**
+### Phase 4: Template Awareness
 
-- [x] Create comprehensive prompt with expert persona definition
-- [x] Include all specific requirements from user
-- [x] Define scope of all files to be updated
-- [x] Include examples of coaching vs training approach
+- [x] 4.1 Add template awareness section to hints-and-tips.md
 
-**Output:**
+## New Schedule
 
-- Created: `.github/prompts/expert-persona-hackathon-refactor.prompt.md`
-- Persona: Dr. Elena Björkström, Principal Learning Experience Designer
-- Philosophy: "The best teachers don't give answers—they teach people how to ask better questions."
-- Comprehensive transformation guidelines with before/after examples
-- Detailed requirements for each challenge
-- New 6-hour timing breakdown
-- Success criteria and implementation approach
-- **Integrated with**: `.github/prompts/proofread-hackathon.prompt.md` for quality assurance
-- Created: `.github/prompts/INTEGRATION-GUIDE.md` - Workflow showing how both prompts work together
+| Time        | Block       | Duration |
+| ----------- | ----------- | -------- |
+| 10:00-10:30 | Intro       | 30 min   |
+| 10:30-11:20 | Challenge 1 | 50 min   |
+| 11:20-12:10 | Challenge 2 | 50 min   |
+| 12:10-12:40 | 🍽️ Lunch    | 30 min   |
+| 12:40-13:50 | Challenge 3 | 70 min   |
+| 13:50-14:30 | Challenge 4 | 40 min   |
+| 14:30-14:50 | Challenge 5 | 20 min   |
+| 14:50-15:10 | Challenge 6 | 20 min   |
+| 15:10-15:15 | Challenge 7 | 5 min    |
+| 15:15-15:25 | Prep        | 10 min   |
+| 15:25-15:55 | Challenge 8 | 30 min   |
+| 15:55-16:00 | Wrap-up     | 5 min    |
+
+## Summary
+
+All updates completed successfully:
+
+1. **Timing**: Start moved to 10:00, end at 16:00
+2. **Team Structure**: Max 5 per team, max 4 teams
+3. **Challenge 3**: Now 70 min with required deployment
+4. **Challenge 4**: Now 40 min with required DR deployment
+5. **Challenge 7**: Shortened to 5 min (quick-reference card format)
+6. **Challenge 8**: Updated for 4 teams with new pairings (1↔2, 3↔4)
+7. **Template Awareness**: Added to hints-and-tips.md
+8. **Duplicate Deleted**: Removed challenge-6-partner-showcase.md
+
+Files updated:
+
+- hackathon/AGENDA.md
+- hackathon/README.md
+- hackathon/challenges/README.md
+- hackathon/challenges/challenge-3-implementation.md
+- hackathon/challenges/challenge-4-dr-curveball.md
+- hackathon/challenges/challenge-7-diagnostics.md
+- hackathon/challenges/challenge-8-partner-showcase.md
+- hackathon/facilitator/facilitator-guide.md
+- hackathon/facilitator/scoring-rubric.md
+- hackathon/participant/team-role-cards.md
+- hackathon/participant/quick-reference-card.md
+- hackathon/participant/hints-and-tips.md
+- .github/instructions/hackathon-proofreading.instructions.md
 
 ### Phase 3: Update Core Challenge Files
 

@@ -1,6 +1,18 @@
 # Team Role Cards
 
-> **Print and distribute** to each team member.
+> **Print and distribute** to each team member (up to 5 per team).
+
+---
+
+## Team Structure
+
+| Aspect          | Details                  |
+| --------------- | ------------------------ |
+| Team Size       | Up to 5 members per team |
+| Number of Teams | Maximum 4 teams          |
+
+> **Note**: If you have 5 team members, one person can take on a combined or floating role,
+> or you can have two people share the Architect role (one focusing on security, one on cost).
 
 ---
 
@@ -144,18 +156,19 @@ Before starting, agree on:
 - [ ] Who plays which role initially
 - [ ] Will we rotate roles? After which challenges?
 - [ ] How do we make decisions when we disagree? (Vote? Discuss? Architect decides?)
-- [ ] Break strategy (together or staggered? Lunch 11:10-11:40)
+- [ ] Break strategy (together or staggered? Lunch 12:10-12:40)
 - [ ] How do we support each other when stuck? (Ask questions, not give answers)
 
 ---
 
-**Team Name**: ********\_********
+**Team Name**: **\*\*\*\***\_**\*\*\*\***
 
-| Role          | Name |
-| ------------- | ---- |
-| 🚗 Driver     |      |
-| 🧭 Navigator  |      |
-| 🏗️ Architect  |      |
-| 📝 Documenter |      |
+| Role              | Name |
+| ----------------- | ---- |
+| 🚗 Driver         |      |
+| 🧭 Navigator      |      |
+| 🏗️ Architect      |      |
+| 📝 Documenter     |      |
+| 🔄 Floater (opt.) |      |
 
 **Coaching Philosophy**: We discover solutions together through questions, not by following prescriptive steps!
