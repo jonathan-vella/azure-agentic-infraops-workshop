@@ -1,170 +1,190 @@
-# Challenge 4: The Curveball — Multi-Region DR
+# Challenge 4: The Curveball — High Availability & Disaster Recovery
 
-> **Duration**: 20 minutes | **Announced at**: 13:20 | **Output**: Updated architecture + Bicep
+> **Duration**: 30 minutes | **Announced at**: 12:40 | **Output**: Updated architecture + Bicep + ADR
 
 ## ⚡ The Announcement
 
-> **FACILITATOR READS AT 13:20:**
+> **FACILITATOR READS AT 12:40:**
 >
 > _"ATTENTION ALL TEAMS! 📣_
 >
 > _We've just received urgent news from Nordic Fresh Foods headquarters!_
 >
 > _They've signed a major contract with a Danish restaurant chain — Smørrebrød Express — worth
-> €500K annually. The board has convened an emergency meeting and mandated new business
-> continuity requirements._
+> €500K annually. The board has convened an emergency meeting and approved increased infrastructure investment._
 >
-> _Your infrastructure must now support multi-region disaster recovery!_
+> _Your infrastructure must now support high availability with disaster recovery capabilities!_
 >
-> _The clock is ticking! You have 20 minutes!_ 🚀"
+> _You have 30 minutes to propose and plan the solution!_ 🚀"
 
-## New Requirements
+## New Business Requirements
 
-| Requirement          | Value                | Impact                                     |
-| -------------------- | -------------------- | ------------------------------------------ |
-| **RTO**              | ≤1 hour              | Must recover operations within 1 hour      |
-| **RPO**              | ≤15 minutes          | Maximum 15 minutes of data loss acceptable |
-| **Secondary Region** | `germanywestcentral` | Fallback region for DR                     |
-| **Budget Increase**  | +€200/month          | Total now ~€700/month                      |
+| Requirement          | Value                | Business Impact                                    |
+| -------------------- | -------------------- | -------------------------------------------------- |
+| **RTO**              | ≤1 hour              | Maximum acceptable downtime                        |
+| **RPO**              | ≤15 minutes          | Maximum acceptable data loss                       |
+| **Secondary Region** | `germanywestcentral` | Coverage for broader European market               |
+| **Budget Increase**  | +€200/month          | Total infrastructure budget now ~€700/month        |
+| **Timeline**         | 30 minutes           | Board needs decision on architecture approach      |
 
-## What You Must Do
+## Your Challenge
 
-### Option A: Full Implementation (Bonus Points)
+You must decide: **What level of HA/DR does the business need?**
 
-1. Update architecture document with DR strategy
-2. Add secondary region resources to Bicep
-3. Configure geo-replication for SQL
-4. Add Traffic Manager or Front Door for failover
-5. Deploy to both regions
+### Option A: Single-Region HA
+- All resources in `swedencentral`
+- Zone-redundant services where available
+- Faster failover, lower cost
+- Risk: Regional outage affects all services
 
-### Option B: Minimum Viable DR (Time-Constrained)
+### Option B: Multi-Region DR
+- Primary: `swedencentral`, Secondary: `germanywestcentral`
+- Geo-replication for data
+- Higher cost, longer RTO
+- Risk: Complexity in failover orchestration
 
-1. Document the DR strategy in architecture assessment
-2. Add secondary region parameters to Bicep (even if not deployed)
-3. Show you understand the pattern
+### Option C: Multi-Region Active-Active
+- Both regions serve traffic simultaneously
+- Highest availability, highest cost
+- Risk: Data consistency challenges
 
-## Quick Implementation Guide
+**Your Task**: Choose an approach and design it as a **parameterized solution**.
 
-### 1. Add Secondary Region to Bicep
+## Required Deliverables
 
+### 1. Architecture Decision Record (ADR) ⭐ MANDATORY
+
+Create: `agent-output/freshconnect/04-adr-ha-dr-strategy.md`
+
+Your ADR must document:
+
+**Context**: Why is this decision needed?
+- What changed in the business requirements?
+- What are the consequences of not addressing this?
+
+**Decision**: What approach did you choose and why?
+- Single-region HA vs multi-region DR vs active-active?
+- Which services need redundancy?
+- What's your failover strategy?
+
+**Consequences**: What are the trade-offs?
+- Cost implications (+€200 budget: is it enough?)
+- Operational complexity
+- RTO/RPO achievability
+- Risks and mitigation strategies
+
+**Alternatives Considered**: What did you reject and why?
+- Why not the other options?
+- What would make you reconsider?
+
+### 2. Updated Bicep (Parameterized)
+
+Add a parameter to your `main.bicep` that enables HA/DR:
+
+**Concept**:
 ```bicep
-// main.bicep - Add parameter
+param haStrategy string = 'single-region' // 'single-region' or 'multi-region'
 param primaryLocation string = 'swedencentral'
 param secondaryLocation string = 'germanywestcentral'
-param enableDR bool = true
 ```
 
-### 2. Add SQL Geo-Replication
+**Questions to Explore**:
+- How do you prompt the `bicep-code` agent to add this capability?
+- Which modules need to change?
+- What resources must exist in both regions?
+- How do you handle data replication?
 
-```bicep
-// modules/sql-database.bicep - Add geo-replica
-resource sqlGeoReplica 'Microsoft.Sql/servers@2023-05-01-preview' = if (enableDR) {
-  name: 'sql-${projectName}-${environment}-gwc'
-  location: secondaryLocation
-  properties: {
-    administratorLogin: sqlAdminLogin
-    azureADOnlyAuthentication: true
-  }
-}
+### 3. Updated Cost Estimate
 
-resource dbReplica 'Microsoft.Sql/servers/databases@2023-05-01-preview' = if (enableDR) {
-  parent: sqlGeoReplica
-  name: databaseName
-  location: secondaryLocation
-  properties: {
-    createMode: 'OnlineSecondary'
-    sourceDatabaseId: sqlDatabase.id
-  }
-}
-```
+**Consider**:
+- Does your solution fit in the +€200 budget increase?
+- What are the major cost drivers for HA/DR?
+- Where could you optimize if over budget?
 
-### 3. Add Traffic Manager
+## Guiding Questions
 
-```bicep
-// modules/traffic-manager.bicep
-resource trafficManager 'Microsoft.Network/trafficManagerProfiles@2022-04-01' = {
-  name: 'tm-${projectName}'
-  location: 'global'
-  properties: {
-    profileStatus: 'Enabled'
-    trafficRoutingMethod: 'Priority'
-    dnsConfig: {
-      relativeName: 'tm-${projectName}'
-      ttl: 60
-    }
-    monitorConfig: {
-      protocol: 'HTTPS'
-      port: 443
-      path: '/health'
-    }
-    endpoints: [
-      {
-        name: 'primary'
-        type: 'Microsoft.Network/trafficManagerProfiles/azureEndpoints'
-        properties: {
-          targetResourceId: primaryAppService.id
-          priority: 1
-        }
-      }
-      {
-        name: 'secondary'
-        type: 'Microsoft.Network/trafficManagerProfiles/azureEndpoints'
-        properties: {
-          targetResourceId: secondaryAppService.id
-          priority: 2
-        }
-      }
-    ]
-  }
-}
-```
+**Architecture Questions**:
+- What services can be zone-redundant within a single region?
+- Which services require geo-replication for multi-region?
+- How does Traffic Manager vs Front Door vs Application Gateway differ for failover?
+- What's the replication lag for SQL geo-replication? Does it meet 15-minute RPO?
 
-### 4. Update Architecture Document
+**Cost Questions**:
+- What's the incremental cost of zone redundancy (single region)?
+- What's the incremental cost of full multi-region deployment?
+- Which services double in cost? Which don't?
+- Can you achieve RTO/RPO targets within +€200?
 
-Add a section to `02-architecture-assessment.md`:
+**Operational Questions**:
+- Who triggers failover? Automatic or manual?
+- How do you test DR without affecting production?
+- What's the recovery procedure?
+- What documentation does the ops team need?
 
-```markdown
-## Disaster Recovery Strategy
+**Prompt Engineering Questions**:
+- How do you ask the `bicep-code` agent to add DR capabilities?
+- What context does the agent need to make good choices?
+- How do you validate the agent's DR implementation?
 
-### RTO/RPO Targets
+## Concepts to Research
 
-- **RTO**: 1 hour (automated failover via Traffic Manager)
-- **RPO**: 15 minutes (SQL geo-replication with async mode)
+### SQL Geo-Replication
+**Pattern**: Primary database + read-only replica in secondary region
 
-### DR Components
+**Key Questions**:
+- What Bicep resource creates a geo-replica?
+- What's the `createMode` property value?
+- How do you reference the source database?
+- What's the replication lag?
 
-| Component    | Primary       | Secondary          | Failover Method |
-| ------------ | ------------- | ------------------ | --------------- |
-| App Service  | swedencentral | germanywestcentral | Traffic Manager |
-| SQL Database | swedencentral | germanywestcentral | Geo-replication |
-| Storage      | GRS           | -                  | Automatic       |
-| Key Vault    | swedencentral | germanywestcentral | Manual          |
+### Traffic Management
+**Options**: Traffic Manager, Front Door, Application Gateway
 
-### Failover Process
+**Key Questions**:
+- Which option best fits this scenario?
+- How do you configure health probes?
+- What's the failover time?
+- How does DNS caching affect RTO?
 
-1. Traffic Manager detects primary endpoint failure
-2. DNS automatically routes to secondary endpoint
-3. SQL failover group promotes replica to primary
-4. Runbook notifies operations team
-```
+### Storage Redundancy
+**Options**: LRS, ZRS, GRS, GZRS
+
+**Key Questions**:
+- What redundancy level meets RPO requirements?
+- What's the cost difference?
+- Is GRS automatic failover? Or manual?
 
 ## Success Criteria
 
-| Criterion                        | Points |
-| -------------------------------- | ------ |
-| DR strategy documented           | 3      |
-| Secondary region in Bicep        | 3      |
-| SQL geo-replication configured   | 4      |
-| Traffic Manager/Front Door added | 5      |
-| **Bonus: Automated failover**    | +10    |
+| Criterion                                   | Points |
+| ------------------------------------------- | ------ |
+| ADR documented with clear rationale         | 3      |
+| HA/DR approach chosen and justified         | 2      |
+| Bicep parameterized for HA strategy         | 2      |
+| Cost estimate updated                       | 2      |
+| Trade-offs clearly understood               | 1      |
+| **Total**                                   | **10** |
 
-## Tips
+## Time Management Tips
 
-- 💡 Focus on documentation if time is short
-- 💡 SQL geo-replication takes time to set up — start early
-- 💡 Traffic Manager is simpler than Front Door for this scenario
-- 💡 You can add the Bicep code without deploying it
+💡 **15 minutes**: Architecture Decision Record
+💡 **10 minutes**: Prompt the `bicep-code` agent with your requirements
+💡 **5 minutes**: Review generated changes and update cost estimate
+
+Don't try to deploy in this challenge - focus on design and planning!
+
+## Coaching Approach
+
+This challenge tests your ability to:
+- Make informed decisions under time pressure
+- Balance business needs with technical constraints
+- Document architectural decisions clearly
+- Use AI agents effectively with well-crafted prompts
+
+**Remember**: There's no single "right answer" - the quality of your decision-making process matters more than the specific option you choose.
 
 ## Next Step
 
-After DR is addressed, proceed to [Challenge 5: Load Testing](challenge-5-load-testing.md).
+After completing your ADR and Bicep updates:
+
+Proceed to [Challenge 5: Load Testing](challenge-5-load-testing.md) to validate your infrastructure can handle the expected load.

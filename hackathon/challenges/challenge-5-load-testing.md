@@ -1,163 +1,179 @@
-# Challenge 5: Load Testing
+# Challenge 5: Load Testing & Performance Validation
 
-> **Duration**: 15 minutes | **Output**: `05-load-test-results.md`
+> **Duration**: 20 minutes | **Agent**: docs | **Output**: `05-load-test-results.md`
 
-## Objective
+## The Business Context
 
-Validate that your deployed infrastructure can handle the expected load of 500 concurrent users.
+Nordic Fresh Foods expects 500 concurrent users during peak seasons (summer and December holidays). 
+Before going live, they need confidence that the infrastructure can handle this load with acceptable performance.
 
-## Requirements
+## Your Challenge
 
-| Metric | Target | Pass/Fail |
-|--------|--------|-----------|
-| **Concurrent Users** | 500 | Must sustain |
-| **Response Time (P95)** | ≤2 seconds | P95 under 2s |
-| **Error Rate** | ≤1% | Less than 1% errors |
-| **Ramp-up** | 0→500 over 5 min | Gradual increase |
+Validate that your deployed infrastructure meets these performance targets:
 
-## Quick Start Options
+| Metric                  | Target       | Business Rationale                              |
+| ----------------------- | ------------ | ----------------------------------------------- |
+| **Concurrent Users**    | 500          | Peak holiday season traffic                     |
+| **Response Time (P95)** | ≤2 seconds   | User experience / cart abandonment threshold    |
+| **Error Rate**          | ≤1%          | Acceptable failure rate for MVP                 |
+| **Sustained Duration**  | 5 minutes    | Verify no degradation under sustained load      |
 
-### Option 1: k6 (Recommended — Fast Setup)
+## Option 1: k6 Load Testing (Recommended)
 
-k6 is pre-installed in the Dev Container.
+k6 is pre-installed in your Dev Container for quick load testing.
 
-```bash
-# Create test file
-cat > load-test.js << 'EOF'
+### Create Your Test Script
+
+**Consider these questions**:
+- What endpoint should you test? (Homepage? API? Both?)
+- How should you ramp up? (0→500 gradually or immediate spike?)
+- What constitutes a "passed" test?
+- What metrics matter most for this business?
+
+**Basic Test Structure** (expand based on your needs):
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export const options = {
   stages: [
-    { duration: '1m', target: 100 },   // Ramp up
-    { duration: '2m', target: 500 },   // Sustain peak
-    { duration: '1m', target: 0 },     // Ramp down
+    { duration: '?', target: ? },   // How should you ramp up?
+    { duration: '?', target: ? },   // How long to sustain peak?
+    { duration: '?', target: ? },   // How to ramp down?
   ],
   thresholds: {
-    http_req_duration: ['p(95)<2000'],  // P95 < 2s
-    http_req_failed: ['rate<0.01'],     // Error rate < 1%
+    http_req_duration: ['p(95)<2000'],  // Why P95? Why not P99?
+    http_req_failed: ['rate<0.01'],     // Why 1%? What if it's 2%?
   },
 };
 
 export default function () {
-  // Replace with your App Service URL
-  const res = http.get('https://app-freshconnect-dev-swc.azurewebsites.net/');
+  const res = http.get('https://YOUR-APP-URL');  // What URL?
   check(res, { 
     'status is 200': (r) => r.status === 200,
     'response time < 2s': (r) => r.timings.duration < 2000,
   });
-  sleep(1);
+  sleep(1);  // Why sleep? What does this simulate?
 }
-EOF
+```
 
-# Run the test
+### Run the Test
+
+```bash
 k6 run load-test.js
 ```
 
-### Option 2: Azure Load Testing
+**Watch for**:
+- Does P95 stay under 2 seconds?
+- Does error rate stay under 1%?
+- Are there any anomalies during ramp-up?
+
+## Option 2: Azure Load Testing (If you have more time)
 
 ```bash
-# Create Azure Load Testing resource
 az load create \
   --name lt-freshconnect \
   --resource-group rg-freshconnect-dev-swc \
   --location swedencentral
-
-# Then use Azure Portal to upload and run test
 ```
 
-### Option 3: Simple curl loop (Fallback)
+Then upload your test script through the Azure Portal.
 
-```bash
-# Quick smoke test (not a real load test)
-for i in {1..100}; do
-  curl -s -o /dev/null -w "%{http_code} %{time_total}s\n" \
-    https://app-freshconnect-dev-swc.azurewebsites.net/ &
-done
-wait
+## Generating Your Load Test Report
+
+After running your tests, use the **`docs` agent** to create a professional test results document.
+
+### Prompt Template for the `docs` Agent
+
+**Why use the `docs` agent?**
+- It structures raw data into professional documentation
+- It extracts key insights from test output
+- It follows documentation standards
+- It saves you time formatting
+
+**Suggested Prompt**:
+```
+Create a load test results document for the FreshConnect infrastructure.
+
+Test Output:
+[paste your k6 summary here]
+
+Requirements:
+- Document name: 05-load-test-results.md
+- Include: test configuration, results summary, pass/fail status
+- Add: observations about performance patterns
+- Recommend: any optimizations needed for production
+- Format: professional technical documentation
+
+Context:
+- Target: 500 concurrent users
+- P95 threshold: 2 seconds
+- Error rate threshold: 1%
+- Business criticality: MVP launch depends on these results
 ```
 
-## Document Your Results
+**This demonstrates**:
+1. How to structure prompts for documentation tasks
+2. How to provide context for better agent output
+3. How to specify format and content requirements
 
-Create `agent-output/freshconnect/05-load-test-results.md`:
-
-```markdown
-# Load Test Results
-
-## Test Configuration
-
-| Setting | Value |
-|---------|-------|
-| Tool | k6 |
-| Target URL | https://app-freshconnect-dev-swc.azurewebsites.net/ |
-| Duration | 4 minutes |
-| Peak Users | 500 |
-
-## Results Summary
-
-| Metric | Target | Actual | Status |
-|--------|--------|--------|--------|
-| Concurrent Users | 500 | 500 | ✅ PASS |
-| P95 Response Time | ≤2000ms | 1234ms | ✅ PASS |
-| Error Rate | ≤1% | 0.2% | ✅ PASS |
-| Total Requests | - | 45,231 | - |
-
-## Key Observations
-
-1. Response times remained stable under load
-2. No errors observed during ramp-up
-3. P95 stayed well under 2s threshold
-
-## Recommendations
-
-1. Consider auto-scaling rules for sustained peak traffic
-2. Monitor during actual peak season (summer/December)
-3. Add caching layer if response times increase
-```
-
-## Success Criteria
-
-| Criterion | Points |
-|-----------|--------|
-| Load test executed | 2 |
-| Targets documented | 1 |
-| Results analyzed | 2 |
-| **Total** | **5** |
-
-## Interpreting Results
+## Interpreting Your Results
 
 ### ✅ If Tests Pass
 
-- Document the results
-- Note any observations about performance
-- Proceed to final deployment
+**Questions to consider**:
+- What was the actual P95? How much headroom do you have?
+- Were there any performance degradation patterns?
+- What happens at 600 users? 1000 users?
+- Should you recommend auto-scaling to the client?
 
 ### ❌ If Tests Fail
 
-| Issue | Possible Cause | Solution |
-|-------|----------------|----------|
-| High P95 latency | Under-provisioned | Scale up App Service SKU |
-| Error rate > 1% | Connection limits | Check SQL DTU limits |
-| Timeouts | Cold start | Enable Always On |
+**Diagnostic questions**:
 
-## Tips
+| Symptom                  | Possible Causes                  | Where to Investigate                |
+| ------------------------ | -------------------------------- | ----------------------------------- |
+| High P95 (>2s)           | Under-provisioned compute        | App Service SKU, SQL DTUs           |
+| Error rate >1%           | Connection limits, timeouts      | SQL connection pool, App timeout    |
+| Timeouts                 | Cold start, initialization delay | App Service "Always On" setting     |
+| Degradation over time    | Memory leak, resource exhaustion | Application Insights metrics        |
 
-- 💡 Run against your actual deployed App Service URL
-- 💡 If you haven't deployed yet, use a health endpoint
-- 💡 k6 output is self-explanatory — just copy the summary
-- 💡 Don't spend too long on this — 5-10 minutes is enough
+**How to improve**:
+- What would you change in your Bicep?
+- How would you prompt the `bicep-code` agent to scale up?
+- What's the cost impact of scaling?
 
-## Final Step
+## Success Criteria
 
-After load testing, ensure all your artifacts are in place:
+| Criterion                                   | Points |
+| ------------------------------------------- | ------ |
+| Load test executed with realistic scenario  | 2      |
+| Results documented (using `docs` agent)     | 2      |
+| Performance interpreted correctly           | 1      |
+| **Total**                                   | **5**  |
 
-```
-agent-output/freshconnect/
-├── 01-requirements.md           ✅
-├── 02-architecture-assessment.md ✅
-├── 04-implementation-plan.md    ✅
-├── 05-load-test-results.md      ✅ (this challenge)
-└── 06-deployment-summary.md     ✅ (create after deploy)
-```
+## Coaching Questions
+
+**Before running tests**:
+- Q: "What endpoint should I test?"
+- A: What represents the critical user journey? Homepage? API? Checkout flow?
+
+**After seeing results**:
+- Q: "My P95 is 2.5 seconds. Is that a failure?"
+- A: What did the business say was acceptable? What's the user impact? What's the cost to fix it?
+
+**For the documentation**:
+- Q: "Should I include all the k6 output?"
+- A: What information helps the client make decisions? What's noise vs signal?
+
+## Time Management
+
+💡 **5 minutes**: Design and run your load test
+💡 **5 minutes**: Analyze results and identify patterns
+💡 **10 minutes**: Use `docs` agent to generate professional documentation
+
+## Next Steps
+
+After validating performance, proceed to [Challenge 6: Documentation](challenge-6-documentation.md) to create comprehensive workload documentation.
 
 Create a deployment summary and prepare for team showcase!
