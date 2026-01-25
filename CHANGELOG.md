@@ -3,6 +3,39 @@
 All notable changes to **Agentic InfraOps Workshop** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+## [1.2.0] - 2026-01-25
+
+### Added
+
+- make diagrams mandatory, add quota requirements, fix pre-work
+- expand upstream sync to include config files and automation
+- add hackathon proofreading prompt
+- create single-source AGENDA.md and reduce duplication
+- add hackathon scripts README and fix governance policies
+- add Challenge 6 Partner Showcase and workshop invitation
+- add Azure Policy governance constraints
+- add 5-hour hands-on hackathon package
+
+### Changed
+
+- update schedule, team structure, and challenge content
+- standardize formatting and improve clarity in proofreading prompt
+- simplify prerequisites check for Dev Container/Codespaces
+
+### Fixed
+
+- add pull-requests write permission to auto-version workflow
+- change auto-version to create PR instead of direct push (#7)
+- use cat instead of sed for CHANGELOG insertion (#5)
+- correct hackathon duration to 5 hours (#4)
+- upgrade to softprops/action-gh-release@v2 (#2)
+- hide curveball details in AGENDA.md
+- adjust lunch to 35min and add 15min presentation prep
+- update schedule timing with 10am start and lunch break
+- correct repo root path calculation in hackathon scripts
+- resolve MD013 line length violations
+
+
 
 ## [1.1.0] - 2026-01-22
 
