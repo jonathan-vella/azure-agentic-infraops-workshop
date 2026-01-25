@@ -36,13 +36,13 @@ docker --version
 
 **Required Extensions:**
 
-| Extension | ID | Purpose |
-|-----------|----|---------||
-| Dev Containers | `ms-vscode-remote.remote-containers` | Run Dev Container |
-| GitHub Copilot | `github.copilot` | AI assistance |
-| GitHub Copilot Chat | `github.copilot-chat` | Agent interactions |
-| Bicep | `ms-azuretools.vscode-bicep` | Bicep language support |
-| Azure Account | `ms-vscode.azure-account` | Azure authentication |
+| Extension           | ID                                    | Purpose              |
+| ------------------- | ------------------------------------- | -------------------- |
+| Dev Containers      | `ms-vscode-remote.remote-containers`  | Run Dev Container    |
+| GitHub Copilot      | `github.copilot`                      | AI assistance        |
+| GitHub Copilot Chat | `github.copilot-chat`                 | Agent interactions   |
+| Bicep               | `ms-azuretools.vscode-bicep`          | Bicep language support |
+| Azure Account       | `ms-vscode.azure-account`             | Azure authentication |
 
 **Install all at once:**
 
@@ -75,29 +75,68 @@ git --version
 
 ## Required Accounts
 
-### 1. GitHub Account with Copilot
+### 1. GitHub Account with Copilot Pro+ or Enterprise
 
-You need an active GitHub Copilot subscription (Individual, Business, or Enterprise).
+> ⚠️ **IMPORTANT**: This hackathon requires **GitHub Copilot Pro+** or **GitHub Copilot Enterprise**.
+>
+> Custom agents are **NOT available** on Copilot Free, Copilot Pro, or Copilot Business plans.
 
-**Verify:**
+**Compatible plans:**
+
+| Plan                      | Custom Agents | Hackathon Compatible |
+| ------------------------- | ------------- | -------------------- |
+| Copilot Free              | ❌ No         | ❌ No                |
+| Copilot Pro               | ❌ No         | ❌ No                |
+| Copilot Business          | ❌ No         | ❌ No                |
+| **Copilot Pro+**          | ✅ Yes        | ✅ Yes               |
+| **Copilot Enterprise**    | ✅ Yes        | ✅ Yes               |
+
+📖 Compare plans: [GitHub Copilot Plans](https://github.com/features/copilot/plans)
+
+**Recommended: Use Azure billing for Copilot**
+
+If your organization uses Azure, you can pay for GitHub Copilot through your Azure subscription:
+
+📖 [Connect Azure subscription to GitHub billing](https://docs.github.com/en/billing/how-tos/set-up-payment/connect-azure-sub)
+
+**Setup Copilot in VS Code:**
+
+📖 [VS Code Copilot Setup Guide](https://code.visualstudio.com/docs/copilot/setup)
+
+**Verify your plan:**
 
 1. Go to [github.com/settings/copilot](https://github.com/settings/copilot)
-2. Confirm your subscription is active
+2. Confirm your subscription shows **Pro+** or **Enterprise**
 3. Ensure "Copilot Chat in the IDE" is enabled
-
-> ⚠️ **No Copilot subscription?** Contact your facilitator — they may have trial licenses available.
 
 ---
 
 ### 2. Azure Subscription
 
-You need an Azure subscription with **Contributor** access to create resources.
+> ⚠️ **IMPORTANT**: This is a Bring-Your-Own-Subscription event. No Azure subscriptions
+> will be provided.
 
-**Options:**
+**Compatible subscription types:**
 
-- Use your organization's Dev/Test subscription
-- [Azure Free Account](https://azure.microsoft.com/free/) (includes $200 credit)
-- [Visual Studio subscription benefits](https://azure.microsoft.com/pricing/member-offers/credit-for-visual-studio-subscribers/)
+| Subscription Type                          | Compatible |
+| ------------------------------------------ | ---------- |
+| Azure in CSP                               | ✅ Yes     |
+| Enterprise Agreement (EA)                  | ✅ Yes     |
+| Pay As You Go                              | ✅ Yes     |
+| Visual Studio subscription                 | ✅ Yes     |
+| Azure Free Account (with Credit Card)      | ✅ Yes     |
+| **Azure Pass**                             | ❌ No      |
+
+📖 [Azure account FAQ](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account?icid=azurefaq)
+
+**Requirements:**
+
+- **Owner** access on the subscription (required for Azure Policy in governance challenges)
+- Sufficient quota for hackathon resources — see [Quota Requirements](quota-requirements.md)
+- Subscription can be shared across multiple teams if quota permits
+
+> 💡 **Shared subscriptions**: A single subscription can support multiple teams as long as the
+> combined resource requirements stay within [Azure subscription limits](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits).
 
 **Verify:**
 

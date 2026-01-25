@@ -109,6 +109,7 @@ Your architecture assessment should capture:
 - ✅ Risk identification and mitigation strategies
 - ✅ Specific recommendations for improvement
 - ✅ Cost estimate or reference to pricing considerations
+- ✅ Architecture diagram generated (PNG or Mermaid)
 
 ## Success Criteria
 
@@ -117,8 +118,9 @@ Your architecture assessment should capture:
 | Architecture assessment document created   | 5      |
 | Azure services selected with justification | 5      |
 | WAF assessment complete (all 5 pillars)    | 5      |
-| Trade-offs documented                      | 5      |
-| Cost estimate provided                     | 5      |
+| Trade-offs documented                      | 3      |
+| Cost estimate provided                     | 4      |
+| Architecture diagram generated             | 3      |
 | **Total**                                  | **25** |
 
 ## Coaching Tips
@@ -181,13 +183,24 @@ After completing this challenge:
 - 💡 Don't gold-plate the MVP — focus on essential features
 - 💡 Document assumptions and constraints
 
-## Next Step
+## Required: Architecture Diagram ⭐ MANDATORY
 
-After architecture is approved, proceed to [Challenge 3: Implementation](challenge-3-implementation.md).
-
-Optionally, generate design artifacts first:
+Before proceeding to Challenge 3, generate an architecture diagram:
 
 ```
 Use the `diagram` agent to create an architecture diagram for FreshConnect based on
 agent-output/freshconnect/02-architecture-assessment.md
 ```
+
+Your diagram should visualize:
+
+- Azure services and their relationships
+- Data flows between components
+- Network boundaries and security zones
+- Regional placement of resources
+
+**Save your diagram** — you'll need it for your Partner Showcase in Challenge 8.
+
+## Next Step
+
+After architecture assessment and diagram are complete, proceed to [Challenge 3: Implementation](challenge-3-implementation.md).

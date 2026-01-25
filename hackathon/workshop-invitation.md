@@ -6,7 +6,7 @@
 
 ## What Is This?
 
-A **5-hour hands-on hackathon** where you'll experience the future of Infrastructure as Code.
+A **6-hour hands-on hackathon** where you'll experience the future of Infrastructure as Code.
 
 Forget writing Bicep templates line by line. In this workshop, you'll orchestrate **specialized
 AI agents** that collaborate to transform business requirements into production-ready Azure

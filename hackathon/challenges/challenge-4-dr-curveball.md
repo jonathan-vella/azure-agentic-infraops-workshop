@@ -129,7 +129,23 @@ az deployment group create \
 - Are there any resources that need to be deployed to the secondary region separately?
 - How do you verify that geo-replication is working?
 
-### 4. Updated Cost Estimate
+### 4. Updated Architecture Diagram ⭐ MANDATORY
+
+Use the `diagram` agent to update your architecture diagram showing:
+
+- Primary and secondary region resources
+- Geo-replication connections
+- Failover paths and traffic routing
+- Data synchronization flows
+
+```
+Use the `diagram` agent to update the FreshConnect architecture diagram
+to show HA/DR configuration based on agent-output/freshconnect/04-adr-ha-dr-strategy.md
+```
+
+**Save your updated diagram** — you'll need it for your Partner Showcase in Challenge 8.
+
+### 5. Updated Cost Estimate
 
 **Consider**:
 
@@ -144,8 +160,8 @@ az deployment group create \
 | ADR documented with clear rationale | 2      |
 | HA/DR approach chosen and justified | 2      |
 | Bicep parameterized for HA strategy | 2      |
-| **DR infrastructure deployed**      | 3      |
-| Trade-offs clearly understood       | 1      |
+| **DR infrastructure deployed**      | 2      |
+| Updated architecture diagram        | 2      |
 | **Total**                           | **10** |
 
 ## Time Management Tips

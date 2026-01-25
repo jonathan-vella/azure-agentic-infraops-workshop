@@ -1,6 +1,20 @@
 # Copilot Processing Log
 
-## User Request
+## Latest Request (Completed)
+
+Make diagrams mandatory in Challenge 2 and Challenge 4.
+
+### Changes Made
+
+- **Challenge 2**: Changed "Optionally, generate design artifacts" to "Required: Architecture Diagram ⭐ MANDATORY"
+- **Challenge 2**: Added diagram to verification checklist
+- **Challenge 2**: Updated success criteria (added 3 points for diagram, adjusted trade-offs to 3 and cost to 4)
+- **Challenge 4**: Added "Updated Architecture Diagram ⭐ MANDATORY" section (new item 4)
+- **Challenge 4**: Updated success criteria (added 2 points for diagram, removed "trade-offs understood")
+
+---
+
+## Previous Request
 
 Update hackathon content with:
 
