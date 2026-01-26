@@ -1,34 +1,30 @@
 <#
 .SYNOPSIS
-    Validates hackathon environment readiness in Dev Container or Codespaces.
+    Validates that all prerequisites for Agentic InfraOps workshops are met.
 
 .DESCRIPTION
-    This script verifies Azure authentication and environment setup for the
-    Agentic InfraOps hackathon. Designed for Dev Container and GitHub Codespaces
-    environments where tools are pre-installed.
+    This script checks for required tools, extensions, and configurations needed
+    to run Agentic InfraOps scenarios and workshops. It provides clear pass/fail
+    feedback and remediation guidance.
 
-.PARAMETER TeamName
-    Optional team name for resource group naming convention check.
+.PARAMETER Verbose
+    Shows detailed information about each check.
 
 .EXAMPLE
     ./check-prerequisites.ps1
-    Basic environment check.
+    Basic check with summary output.
 
 .EXAMPLE
-    ./check-prerequisites.ps1 -TeamName "alpha"
-    Check with team-specific validation.
+    ./check-prerequisites.ps1 -Verbose
+    Detailed check with version information.
 
 .NOTES
-    Version: 4.0.0
-    Environment: Dev Container / GitHub Codespaces only
-    Part of: Agentic InfraOps Hackathon
+    Version: 3.2.0
+    Part of: Agentic InfraOps - Azure infrastructure engineered by agents
 #>
 
 [CmdletBinding()]
-param(
-    [Parameter()]
-    [string]$TeamName
-)
+param()
 
 # Colors and formatting
 $script:PassColor = 'Green'
@@ -51,25 +47,43 @@ function Write-CheckResult {
         [string]$Details = "",
         [string]$Remediation = ""
     )
-
+    
     $icon = if ($Passed) { "✅" } else { "❌" }
     $color = if ($Passed) { $PassColor } else { $FailColor }
-
+    
     Write-Host "  $icon " -NoNewline
     Write-Host "$Name" -ForegroundColor $color -NoNewline
-
+    
     if ($Details) {
         Write-Host " - $Details" -ForegroundColor Gray
     } else {
         Write-Host ""
     }
-
+    
     if (-not $Passed -and $Remediation) {
         Write-Host "     └─ " -ForegroundColor $WarnColor -NoNewline
         Write-Host "$Remediation" -ForegroundColor $WarnColor
     }
-
+    
     return $Passed
+}
+
+function Test-Command {
+    param([string]$Command)
+    return [bool](Get-Command $Command -ErrorAction SilentlyContinue)
+}
+
+function Get-CommandVersion {
+    param(
+        [string]$Command,
+        [string]$VersionArg = "--version"
+    )
+    try {
+        $output = & $Command $VersionArg 2>&1
+        return ($output | Select-Object -First 1) -replace '^\s+', ''
+    } catch {
+        return "unknown"
+    }
 }
 
 # Banner
@@ -84,28 +98,138 @@ Write-Host @"
 ║    ██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║   ██║╚██████╗                    ║
 ║    ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝ ╚═════╝                    ║
 ║                                                                               ║
-║                    HACKATHON ENVIRONMENT CHECK                                ║
-║                           Version 4.0.0                                       ║
+║                    INFRAOPS PREREQUISITES CHECK                               ║
+║                           Version 3.2.0                                       ║
 ║                                                                               ║
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 "@ -ForegroundColor Cyan
 
-$results = @()
+$results = @{
+    Required = @()
+    Optional = @()
+}
 
 # ============================================================================
-# ENVIRONMENT DETECTION
+# REQUIRED TOOLS
 # ============================================================================
 
-Write-CheckHeader "Environment"
+Write-CheckHeader "Required Tools"
 
-$inDevContainer = $env:REMOTE_CONTAINERS -eq 'true' -or $env:CODESPACES -eq 'true'
-$envType = if ($env:CODESPACES -eq 'true') { "GitHub Codespaces" }
-           elseif ($env:REMOTE_CONTAINERS -eq 'true') { "Dev Container" }
-           else { "Local (not recommended)" }
+# Git
+$gitInstalled = Test-Command "git"
+$gitVersion = if ($gitInstalled) { Get-CommandVersion "git" } else { "" }
+$results.Required += Write-CheckResult -Name "Git" -Passed $gitInstalled `
+    -Details $gitVersion `
+    -Remediation "Install from https://git-scm.com/downloads"
 
-$results += Write-CheckResult -Name "Container Environment" -Passed $inDevContainer `
-    -Details $envType `
-    -Remediation "Reopen in Dev Container: F1 → 'Dev Containers: Reopen in Container'"
+# Azure CLI
+$azInstalled = Test-Command "az"
+$azVersion = if ($azInstalled) { 
+    $v = (az version 2>&1 | ConvertFrom-Json -ErrorAction SilentlyContinue)
+    if ($v) { "v$($v.'azure-cli')" } else { "installed" }
+} else { "" }
+$results.Required += Write-CheckResult -Name "Azure CLI" -Passed $azInstalled `
+    -Details $azVersion `
+    -Remediation "Install from https://aka.ms/installazurecliwindows"
+
+# Bicep CLI (via Azure CLI)
+$bicepInstalled = $false
+$bicepVersion = ""
+if ($azInstalled) {
+    try {
+        # Use --only-show-errors to suppress warnings, capture just version output
+        $bicepOutput = az bicep version --only-show-errors 2>&1 | Out-String
+        if ($bicepOutput -match 'Bicep CLI version (\d+\.\d+\.\d+)') {
+            $bicepInstalled = $true
+            $bicepVersion = "v$($Matches[1])"
+        } elseif ($bicepOutput -match '(\d+\.\d+\.\d+)') {
+            $bicepInstalled = $true
+            $bicepVersion = "v$($Matches[1])"
+        }
+    } catch { }
+}
+$results.Required += Write-CheckResult -Name "Bicep CLI" -Passed $bicepInstalled `
+    -Details $bicepVersion `
+    -Remediation "Run: az bicep install"
+
+# PowerShell 7+
+$pwshInstalled = $PSVersionTable.PSVersion.Major -ge 7
+$pwshVersion = "v$($PSVersionTable.PSVersion)"
+$results.Required += Write-CheckResult -Name "PowerShell 7+" -Passed $pwshInstalled `
+    -Details $pwshVersion `
+    -Remediation "Install from https://aka.ms/powershell"
+
+# Node.js (for markdownlint)
+$nodeInstalled = Test-Command "node"
+$nodeVersion = if ($nodeInstalled) { Get-CommandVersion "node" } else { "" }
+$results.Required += Write-CheckResult -Name "Node.js" -Passed $nodeInstalled `
+    -Details $nodeVersion `
+    -Remediation "Install from https://nodejs.org/"
+
+# ============================================================================
+# VS CODE & EXTENSIONS
+# ============================================================================
+
+Write-CheckHeader "VS Code Environment"
+
+# VS Code
+$codeInstalled = Test-Command "code"
+$codeVersion = if ($codeInstalled) { 
+    $v = Get-CommandVersion "code" "--version" 
+    ($v -split "`n")[0]
+} else { "" }
+$results.Required += Write-CheckResult -Name "VS Code" -Passed $codeInstalled `
+    -Details $codeVersion `
+    -Remediation "Install from https://code.visualstudio.com/"
+
+# Check for key extensions (if VS Code is installed)
+if ($codeInstalled) {
+    $extensions = code --list-extensions 2>&1
+    
+    $requiredExtensions = @(
+        @{ Id = "github.copilot"; Name = "GitHub Copilot" },
+        @{ Id = "github.copilot-chat"; Name = "GitHub Copilot Chat" },
+        @{ Id = "ms-azuretools.vscode-bicep"; Name = "Bicep Extension" }
+    )
+    
+    foreach ($ext in $requiredExtensions) {
+        $installed = $extensions -contains $ext.Id
+        $results.Required += Write-CheckResult -Name $ext.Name -Passed $installed `
+            -Remediation "Run: code --install-extension $($ext.Id)"
+    }
+}
+
+# ============================================================================
+# OPTIONAL TOOLS
+# ============================================================================
+
+Write-CheckHeader "Optional Tools (Recommended)"
+
+# Python (for diagram generation)
+$pythonInstalled = Test-Command "python3" -or (Test-Command "python")
+$pythonVersion = if ($pythonInstalled) { 
+    if (Test-Command "python3") { Get-CommandVersion "python3" }
+    else { Get-CommandVersion "python" }
+} else { "" }
+$results.Optional += Write-CheckResult -Name "Python 3" -Passed $pythonInstalled `
+    -Details $pythonVersion `
+    -Remediation "Install from https://python.org/downloads"
+
+# Docker
+$dockerInstalled = Test-Command "docker"
+$dockerVersion = if ($dockerInstalled) { Get-CommandVersion "docker" } else { "" }
+$results.Optional += Write-CheckResult -Name "Docker" -Passed $dockerInstalled `
+    -Details $dockerVersion `
+    -Remediation "Install Docker Desktop from https://docker.com/products/docker-desktop"
+
+# markdownlint (check global, local binary, or npm script)
+$mdlintInstalled = (Test-Command "markdownlint-cli2") -or 
+    (Test-Command "markdownlint") -or 
+    (Test-Path "node_modules/.bin/markdownlint-cli2") -or
+    (Test-Path "node_modules/.bin/markdownlint") -or
+    ((Test-Path "package.json") -and ((Get-Content "package.json" -Raw) -match '"lint:md"'))
+$results.Optional += Write-CheckResult -Name "markdownlint-cli2" -Passed $mdlintInstalled `
+    -Remediation "Run: npm install"
 
 # ============================================================================
 # AZURE AUTHENTICATION
@@ -113,106 +237,20 @@ $results += Write-CheckResult -Name "Container Environment" -Passed $inDevContai
 
 Write-CheckHeader "Azure Authentication"
 
-# Check Azure CLI is available (should always be true in container)
-$azInstalled = [bool](Get-Command "az" -ErrorAction SilentlyContinue)
-$results += Write-CheckResult -Name "Azure CLI" -Passed $azInstalled `
-    -Details $(if ($azInstalled) { "Available" } else { "" }) `
-    -Remediation "Azure CLI should be pre-installed in the container"
-
-# Check Azure login status
 $azLoggedIn = $false
 $azAccount = ""
-$subscriptionId = ""
 if ($azInstalled) {
     try {
         $account = az account show 2>&1 | ConvertFrom-Json -ErrorAction SilentlyContinue
         if ($account) {
             $azLoggedIn = $true
-            $azAccount = "$($account.name)"
-            $subscriptionId = $account.id
+            $azAccount = "$($account.user.name) ($($account.name))"
         }
     } catch { }
 }
-$results += Write-CheckResult -Name "Azure Login" -Passed $azLoggedIn `
+$results.Required += Write-CheckResult -Name "Azure Login" -Passed $azLoggedIn `
     -Details $azAccount `
-    -Remediation "Run: az login --use-device-code"
-
-# Check subscription is set (not default/free tier typically)
-$subscriptionSet = $azLoggedIn -and $subscriptionId -and $subscriptionId -ne ""
-$results += Write-CheckResult -Name "Subscription Selected" -Passed $subscriptionSet `
-    -Details $(if ($subscriptionSet) { $subscriptionId.Substring(0, 8) + "..." } else { "" }) `
-    -Remediation "Run: az account set --subscription '<subscription-id>'"
-
-# ============================================================================
-# AZURE PERMISSIONS CHECK
-# ============================================================================
-
-Write-CheckHeader "Azure Permissions"
-
-$canCreateRg = $false
-if ($azLoggedIn) {
-    try {
-        # Check if user can list resource groups (basic permission check)
-        $null = az group list --query "[0].name" -o tsv 2>&1
-        $canCreateRg = $LASTEXITCODE -eq 0
-    } catch { }
-}
-$results += Write-CheckResult -Name "Resource Group Access" -Passed $canCreateRg `
-    -Details $(if ($canCreateRg) { "Can list/create resource groups" } else { "" }) `
-    -Remediation "Ensure you have Owner role on the subscription (required for Azure Policy)"
-
-# Check allowed locations (governance policy check)
-$locationOk = $false
-if ($azLoggedIn) {
-    try {
-        # Try to validate swedencentral is accessible
-        $locations = az account list-locations --query "[?name=='swedencentral'].name" -o tsv 2>&1
-        $locationOk = $locations -eq 'swedencentral'
-    } catch { }
-}
-$results += Write-CheckResult -Name "Sweden Central Region" -Passed $locationOk `
-    -Details $(if ($locationOk) { "swedencentral available" } else { "" }) `
-    -Remediation "Ensure swedencentral region is available in your subscription"
-
-# ============================================================================
-# COPILOT CHECK
-# ============================================================================
-
-Write-CheckHeader "GitHub Copilot"
-
-# Check if .github/agents folder exists (indicates agents are configured)
-$agentsExist = Test-Path ".github/agents"
-$agentCount = if ($agentsExist) { 
-    (Get-ChildItem ".github/agents/*.agent.md" -ErrorAction SilentlyContinue).Count 
-} else { 0 }
-$results += Write-CheckResult -Name "Custom Agents" -Passed ($agentCount -gt 0) `
-    -Details "$agentCount agents found" `
-    -Remediation "Ensure you're in the correct repository"
-
-Write-Host ""
-Write-Host "  ℹ️  " -NoNewline -ForegroundColor $InfoColor
-Write-Host "GitHub Copilot access cannot be verified programmatically." -ForegroundColor Gray
-Write-Host "     Test by pressing Ctrl+Alt+I and selecting an agent from the dropdown." -ForegroundColor Gray
-
-# ============================================================================
-# TEAM RESOURCE GROUP (if team name provided)
-# ============================================================================
-
-if ($TeamName) {
-    Write-CheckHeader "Team Configuration"
-
-    $rgName = "rg-hackathon-$TeamName"
-    $rgExists = $false
-    if ($azLoggedIn) {
-        try {
-            $rg = az group show --name $rgName 2>&1 | ConvertFrom-Json -ErrorAction SilentlyContinue
-            $rgExists = $null -ne $rg
-        } catch { }
-    }
-    $results += Write-CheckResult -Name "Team Resource Group" -Passed $rgExists `
-        -Details $(if ($rgExists) { $rgName } else { "" }) `
-        -Remediation "Run: az group create --name $rgName --location swedencentral"
-}
+    -Remediation "Run: az login"
 
 # ============================================================================
 # SUMMARY
@@ -223,29 +261,35 @@ Write-Host "━━━━━━━━━━━━━━━━━━━━━━�
 Write-Host "  SUMMARY" -ForegroundColor $InfoColor
 Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor $InfoColor
 
-$passed = ($results | Where-Object { $_ -eq $true }).Count
-$total = $results.Count
+$requiredPassed = ($results.Required | Where-Object { $_ -eq $true }).Count
+$requiredTotal = $results.Required.Count
+$optionalPassed = ($results.Optional | Where-Object { $_ -eq $true }).Count
+$optionalTotal = $results.Optional.Count
 
 Write-Host ""
-Write-Host "  Checks: " -NoNewline
-$color = if ($passed -eq $total) { $PassColor } else { $FailColor }
-Write-Host "$passed/$total passed" -ForegroundColor $color
+Write-Host "  Required: " -NoNewline
+$reqColor = if ($requiredPassed -eq $requiredTotal) { $PassColor } else { $FailColor }
+Write-Host "$requiredPassed/$requiredTotal passed" -ForegroundColor $reqColor
+
+Write-Host "  Optional: " -NoNewline
+$optColor = if ($optionalPassed -eq $optionalTotal) { $PassColor } else { $WarnColor }
+Write-Host "$optionalPassed/$optionalTotal passed" -ForegroundColor $optColor
 
 Write-Host ""
 
-if ($passed -eq $total) {
+if ($requiredPassed -eq $requiredTotal) {
     Write-Host "  🎉 " -NoNewline
-    Write-Host "Environment ready! You can start the hackathon." -ForegroundColor $PassColor
+    Write-Host "All required prerequisites met! Ready for workshops." -ForegroundColor $PassColor
     $exitCode = 0
 } else {
     Write-Host "  ⚠️  " -NoNewline
-    Write-Host "Some checks failed. Please resolve issues before starting." -ForegroundColor $FailColor
+    Write-Host "Some required prerequisites are missing. Please install them before proceeding." -ForegroundColor $FailColor
     $exitCode = 1
 }
 
 Write-Host ""
-Write-Host "  📋 Start here: hackathon/README.md" -ForegroundColor Gray
-Write-Host "  🎯 Challenge 1: hackathon/challenges/challenge-1-requirements.md" -ForegroundColor Gray
+Write-Host "  📚 Documentation: docs/getting-started/prerequisites.md" -ForegroundColor Gray
+Write-Host "  🚀 Quick Start:   docs/getting-started/QUICKSTART.md" -ForegroundColor Gray
 Write-Host ""
 
 exit $exitCode
