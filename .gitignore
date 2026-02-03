@@ -4,6 +4,9 @@
 .azure/
 local.settings.json
 
+# Copilot session logs
+Copilot-Processing.md
+
 # Bicep
 *.bin
 
@@ -62,4 +65,8 @@ TestResults/
 # Personal notes
 NOTES.md
 TODO.md
+Copilot-Processing.md
 scratch/
+
+# Extracted sample apps (use .zip files instead to avoid Dependabot alerts)
+scenarios/S06-sbom-generator/sample-app/
