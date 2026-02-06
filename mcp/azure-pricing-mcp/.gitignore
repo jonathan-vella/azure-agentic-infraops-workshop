@@ -77,5 +77,8 @@ venv.bak/
 ehthumbs.db
 Thumbs.db
 
+# Archive
+.archive/
+
 # Logs
 *.log

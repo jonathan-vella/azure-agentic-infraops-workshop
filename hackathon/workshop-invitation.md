@@ -1,4 +1,4 @@
-# Agentic InfraOps Workshop — Invitation
+# Agentic InfraOps Hackathon — Invitation
 
 > **Transform how you deliver Azure infrastructure using AI-powered agents**
 
@@ -8,7 +8,7 @@
 
 A **6-hour hands-on hackathon** where you'll experience the future of Infrastructure as Code.
 
-Forget writing Bicep templates line by line. In this workshop, you'll orchestrate **specialized
+Forget writing Bicep templates line by line. In this hackathon, you'll orchestrate **specialized
 AI agents** that collaborate to transform business requirements into production-ready Azure
 infrastructure — complete with:
 
@@ -81,7 +81,7 @@ ability to adapt to changing requirements — just like real projects!
 
 ## What Makes This Different?
 
-This isn't a traditional workshop where you follow step-by-step instructions.
+This isn't a traditional hackathon where you follow step-by-step instructions.
 You'll **collaborate with AI agents** that understand Azure best practices,
 making decisions together and learning why certain patterns work.
 

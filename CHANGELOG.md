@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to **Agentic InfraOps Workshop** will be documented in this file.
+All notable changes to **Agentic InfraOps Hackathon** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - add hackathon proofreading prompt
 - create single-source AGENDA.md and reduce duplication
 - add hackathon scripts README and fix governance policies
-- add Challenge 6 Partner Showcase and workshop invitation
+- add Challenge 6 Partner Showcase and hackathon invitation
 - add Azure Policy governance constraints
 - add 5-hour hands-on hackathon package
 
@@ -54,8 +54,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **package.json** - Updated repository metadata
   - Changed name to `azure-agentic-infraops-workshop`
   - Updated version to 1.0.1
-  - Fixed repository URL to workshop repository
-  - Added workshop-specific keywords (hackathon, workshop, training)
+  - Fixed repository URL to hackathon repository
+  - Added hackathon-specific keywords (hackathon, workshop, training)
 
 ## [1.0.1] - 2026-01-22
 
@@ -79,7 +79,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **5-hour hackathon workshop** - Complete hands-on training program
+- **5-hour hackathon** - Complete hands-on training program
   - 6 challenges covering full Infrastructure as Code workflow
   - Team-based learning (3-4 members per team, 20-24 participants)
   - Real Azure deployment with scoring and leaderboard
@@ -101,17 +101,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - WAF-aligned scoring rubric (100 base + 25 bonus points)
   - Solution reference with expected outputs and patterns
   - PowerShell scoring scripts for automated evaluation
-- **Workshop invitation** - Marketing material for participant recruitment
+- **Hackathon invitation** - Marketing material for participant recruitment
 - **AGENDA.md** - Detailed schedule with 10:00-15:00 absolute timing
-- **Feedback form** - Post-workshop evaluation mechanism
+- **Feedback form** - Post-hackathon evaluation mechanism
 
 ### Changed
 
-- **Workshop format** - Designed for partner enablement and customer demonstrations
+- **Hackathon format** - Designed for partner enablement and customer demonstrations
   - SI partners delivering Azure projects
   - IT Pros learning Infrastructure as Code
   - Customers evaluating agentic workflows
-- **Curveball challenge** - Mid-workshop surprise requirement at 13:20
+- **Curveball challenge** - Mid-hackathon surprise requirement at 13:20
   - Tests adaptability to changing requirements (real-world simulation)
   - Multi-region DR requirement increases budget from €500 to €700/month
 
@@ -119,8 +119,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This project uses [Semantic Versioning](https://semver.org/):
 
-- **MAJOR**: Breaking changes to workshop structure or challenge flow
-- **MINOR**: New challenges, scenarios, or significant workshop enhancements
+- **MAJOR**: Breaking changes to hackathon structure or challenge flow
+- **MINOR**: New challenges, scenarios, or significant hackathon enhancements
 - **PATCH**: Bug fixes, documentation improvements, timing corrections
 
 ## Links

@@ -49,6 +49,9 @@ obj/
 dist/
 build/
 
+# Workflow generator output (regenerated locally)
+scripts/workflow-generator/output/
+
 # Node (if any demos use it)
 node_modules/
 
