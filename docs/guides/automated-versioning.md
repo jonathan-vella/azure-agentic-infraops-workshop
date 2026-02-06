@@ -32,7 +32,7 @@ Use the following format for your commits:
 | ------------------------------------------------- | ----------------- | ------------------------------------ |
 | `feat:`                                           | **Minor** (1.X.0) | `feat: add challenge 7`              |
 | `fix:`                                            | **Patch** (1.0.X) | `fix: correct timing in agenda`      |
-| `feat!:` or `BREAKING CHANGE:`                    | **Major** (X.0.0) | `feat!: redesign workshop structure` |
+| `feat!:` or `BREAKING CHANGE:`                    | **Major** (X.0.0) | `feat!: redesign hackathon structure` |
 | `docs:`, `chore:`, `style:`, `refactor:`, `test:` | **No bump**       | `docs: update README`                |
 
 ### Examples
@@ -52,7 +52,7 @@ git commit -m "fix: correct challenge 3 duration from 40 to 45 minutes"
 **Breaking change (major bump):**
 
 ```bash
-git commit -m "feat!: restructure workshop from 6 to 8 challenges
+git commit -m "feat!: restructure hackathon from 6 to 8 challenges
 
 BREAKING CHANGE: All existing challenge numbers have shifted"
 ```
